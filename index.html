@@ -1,33 +1,405 @@
-<!doctype html>
-<html class="no-js" lang="">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
-  <link rel="stylesheet" href="css/style.css">
-  <meta name="description" content="">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bravo Pizza Plus - Best Pizza in Atascadero, CA</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .hero-section {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1681&q=80');
+      background-size: cover;
+      background-position: center;
+    }
 
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
-  <meta property="og:image:alt" content="">
+    .review-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
 
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" href="/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="icon.png">
+    .ingredient-icon {
+      transition: all 0.3s ease;
+    }
 
-  <link rel="manifest" href="site.webmanifest">
-  <meta name="theme-color" content="#fafafa">
+    .ingredient-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .founder-quote::before {
+      content: '"';
+      font-size: 4rem;
+      color: #e53e3e;
+      position: absolute;
+      left: -1rem;
+      top: -1rem;
+    }
+
+    .founder-quote::after {
+      content: '"';
+      font-size: 4rem;
+      color: #e53e3e;
+      position: absolute;
+      right: -1rem;
+      bottom: -3rem;
+    }
+  </style>
 </head>
+<body class="font-sans bg-gray-50">
+<!-- Navigation -->
+<nav class="bg-red-600 text-white shadow-lg sticky top-0 z-50">
+  <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+    <div class="flex items-center space-x-2">
+      <i class="fas fa-pizza-slice text-2xl"></i>
+      <span class="text-xl font-bold">Bravo Pizza Plus</span>
+    </div>
+    <div class="hidden md:flex space-x-6">
+      <a href="#home" class="hover:text-yellow-300 transition">Home</a>
+      <a href="#reviews" class="hover:text-yellow-300 transition">Reviews</a>
+      <a href="#ingredients" class="hover:text-yellow-300 transition">Ingredients</a>
+      <a href="#founder" class="hover:text-yellow-300 transition">Our Story</a>
+    </div>
+    <button class="md:hidden text-2xl" id="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+  <!-- Mobile menu -->
+  <div class="md:hidden hidden bg-red-700 px-4 py-2" id="mobile-menu">
+    <a href="#home" class="block py-2 hover:text-yellow-300 transition">Home</a>
+    <a href="#reviews" class="block py-2 hover:text-yellow-300 transition">Reviews</a>
+    <a href="#ingredients" class="block py-2 hover:text-yellow-300 transition">Ingredients</a>
+    <a href="#founder" class="block py-2 hover:text-yellow-300 transition">Our Story</a>
+  </div>
+</nav>
 
-<body>
+<!-- Hero Section -->
+<section id="home" class="hero-section text-white py-20 md:py-32 flex items-center">
+  <div class="container mx-auto px-4 text-center">
+    <div class="max-w-4xl mx-auto bg-black bg-opacity-50 p-8 rounded-lg">
+      <img src="https://www.bravopizzaplus.com/img/Bravo_Pizza_Adv_2021-03-21_Badges.jpg" alt="Best Of North SLO County" class="mx-auto mb-6 rounded-lg shadow-xl max-w-full h-auto">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4">Best Pizza in Atascadero, California</h1>
+      <p class="text-xl mb-8">Serving gourmet pizzas with twisted sesame crust since 1996</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="tel:+18054622786" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-full transition flex items-center justify-center gap-2">
+          <i class="fas fa-phone"></i> (805) 462-2786
+        </a>
+        <a href="https://www.yelp.com/biz/bravo-pizza-plus-atascadero" target="_blank" class="bg-white hover:bg-gray-200 text-red-600 font-bold py-3 px-6 rounded-full transition flex items-center justify-center gap-2">
+          <i class="fab fa-yelp"></i> View on Yelp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
-  <script src="js/app.js"></script>
+<!-- Reviews Section -->
+<section id="reviews" class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-red-600">What Our Customers Say</h2>
 
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Review 1 -->
+      <div class="review-card bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-red-500 transition duration-300">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-600">
+            <i class="fas fa-user text-2xl"></i>
+          </div>
+          <div class="ml-4">
+            <h3 class="font-bold">Tony M.</h3>
+            <div class="flex text-yellow-400">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+        <p class="text-gray-700">"Great service, great taste and fast delivery!"</p>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="review-card bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-red-500 transition duration-300">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-600">
+            <i class="fas fa-user text-2xl"></i>
+          </div>
+          <div class="ml-4">
+            <h3 class="font-bold">Melissa B.</h3>
+            <div class="flex text-yellow-400">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+        <p class="text-gray-700">"Spectacular pizza. New to the area and craving something special and this was certainly it. I think the name of my pizza was a Greek Veggie pizza and it was outstanding. The sesame seed twisted crust put it over the top! Will definitely be going back!"</p>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="review-card bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-red-500 transition duration-300">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-600">
+            <i class="fas fa-user text-2xl"></i>
+          </div>
+          <div class="ml-4">
+            <h3 class="font-bold">B B.</h3>
+            <div class="flex text-yellow-400">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+        <p class="text-gray-700">"Their food is fresh and wonderful. Order any pizza as a calzone! Service is courteous and prompt. They deliver!"</p>
+      </div>
+
+      <!-- Review 4 -->
+      <div class="review-card bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-red-500 transition duration-300">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-600">
+            <i class="fas fa-user text-2xl"></i>
+          </div>
+          <div class="ml-4">
+            <h3 class="font-bold">Lisa G.</h3>
+            <div class="flex text-yellow-400">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+        <p class="text-gray-700">"This is one of my favorite pizzas, hands down. The sesame crust makes my mouth water, and the ingredients have a quality to them you just don't find in other pizza spots in our area..."</p>
+      </div>
+
+      <!-- Review 5 -->
+      <div class="review-card bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-red-500 transition duration-300">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-600">
+            <i class="fas fa-user text-2xl"></i>
+          </div>
+          <div class="ml-4">
+            <h3 class="font-bold">Lawrence S.</h3>
+            <div class="flex text-yellow-400">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+        <p class="text-gray-700">"Great, quality ingredients!! Too often pizza restaurants cut corners and Bravo clearly does not. I was visiting from the Bay Area and I wish there were more places like Bravo in my area!!"</p>
+      </div>
+
+      <!-- Review 6 -->
+      <div class="review-card bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-red-500 transition duration-300">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-600">
+            <i class="fas fa-user text-2xl"></i>
+          </div>
+          <div class="ml-4">
+            <h3 class="font-bold">David C.</h3>
+            <div class="flex text-yellow-400">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+        <p class="text-gray-700">"This pizza parlor is unique in that they offer toppings from Eastern Mediterranean cuisine. We had a chicken schwarma pizza that came with chunks of chicken schwarma on top. Instead of tomato marinara sauce, they use a creamy cheese sauce. It was delicious."</p>
+      </div>
+    </div>
+
+    <div class="text-center mt-12">
+      <a href="https://www.yelp.com/biz/bravo-pizza-plus-atascadero" target="_blank" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full transition flex items-center gap-2 mx-auto">
+        <img src="https://www.bravopizzaplus.com/img/icons/yelp.100.png" alt="Yelp" class="h-6">
+        Read More Reviews on Yelp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Ingredients Section -->
+<section id="ingredients" class="py-16 bg-red-50">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-red-600">Our Quality Ingredients</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Ingredient 1 -->
+      <div class="bg-white p-6 rounded-lg shadow-md text-center">
+        <div class="ingredient-icon w-20 h-20 bg-red-100 rounded-full flex items-center justify-center text-red-600 text-3xl mx-auto mb-4">
+          <i class="fas fa-seedling"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-2">Fresh Tomato Sauce</h3>
+        <p class="text-gray-700">We take pride in serving high-quality pizzas made with sauce from fresh tomatoes, not from canned concentrate.</p>
+      </div>
+
+      <!-- Ingredient 2 -->
+      <div class="bg-white p-6 rounded-lg shadow-md text-center">
+        <div class="ingredient-icon w-20 h-20 bg-red-100 rounded-full flex items-center justify-center text-red-600 text-3xl mx-auto mb-4">
+          <i class="fas fa-bread-slice"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-2">Fresh Dough Daily</h3>
+        <p class="text-gray-700">We make our dough fresh daily, with olive oil. (Gluten-free crust is available.)</p>
+      </div>
+
+      <!-- Ingredient 3 -->
+      <div class="bg-white p-6 rounded-lg shadow-md text-center">
+        <div class="ingredient-icon w-20 h-20 bg-red-100 rounded-full flex items-center justify-center text-red-600 text-3xl mx-auto mb-4">
+          <i class="fas fa-utensils"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-2">Sesame Crust</h3>
+        <p class="text-gray-700">Twisted sesame crust on all gourmet pizzas for that extra special crunch and flavor.</p>
+      </div>
+
+      <!-- Ingredient 4 -->
+      <div class="bg-white p-6 rounded-lg shadow-md text-center">
+        <div class="ingredient-icon w-20 h-20 bg-red-100 rounded-full flex items-center justify-center text-red-600 text-3xl mx-auto mb-4">
+          <i class="fas fa-drumstick-bite"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-2">Quality Meats</h3>
+        <p class="text-gray-700">Delicious meats – beef and low-fat turkey, all premium quality.</p>
+      </div>
+
+      <!-- Ingredient 5 -->
+      <div class="bg-white p-6 rounded-lg shadow-md text-center">
+        <div class="ingredient-icon w-20 h-20 bg-red-100 rounded-full flex items-center justify-center text-red-600 text-3xl mx-auto mb-4">
+          <i class="fas fa-carrot"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-2">Fresh Vegetables</h3>
+        <p class="text-gray-700">Highest-quality fresh vegetables delivered regularly to ensure peak freshness.</p>
+      </div>
+
+      <!-- Ingredient 6 -->
+      <div class="bg-white p-6 rounded-lg shadow-md text-center">
+        <div class="ingredient-icon w-20 h-20 bg-red-100 rounded-full flex items-center justify-center text-red-600 text-3xl mx-auto mb-4">
+          <i class="fas fa-pizza-slice"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-2">Unique Flavors</h3>
+        <p class="text-gray-700">Unique, flavorful gourmet and traditional pizzas that will satisfy any taste buds!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Founder's Message -->
+<section id="founder" class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-red-600">Our Story</h2>
+
+      <div class="relative bg-gray-50 p-8 md:p-12 rounded-lg shadow-md founder-quote">
+        <div class="text-center mb-8">
+          <img src="https://images.unsplash.com/photo-1556910639-9c1d2b4a7a73?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Sam Ayesh" class="w-32 h-32 rounded-full mx-auto border-4 border-red-500 object-cover">
+          <h3 class="text-2xl font-bold mt-4">Sam Ayesh</h3>
+          <p class="text-gray-600">Founder of Bravo Pizza Plus</p>
+        </div>
+
+        <p class="text-gray-700 mb-4 italic">"I realize that <span class="font-bold">customer service</span> is a must, and that <span class="font-bold">value</span> is so important, and that <span class="font-bold">clean</span> is a must. Caring for your needs and wants is essential to our success.</p>
+
+        <p class="text-gray-700 mb-4 italic">"As to all our customers, we prefer to think of you as members of our extended family, and would like you to know how much we appreciate your business and continued loyalty. Our commitment to provide you with quality meals and excellent service will continue strong and remain my #1 goal.</p>
+
+        <p class="text-gray-700 mb-4 italic">"The commitment of our team's leadership to play a role to help our community grow and the contribution to our customers' prosperity will remain solid.</p>
+
+        <p class="text-gray-700 italic">"Since opening day in 1996, giving back to the community is a big part of our business. We are always pleased to participate in community events ... ready to support and lend a hand to the needy, nonprofit organization, school district, and above all the people who keep Atascadero safe, secure, and clean."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-12 bg-red-600 text-white">
+  <div class="container mx-auto px-4 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Taste the Best Pizza in Atascadero?</h2>
+    <p class="text-xl mb-8 max-w-2xl mx-auto">Order online or call us today to experience our gourmet pizzas with twisted sesame crust!</p>
+    <div class="flex flex-col sm:flex-row justify-center gap-4">
+      <a href="tel:+18054622786" class="bg-white hover:bg-gray-100 text-red-600 font-bold py-3 px-8 rounded-full transition flex items-center justify-center gap-2">
+        <i class="fas fa-phone"></i> Call Now
+      </a>
+      <a href="https://www.yelp.com/biz/bravo-pizza-plus-atascadero" target="_blank" class="bg-black hover:bg-gray-800 text-white font-bold py-3 px-8 rounded-full transition flex items-center justify-center gap-2">
+        <i class="fab fa-yelp"></i> Order Online
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-12">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="text-xl font-bold mb-4 flex items-center">
+          <i class="fas fa-pizza-slice mr-2"></i> Bravo Pizza Plus
+        </h3>
+        <p class="mb-4">Serving the Atascadero community with gourmet pizzas since 1996.</p>
+        <div class="flex space-x-4">
+          <a href="#" class="text-white hover:text-yellow-300 transition"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="text-white hover:text-yellow-300 transition"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.yelp.com/biz/bravo-pizza-plus-atascadero" target="_blank" class="text-white hover:text-yellow-300 transition"><i class="fab fa-yelp"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+        <p class="mb-2"><i class="fas fa-map-marker-alt mr-2"></i> 6900 El Camino Real, Atascadero, CA 93422</p>
+        <p class="mb-2"><i class="fas fa-phone mr-2"></i> (805) 462-2786</p>
+        <p><i class="fas fa-clock mr-2"></i> Open Daily: 11AM - 9PM</p>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="#home" class="hover:text-yellow-300 transition">Home</a></li>
+          <li><a href="#reviews" class="hover:text-yellow-300 transition">Reviews</a></li>
+          <li><a href="#ingredients" class="hover:text-yellow-300 transition">Ingredients</a></li>
+          <li><a href="#founder" class="hover:text-yellow-300 transition">Our Story</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+      <p>&copy; 2023 Bravo Pizza Plus. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  document.getElementById('menu-toggle').addEventListener('click', function() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+  });
+
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const targetId = this.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
+
+        // Close mobile menu if open
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (!mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('hidden');
+        }
+      }
+    });
+  });
+</script>
 </body>
-
 </html>
