@@ -11,6 +11,19 @@
    Base styles: opinionated defaults
    ========================================================================== */
 
+/*new color palette*/
+
+--ink-black: #03071eff;
+--night-bordeaux: #370617ff;
+--black-cherry: #6a040fff;
+--oxblood: #9d0208ff;
+--brick-ember: #d00000ff;
+--red-ochre: #dc2f02ff;
+--cayenne-red: #e85d04ff;
+--deep-saffron: #f48c06ff;
+--orange: #faa307ff;
+--amber-flame: #ffba08ff;
+
 html {
   color: #222;
   font-size: 1em;

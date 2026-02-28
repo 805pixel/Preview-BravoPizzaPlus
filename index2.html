@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bravo Pizza Plus | Best Pizza in Atascadero & San Luis Obispo</title>
+  <meta name="description" content="Award-winning pizza in Atascadero and San Luis Obispo. Fresh ingredients, homemade dough, unique Mediterranean flavors. Dine-in, take-out, and delivery.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'serif': ['Playfair Display', 'serif'],
+            'sans': ['Inter', 'sans-serif'],
+          },
+          colors: {
+            'bravo-red': '#C41E3A',
+            'bravo-dark': '#1a1a1a',
+            'bravo-cream': '#FDF8F3',
+            'bravo-gold': '#D4A574',
+            'bravo-green': '#2D5016',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .hero-pattern {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C41E3A' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .pizza-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(3deg); }
+    }
+    .steam {
+      animation: steam 3s ease-out infinite;
+    }
+    @keyframes steam {
+      0% { transform: translateY(0) scale(1); opacity: 0.6; }
+      100% { transform: translateY(-40px) scale(1.5); opacity: 0; }
+    }
+    .review-card {
+      transition: all 0.3s ease;
+    }
+    .review-card:hover {
+      transform: translateY(-8px);
+    }
+    .ingredient-item {
+      transition: all 0.3s ease;
+    }
+    .ingredient-item:hover {
+      transform: scale(1.02);
+    }
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #C41E3A;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+  </style>
+</head>
+<body class="font-sans bg-bravo-cream text-bravo-dark">
+<!-- Top Bar -->
+<div class="bg-bravo-red text-white py-2 text-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap justify-center gap-4 md:gap-8">
+            <span class="flex items-center gap-2">
+                <i data-lucide="award" class="w-4 h-4"></i>
+                Voted Best Pizza in North SLO County
+            </span>
+    <span class="flex items-center gap-2">
+                <i data-lucide="clock" class="w-4 h-4"></i>
+                Open Daily 11am - 9:30pm
+            </span>
+  </div>
+</div>
+
+<!-- Navigation -->
+<nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-12 h-12 bg-bravo-red rounded-full flex items-center justify-center">
+          <span class="text-white font-serif font-bold text-xl">B</span>
+        </div>
+        <div>
+          <h1 class="font-serif text-2xl font-bold text-bravo-dark">Bravo Pizza Plus</h1>
+          <p class="text-xs text-gray-500">Since 1996</p>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#home" class="nav-link font-medium text-gray-700 hover:text-bravo-red transition">Home</a>
+        <a href="#menu" class="nav-link font-medium text-gray-700 hover:text-bravo-red transition">Menu</a>
+        <a href="#about" class="nav-link font-medium text-gray-700 hover:text-bravo-red transition">Our Story</a>
+        <a href="#reviews" class="nav-link font-medium text-gray-700 hover:text-bravo-red transition">Reviews</a>
+        <a href="#contact" class="nav-link font-medium text-gray-700 hover:text-bravo-red transition">Contact</a>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="hidden md:flex items-center gap-4">
+        <a href="https://bravopizzaplus.hungerrush.com/" target="_blank" class="bg-bravo-red text-white px-6 py-3 rounded-full font-medium hover:bg-red-700 transition flex items-center gap-2 shadow-lg hover:shadow-xl">
+          <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+          Order Online
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="md:hidden p-2">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+    <div class="px-4 py-4 space-y-3">
+      <a href="#home" class="block py-2 text-gray-700 hover:text-bravo-red">Home</a>
+      <a href="#menu" class="block py-2 text-gray-700 hover:text-bravo-red">Menu</a>
+      <a href="#about" class="block py-2 text-gray-700 hover:text-bravo-red">Our Story</a>
+      <a href="#reviews" class="block py-2 text-gray-700 hover:text-bravo-red">Reviews</a>
+      <a href="#contact" class="block py-2 text-gray-700 hover:text-bravo-red">Contact</a>
+      <a href="https://bravopizzaplus.hungerrush.com/" target="_blank" class="block bg-bravo-red text-white text-center py-3 rounded-full font-medium">
+        Order Online
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="relative min-h-[90vh] flex items-center hero-pattern overflow-hidden">
+  <!-- Background Image -->
+  <div class="absolute inset-0">
+    <img src="http://static.photos/food/1200x630/42" alt="Delicious gourmet pizza" class="w-full h-full object-cover opacity-20">
+    <div class="absolute inset-0 bg-gradient-to-r from-bravo-cream via-bravo-cream/95 to-transparent"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-8">
+        <div class="inline-flex items-center gap-2 bg-bravo-red/10 text-bravo-red px-4 py-2 rounded-full text-sm font-medium">
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          Family Owned Since 1996
+        </div>
+
+        <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+          Authentic Pizza,<br>
+          <span class="text-bravo-red">Small-Town Heart</span>
+        </h1>
+
+        <p class="text-xl text-gray-600 max-w-lg leading-relaxed">
+          Award-winning gourmet pizza with a unique Mediterranean twist. Fresh daily dough, premium ingredients, and that famous sesame seed crust.
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="https://bravopizzaplus.hungerrush.com/" target="_blank" class="bg-bravo-red text-white px-8 py-4 rounded-full font-semibold hover:bg-red-700 transition flex items-center gap-3 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
+            <i data-lucide="utensils" class="w-5 h-5"></i>
+            Order Now
+          </a>
+          <a href="#menu" class="bg-white text-bravo-dark border-2 border-gray-200 px-8 py-4 rounded-full font-semibold hover:border-bravo-red hover:text-bravo-red transition flex items-center gap-3">
+            <i data-lucide="book-open" class="w-5 h-5"></i>
+            View Menu
+          </a>
+        </div>
+
+        <!-- Location Cards -->
+        <div class="grid sm:grid-cols-2 gap-4 pt-4">
+          <div class="bg-white p-5 rounded-2xl shadow-lg border border-gray-100">
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 bg-bravo-red/10 rounded-full flex items-center justify-center flex-shrink-0">
+                <i data-lucide="map-pin" class="w-5 h-5 text-bravo-red"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold text-bravo-dark">Atascadero</h3>
+                <p class="text-sm text-gray-600">8731 El Camino Real</p>
+                <a href="tel:8054621000" class="text-bravo-red font-medium text-sm hover:underline">(805) 462-1000</a>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white p-5 rounded-2xl shadow-lg border border-gray-100">
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 bg-bravo-green/10 rounded-full flex items-center justify-center flex-shrink-0">
+                <i data-lucide="map-pin" class="w-5 h-5 text-bravo-green"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold text-bravo-dark">San Luis Obispo</h3>
+                <p class="text-sm text-gray-600">3971 South Higuera #120</p>
+                <a href="tel:8054391634" class="text-bravo-green font-medium text-sm hover:underline">(805) 439-1634</a>
+                <p class="text-xs text-bravo-green mt-1 font-medium">🍽️ All-You-Can-Eat Buffet 11-2:30 Daily</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Image -->
+      <div class="relative hidden lg:block">
+        <div class="relative">
+          <img src="http://static.photos/food/640x640/133" alt="Signature Bravo Pizza with sesame crust" class="pizza-float rounded-3xl shadow-2xl w-full max-w-lg mx-auto">
+          <!-- Floating badges -->
+          <div class="absolute -top-4 -right-4 bg-white p-4 rounded-2xl shadow-xl animate-bounce">
+            <div class="flex items-center gap-2">
+              <i data-lucide="award" class="w-6 h-6 text-bravo-gold"></i>
+              <div>
+                <p class="text-xs text-gray-500">Voted</p>
+                <p class="font-bold text-sm">Best of 2021</p>
+              </div>
+            </div>
+          </div>
+          <div class="absolute -bottom-4 -left-4 bg-bravo-red text-white p-4 rounded-2xl shadow-xl">
+            <div class="flex items-center gap-2">
+              <i data-lucide="flame" class="w-6 h-6"></i>
+              <div>
+                <p class="text-xs opacity-80">Made Fresh</p>
+                <p class="font-bold text-sm">Daily</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Banner -->
+<section class="bg-bravo-dark text-white py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-wrap justify-center gap-8 md:gap-16">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+          <i data-lucide="armchair" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <p class="font-semibold">Dine-In</p>
+          <p class="text-sm text-gray-400">Cozy atmosphere</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+          <i data-lucide="package" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <p class="font-semibold">Take-Out</p>
+          <p class="text-sm text-gray-400">Quick & easy</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 bg-bravo-red rounded-full flex items-center justify-center">
+          <i data-lucide="bike" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <p class="font-semibold">Delivery</p>
+          <p class="text-sm text-gray-400">Hot & fresh</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Ingredients Section -->
+<section id="about" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-bravo-red font-medium tracking-wider uppercase text-sm">Quality First</span>
+      <h2 class="font-serif text-4xl md:text-5xl font-bold mt-3 mb-4">Made with Love,<br>Served with Pride</h2>
+      <p class="text-gray-600 text-lg">Every pizza tells a story of fresh ingredients, time-honored recipes, and a commitment to excellence that has defined us since 1996.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="ingredient-item bg-bravo-cream p-8 rounded-3xl">
+        <div class="w-16 h-16 bg-bravo-red/10 rounded-2xl flex items-center justify-center mb-6">
+          <i data-lucide="tomato" class="w-8 h-8 text-bravo-red"></i>
+        </div>
+        <h3 class="font-serif text-xl font-bold mb-3">Fresh Tomato Sauce</h3>
+        <p class="text-gray-600">Made from real fresh tomatoes, never from canned concentrate. You can taste the difference in every bite.</p>
+      </div>
+
+      <div class="ingredient-item bg-bravo-cream p-8 rounded-3xl">
+        <div class="w-16 h-16 bg-bravo-gold/20 rounded-2xl flex items-center justify-center mb-6">
+          <i data-lucide="wheat" class="w-8 h-8 text-bravo-gold"></i>
+        </div>
+        <h3 class="font-serif text-xl font-bold mb-3">Daily Fresh Dough</h3>
+        <p class="text-gray-600">Handcrafted every morning with premium olive oil. Gluten-free crust available for our guests with dietary needs.</p>
+      </div>
+
+      <div class="ingredient-item bg-bravo-cream p-8 rounded-3xl">
+        <div class="w-16 h-16 bg-bravo-green/10 rounded-2xl flex items-center justify-center mb-6">
+          <i data-lucide="sparkles" class="w-8 h-8 text-bravo-green"></i>
+        </div>
+        <h3 class="font-serif text-xl font-bold mb-3">Signature Sesame Crust</h3>
+        <p class="text-gray-600">Our famous twisted sesame crust on all gourmet pizzas—that distinctive touch that keeps customers coming back.</p>
+      </div>
+
+      <div class="ingredient-item bg-bravo-cream p-8 rounded-3xl">
+        <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mb-6">
+          <i data-lucide="beef" class="w-8 h-8 text-red-600"></i>
+        </div>
+        <h3 class="font-serif text-xl font-bold mb-3">Premium Meats</h3>
+        <p class="text-gray-600">Quality beef and low-fat turkey, seasoned to perfection. Including unique options like chicken shawarma.</p>
+      </div>
+
+      <div class="ingredient-item bg-bravo-cream p-8 rounded-3xl">
+        <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
+          <i data-lucide="carrot" class="w-8 h-8 text-green-600"></i>
+        </div>
+        <h3 class="font-serif text-xl font-bold mb-3">Farm-Fresh Vegetables</h3>
+        <p class="text-gray-600">The highest-quality fresh vegetables, sourced locally when possible. Generous portions on every pizza.</p>
+      </div>
+
+      <div class="ingredient-item bg-bravo-cream p-8 rounded-3xl">
+        <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-6">
+          <i data-lucide="globe" class="w-8 h-8 text-purple-600"></i>
+        </div>
+        <h3 class="font-serif text-xl font-bold mb-3">Mediterranean Flavors</h3>
+        <p class="text-gray-600">Unique Eastern Mediterranean toppings you won't find anywhere else. A true culinary adventure.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Pizzas -->
+<section id="menu" class="py-20 bg-bravo-dark text-white relative overflow-hidden">
+  <div class="absolute inset-0 hero-pattern opacity-5"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-bravo-gold font-medium tracking-wider uppercase text-sm">Customer Favorites</span>
+      <h2 class="font-serif text-4xl md:text-5xl font-bold mt-3 mb-4">Signature Pizzas</h2>
+      <p class="text-gray-400 text-lg">Discover why we've been voted Best Pizza in North SLO County</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="group relative">
+        <div class="aspect-square rounded-3xl overflow-hidden mb-6">
+          <img src="http://static.photos/food/640x640/201" alt="Greek Veggie Pizza" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+        </div>
+        <div class="flex items-center gap-2 mb-2">
+          <span class="bg-bravo-gold text-bravo-dark text-xs font-bold px-3 py-1 rounded-full">VEGETARIAN</span>
+          <div class="flex text-bravo-gold">
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          </div>
+        </div>
+        <h3 class="font-serif text-2xl font-bold mb-2">Greek Veggie</h3>
+        <p class="text-gray-400 mb-4">A Mediterranean masterpiece with fresh vegetables, feta cheese, and our signature sesame seed twisted crust.</p>
+        <a href="https://bravopizzaplus.hungerrush.com/" target="_blank" class="text-bravo-gold font-medium hover:underline flex items-center gap-2">
+          Order Now <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <div class="group relative">
+        <div class="aspect-square rounded-3xl overflow-hidden mb-6">
+          <img src="http://static.photos/food/640x640/202" alt="Bravo Special Gourmet Pizza" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+        </div>
+        <div class="flex items-center gap-2 mb-2">
+          <span class="bg-bravo-red text-white text-xs font-bold px-3 py-1 rounded-full">SIGNATURE</span>
+          <div class="flex text-bravo-gold">
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          </div>
+        </div>
+        <h3 class="font-serif text-2xl font-bold mb-2">Bravo Special</h3>
+        <p class="text-gray-400 mb-4">Our namesake pizza loaded with premium toppings. The perfect combination of flavors that made us famous.</p>
+        <a href="https://bravopizzaplus.hungerrush.com/" target="_blank" class="text-bravo-gold font-medium hover:underline flex items-center gap-2">
+          Order Now <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <div class="group relative">
+        <div class="aspect-square rounded-3xl overflow-hidden mb-6">
+          <img src="http://static.photos/food/640x640/203" alt="Chicken Shawarma Pizza" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+        </div>
+        <div class="flex items-center gap-2 mb-2">
+          <span class="bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">UNIQUE</span>
+          <div class="flex text-bravo-gold">
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          </div>
+        </div>
+        <h3 class="font-serif text-2xl font-bold mb-2">Chicken Shawarma</h3>
+        <p class="text-gray-400 mb-4">Authentic Eastern Mediterranean flavors with chunks of seasoned chicken shawarma on creamy cheese sauce.</p>
+        <a href="https://bravopizzaplus.hungerrush.com/" target="_blank" class="text-bravo-gold font-medium hover:underline flex items-center gap-2">
+          Order Now <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="text-center mt-12">
+      <a href="https://bravopizzaplus.hungerrush.com/" target="_blank" class="inline-flex items-center gap-3 bg-bravo-red text-white px-8 py-4 rounded-full font-semibold hover:bg-red-700 transition shadow-xl">
+        <i data-lucide="scroll-text" class="w-5 h-5"></i>
+        View Full Menu
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews Section -->
+<section id="reviews" class="py-20 bg-bravo-cream">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-bravo-red font-medium tracking-wider uppercase text-sm">Testimonials</span>
+      <h2 class="font-serif text-4xl md:text-5xl font-bold mt-3 mb-4">What Our Customers Say</h2>
+      <div class="flex justify-center gap-1 text-bravo-gold mb-4">
+        <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+        <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+        <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+        <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+        <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+      </div>
+      <p class="text-gray-600">Rated 4.5+ stars on Yelp and Google</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="review-card bg-white p-8 rounded-3xl shadow-lg">
+        <div class="flex text-bravo-gold mb-4">
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+        </div>
+        <p class="text-gray-700 mb-6 leading-relaxed">"Spectacular pizza. New to the area and craving something special and this was certainly it. The sesame seed twisted crust put it over the top! Will definitely be going back!"</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-bravo-red/10 rounded-full flex items-center justify-center">
+            <span class="font-semibold text-bravo-red">MB</span>
+          </div>
+          <div>
+            <p class="font-semibold">Melissa B.</p>
+            <p class="text-sm text-gray-500">Yelp Review</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card bg-white p-8 rounded-3xl shadow-lg">
+        <div class="flex text-bravo-gold mb-4">
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+        </div>
+        <p class="text-gray-700 mb-6 leading-relaxed">"This is one of my favorite pizzas, hands down. The sesame crust makes my mouth water, and the ingredients have a quality to them you just don't find in other pizza spots in our area."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-bravo-gold/20 rounded-full flex items-center justify-center">
+            <span class="font-semibold text-bravo-gold">LG</span>
+          </div>
+          <div>
+            <p class="font-semibold">Lisa G.</p>
+            <p class="text-sm text-gray-500">Google Review</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card bg-white p-8 rounded-3xl shadow-lg">
+        <div class="flex text-bravo-gold mb-4">
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+        </div>
+        <p class="text-gray-700 mb-6 leading-relaxed">"Great, quality ingredients!! Too often pizza restaurants cut corners and Bravo clearly does not. I was visiting from the Bay Area and I wish there were more places like Bravo in my area!!"</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+            <span class="font-semibold text-green-600">LS</span>
+          </div>
+          <div>
+            <p class="font-semibold">Lawrence S.</p>
+            <p class="text-sm text-gray-500">Yelp Review</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card bg-white p-8 rounded-3xl shadow-lg">
+        <div class="flex text-bravo-gold mb-4">
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+        </div>
+        <p class="text-gray-700 mb-6 leading-relaxed">"This pizza parlor is unique in that they offer toppings from Eastern Mediterranean cuisine. We had a chicken shawarma pizza that was delicious. Instead of tomato marinara, they use a creamy cheese sauce."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+            <span class="font-semibold text-purple-600">DC</span>
+          </div>
+          <div>
+            <p class="font-semibold">David C.</p>
+            <p class="text-sm text-gray-500">Google Review</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card bg-white p-8 rounded-3xl shadow-lg">
+        <div class="flex text-bravo-gold mb-4">
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+        </div>
+        <p class="text-gray-700 mb-6 leading-relaxed">"YUM! Had the pesto chicken and the garlic chicken. Both tasted great and love the sesame seeds on the crust. This place is a real gem."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+            <span class="font-semibold text-blue-600">MO</span>
+          </div>
+          <div>
+            <p class="font-semibold">Michael O.</p>
+            <p class="text-sm text-gray-500">Yelp Review</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card bg-white p-8 rounded-3xl shadow-lg">
+        <div class="flex text-bravo-gold mb-4">
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+        </div>
+        <p class="text-gray-700 mb-6 leading-relaxed">"All I can say is... 'Bravo...bravo'. Pizza sauce covered walls like tomato red making my taste buds sizzle. Customer service was friendly, informative, polite, and helpful."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
+            <span class="font-semibold text-orange-600">JD</span>
+          </div>
+          <div>
+            <p class="font-semibold">Johnny D.</p>
+            <p class="text-sm text-gray-500">Google Review</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-center gap-4 mt-12">
+      <a href="http://www.yelp.com/biz/bravo-pizza-plus-atascadero" target="_blank" class="flex items-center gap-2 bg-[#FF1A1A] text-white px-6 py-3 rounded-full font-medium hover:bg-red-700 transition">
+        <i data-lucide="yelp" class="w-5 h-5"></i>
+        Read More on Yelp
+      </a>
+      <a href="http://www.facebook.com/bravopizzaplus" target="_blank" class="flex items-center gap-2 bg-[#1877F2] text-white px-6 py-3 rounded-full font-medium hover:bg-blue-700 transition">
+        <i data-lucide="facebook" class="w-5 h-5"></i>
+        Follow on Facebook
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Founder's Message -->
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="relative">
+        <div class="absolute -top-4 -left-4 w-24 h-24 bg-bravo-red/10 rounded-full"></div>
+        <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-bravo-gold/20 rounded-full"></div>
+        <img src="http://static.photos/restaurant/640x640/301" alt="Bravo Pizza Plus restaurant interior" class="relative rounded-3xl shadow-2xl w-full">
+        <div class="absolute -bottom-6 -right-6 bg-bravo-red text-white p-6 rounded-2xl shadow-xl">
+          <p class="text-4xl font-serif font-bold">28+</p>
+          <p class="text-sm">Years of Service</p>
+        </div>
+      </div>
+
+      <div>
+        <span class="text-bravo-red font-medium tracking-wider uppercase text-sm">Our Story</span>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold mt-3 mb-6">A Message from Our Founder</h2>
+
+        <div class="space-y-6 text-gray-600 leading-relaxed">
+          <p>"I realize that <em class="text-bravo-dark font-medium not-italic">customer service</em> is a must, and that <em class="text-bravo-dark font-medium not-italic">value</em> is so important, and that <em class="text-bravo-dark font-medium not-italic">clean</em> is a must. Caring for your needs and wants is essential to our success."</p>
+
+          <p>"As to all our customers, we prefer to think of you as members of our extended family, and would like you to know how much we appreciate your business and continued loyalty."</p>
+
+          <p>"Since opening day in 1996, giving back to the community is a big part of our business. We are always pleased to participate in community events—ready to support and lend a hand to the needy, nonprofit organizations, school districts, and above all the people who keep Atascadero safe, secure, and clean."</p>
+        </div>
+
+        <div class="mt-8 flex items-center gap-4">
+          <div class="w-16 h-16 bg-bravo-red rounded-full flex items-center justify-center">
+            <span class="text-white font-serif text-2xl font-bold">SA</span>
+          </div>
+          <div>
+            <p class="font-serif text-xl font-bold text-bravo-dark">Sam Ayesh</p>
+            <p class="text-gray-500">Founder of Bravo Pizza Plus</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Award Banner -->
+<section class="py-16 bg-bravo-red text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="flex justify-center mb-6">
+      <img src="http://static.photos/award/320x240/401" alt="Best of North SLO County Award" class="h-32 rounded-2xl shadow-2xl">
+    </div>
+    <h2 class="font-serif text-3xl md:text-4xl font-bold mb-4">Voted Best Pizza in North SLO County</h2>
+    <p class="text-xl opacity-90 max-w-2xl mx-auto">Recognized for our commitment to quality, service, and community. Thank you for making us your favorite pizza destination since 1996.</p>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-20 bg-bravo-dark text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-bravo-gold font-medium tracking-wider uppercase text-sm">Get in Touch</span>
+      <h2 class="font-serif text-4xl md:text-5xl font-bold mt-3 mb-4">Visit Us Today</h2>
+      <p class="text-gray-400 text-lg">Two convenient locations to serve you</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Atascadero -->
+      <div class="bg-white/5 backdrop-blur-sm p-8 rounded-3xl border border-white/10">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 bg-bravo-red rounded-full flex items-center justify-center">
+            <i data-lucide="store" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="font-serif text-2xl font-bold">Atascadero</h3>
+            <p class="text-gray-400">Original Location</p>
+          </div>
+        </div>
+
+        <div class="space-y-4 mb-6">
+          <div class="flex items-start gap-3">
+            <i data-lucide="map-pin" class="w-5 h-5 text-bravo-gold flex-shrink-0 mt-0.5"></i>
+            <p>8731 El Camino Real<br>Atascadero, CA 93422</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <i data-lucide="phone" class="w-5 h-5 text-bravo-gold"></i>
+            <a href="tel:8054621000" class="hover:text-bravo-gold transition">(805) 462-1000</a>
+          </div>
+          <div class="flex items-center gap-3">
+            <i data-lucide="clock" class="w-5 h-5 text-bravo-gold"></i>
+            <p>11:00am – 9:30pm Daily</p>
+          </div>
+        </div>
+
+        <a href="https://maps.google.com/?q=8731+El+Camino+Real+Atascadero+CA" target="_blank" class="inline-flex items-center gap-2 text-bravo-gold hover:underline">
+          <i data-lucide="navigation" class="w-4 h-4"></i>
+          Get Directions
+        </a>
+      </div>
+
+      <!-- San Luis Obispo -->
+      <div class="bg-white/5 backdrop-blur-sm p-8 rounded-3xl border border-white/10">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 bg-bravo-green rounded-full flex items-center justify-center">
+            <i data-lucide="store" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="font-serif text-2xl font-bold">San Luis Obispo</h3>
+            <p class="text-gray-400">With All-You-Can-Eat Buffet</p>
+          </div>
+        </div>
+
+        <div class="space-y-4 mb-6">
+          <div class="flex items-start gap-3">
+            <i data-lucide="map-pin" class="w-5 h-5 text-bravo-gold flex-shrink-0 mt-0.5"></i>
+            <p>3971 South Higuera #120<br>San Luis Obispo, CA 93401</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <i data-lucide="phone" class="w-5 h-5 text-bravo-gold"></i>
+            <a href="tel:8054391634" class="hover:text-bravo-gold transition">(805) 439-1634</a>
+          </div>
+          <div class="flex items-center gap-3">
+            <i data-lucide="clock" class="w-5 h-5 text-bravo-gold"></i>
+            <p>11:00am – 9:00pm Daily</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <i data-lucide="utensils" class="w-5 h-5 text-green-400"></i>
+            <p class="text-green-400 font-medium">Buffet: 11am – 2:30pm Daily</p>
+          </div>
+        </div>
+
+        <a href="https://maps.google.com/?q=3971+South+Higuera+120+San+Luis+Obispo+CA" target="_blank" class="inline-flex items-center gap-2 text-bravo-gold hover:underline">
+          <i data-lucide="navigation" class="w-4 h-4"></i>
+          Get Directions
+        </a>
+      </div>
+    </div>
+
+    <div class="text-center mt-12">
+      <a href="https://bravopizzaplus.hungerrush.com/" target="_blank" class="inline-flex items-center gap-3 bg-bravo-red text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-red-700 transition shadow-2xl">
+        <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+        Order Online Now
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-black text-white py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-4 gap-8 mb-8">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 bg-bravo-red rounded-full flex items-center justify-center">
+            <span class="text-white font-serif font-bold">B</span>
+          </div>
+          <div>
+            <h3 class="font-serif text-lg font-bold">Bravo Pizza Plus</h3>
+          </div>
+        </div>
+        <p class="text-gray-400 text-sm">Authentic pizza with a Mediterranean twist. Family owned and operated since 1996.</p>
+      </div>
+
+      <div>
+        <h4 class="font-semibold mb-4">Quick Links</h4>
+        <ul class="space-y-2 text-gray-400 text-sm">
+          <li><a href="#home" class="hover:text-white transition">Home</a></li>
+          <li><a href="#menu" class="hover:text-white transition">Menu</a></li>
+          <li><a href="#about" class="hover:text-white transition">Our Story</a></li>
+          <li><a href="#reviews" class="hover:text-white transition">Reviews</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold mb-4">Services</h4>
+        <ul class="space-y-2 text-gray-400 text-sm">
+          <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-bravo-gold"></i> Dine-In</li>
+          <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-bravo-gold"></i> Take-Out</li>
+          <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-bravo-gold"></i> Delivery</li>
+          <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-bravo-gold"></i> Catering</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold mb-4">Follow Us</h4>
+        <div class="flex gap-3">
+          <a href="http://www.facebook.com/bravopizzaplus" target="_blank" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-bravo-red transition">
+            <i data-lucide="facebook" class="w-5 h-5"></i>
+          </a>
+          <a href="http://www.yelp.com/biz/bravo-pizza-plus-atascadero" target="_blank" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#FF1A1A] transition">
+            <i data-lucide="yelp" class="w-5 h-5"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-gray-400 text-sm">&copy; 2024 Bravo Pizza Plus. All rights reserved.</p>
+      <p class="text-gray-500 text-sm">Family owned and operated since 1996</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Initialize Lucide icons
+  lucide.createIcons();
+
+  // Mobile menu toggle
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileMenuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  // Smooth scroll for navigation links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+        // Close mobile menu if open
+        mobileMenu.classList.add('hidden');
+      }
+    });
+  });
+
+  // Add scroll effect to navbar
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 50) {
+      nav.classList.add('shadow-md');
+    } else {
+      nav.classList.remove('shadow-md');
+    }
+  });
+</script>
+</body>
+</html>
