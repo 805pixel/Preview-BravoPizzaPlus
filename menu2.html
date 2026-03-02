@@ -38,48 +38,6 @@
             overflow-x: hidden;
         }
 
-
-        @media (pointer: fine) {
-            body {
-                cursor: none;
-            }
-
-
-            .cursor {
-                position: fixed;
-                width: 10px;
-                height: 10px;
-                background: var(--red);
-                border-radius: 50%;
-                pointer-events: none;
-                z-index: 9999;
-                transform: translate(-50%, -50%);
-                mix-blend-mode: multiply;
-                transition: width .25s, height .25s, background .25s;
-            }
-
-
-            .cursor-ring {
-                position: fixed;
-                width: 36px;
-                height: 36px;
-                border: 1.5px solid var(--black);
-                border-radius: 50%;
-                pointer-events: none;
-                z-index: 9998;
-                transform: translate(-50%, -50%);
-                transition: width .3s, height .3s;
-            }
-        }
-
-
-        @media (pointer: coarse) {
-            .cursor, .cursor-ring {
-                display: none;
-            }
-        }
-
-
         nav {
             position: fixed;
             top: 0;
@@ -1141,11 +1099,10 @@
     </style>
 </head>
 <body>
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
+
 <nav>
-    <a class="nav-logo" href="bravo-pizza-plus.html">BRAVO<span>+</span></a>
-    <a class="nav-back" href="bravo-pizza-plus.html">← Home</a>
+    <a class="nav-logo" href="index2.html">BRAVO<span>+</span></a>
+    <a class="nav-back" href="index2.html">← Home</a>
     <a class="nav-phone" href="tel:8054621000">(805) 462-1000</a>
 </nav>
 <div class="menu-hero">
@@ -1177,7 +1134,8 @@
         <div class="sec-num">01</div>
         <div class="sec-info"><p class="sec-label">Start Here</p>
             <h2 class="sec-title">CREATE YOUR OWN PIZZA</h2>
-            <p class="sec-desc">Choose your size, pick your crust, pile on the toppings. Extra sauce always free.</p></div>
+            <p class="sec-desc">Choose your size, pick your crust, pile on the toppings. Extra sauce always free.</p>
+        </div>
     </div>
     <div class="price-table reveal">
         <div class="price-table-row pt-header" style="grid-template-columns:.9fr 1fr 1fr 1fr 1fr 1fr;">
@@ -1298,7 +1256,8 @@
     <div class="item-grid reveal">
         <div class="item-card">
             <div class="item-name">Bravo Combo</div>
-            <p class="item-desc">Pepperoni, sausage, Canadian bacon, mushrooms, onions, bell peppers, olives &amp; garlic</p>
+            <p class="item-desc">Pepperoni, sausage, Canadian bacon, mushrooms, onions, bell peppers, olives &amp;
+                garlic</p>
         </div>
         <div class="item-card">
             <div class="item-name">All Meat</div>
@@ -1338,48 +1297,59 @@
     <div class="item-grid reveal">
         <div class="item-card">
             <div class="item-name">Roasted Garlic &amp; Chicken</div>
-            <p class="item-desc">Fresh garlic sauce, mozzarella, seasoned chicken, onions, mushrooms, fresh roasted garlic
+            <p class="item-desc">Fresh garlic sauce, mozzarella, seasoned chicken, onions, mushrooms, fresh roasted
+                garlic
                 &amp; roma tomatoes</p></div>
         <div class="item-card">
             <div class="item-name">Chicken Parmesan &amp; Spinach</div>
-            <p class="item-desc">Creamy parmesan sauce, fresh spinach, roasted garlic, bacon &amp; seasoned chicken topped
+            <p class="item-desc">Creamy parmesan sauce, fresh spinach, roasted garlic, bacon &amp; seasoned chicken
+                topped
                 with shredded parmesan</p></div>
         <div class="item-card">
             <div class="item-name">Chicken &amp; Cilantro</div>
             <p class="item-desc">Garlic herb sauce, cilantro, onion, mushrooms, tomatoes, garlic &amp; chicken</p></div>
         <div class="item-card">
             <div class="item-name">Chicken Shawarma <span class="item-badge">New!</span></div>
-            <p class="item-desc">Garlic sauce, mozzarella, red onion, fresh tomatoes, topped with chicken shawarma</p></div>
+            <p class="item-desc">Garlic sauce, mozzarella, red onion, fresh tomatoes, topped with chicken shawarma</p>
+        </div>
         <div class="item-card">
             <div class="item-name">Luau BBQ</div>
-            <p class="item-desc">BBQ sauce, mozzarella, Canadian bacon, pineapple, red onions &amp; BBQ chicken</p></div>
+            <p class="item-desc">BBQ sauce, mozzarella, Canadian bacon, pineapple, red onions &amp; BBQ chicken</p>
+        </div>
         <div class="item-card">
             <div class="item-name">Greek Feta Veggie</div>
-            <p class="item-desc">Bravo classic sauce, mozzarella, mushrooms, onions, olives, artichokes, bell peppers &amp;
+            <p class="item-desc">Bravo classic sauce, mozzarella, mushrooms, onions, olives, artichokes, bell peppers
+                &amp;
                 roma tomatoes topped with feta &amp; oregano</p></div>
         <div class="item-card">
             <div class="item-name">California Veggie</div>
-            <p class="item-desc">Garlic herb sauce, mozzarella, spinach, zucchini, artichokes, tomatoes, green onions &amp;
+            <p class="item-desc">Garlic herb sauce, mozzarella, spinach, zucchini, artichokes, tomatoes, green onions
+                &amp;
                 garlic. Topped with parmesan &amp; oregano</p></div>
         <div class="item-card">
             <div class="item-name">Garlic Veggie</div>
-            <p class="item-desc">Garlic herb sauce, mozzarella, garlic, mushrooms, tomatoes, artichoke, green onions &amp;
+            <p class="item-desc">Garlic herb sauce, mozzarella, garlic, mushrooms, tomatoes, artichoke, green onions
+                &amp;
                 parmesan cheese</p></div>
         <div class="item-card">
             <div class="item-name">Spinach Smooch</div>
-            <p class="item-desc">Garlic herb sauce, mozzarella, fresh spinach, roasted garlic, marinated artichokes &amp;
+            <p class="item-desc">Garlic herb sauce, mozzarella, fresh spinach, roasted garlic, marinated artichokes
+                &amp;
                 sun-dried tomatoes</p></div>
         <div class="item-card">
             <div class="item-name">Bravo Special</div>
-            <p class="item-desc">Garlic herb sauce, mozzarella, Canadian bacon, Italian sausage, artichokes, garlic &amp; roma
+            <p class="item-desc">Garlic herb sauce, mozzarella, Canadian bacon, Italian sausage, artichokes, garlic
+                &amp; roma
                 tomatoes</p></div>
         <div class="item-card">
             <div class="item-name">Bacon Deluxe</div>
-            <p class="item-desc">Garlic herb sauce, mozzarella, Canadian bacon, spicy sausage, bacon, tomatoes, garlic &amp;
+            <p class="item-desc">Garlic herb sauce, mozzarella, Canadian bacon, spicy sausage, bacon, tomatoes, garlic
+                &amp;
                 green onions</p></div>
         <div class="item-card">
             <div class="item-name">Garden Sausage</div>
-            <p class="item-desc">Bravo classic sauce, mozzarella, onions, mushrooms, marinated artichokes, tomatoes &amp;
+            <p class="item-desc">Bravo classic sauce, mozzarella, onions, mushrooms, marinated artichokes, tomatoes
+                &amp;
                 house made sausage</p></div>
         <div class="item-card">
             <div class="item-name">Hot Pastrami</div>
@@ -1387,13 +1357,16 @@
                 mustard</p></div>
         <div class="item-card">
             <div class="item-name">Gyro Pizza <span class="item-badge">New!</span></div>
-            <p class="item-desc">Garlic sauce, all beef gyro, red onion, fresh tomatoes, tzatziki sauce on the side</p></div>
+            <p class="item-desc">Garlic sauce, all beef gyro, red onion, fresh tomatoes, tzatziki sauce on the side</p>
+        </div>
         <div class="item-card">
             <div class="item-name">Shrimp Lovers</div>
-            <p class="item-desc">Garlic herb sauce, fresh mushrooms, green peppers, garlic &amp; seasoned shrimp</p></div>
+            <p class="item-desc">Garlic herb sauce, fresh mushrooms, green peppers, garlic &amp; seasoned shrimp</p>
+        </div>
         <div class="item-card">
             <div class="item-name">Margarita with Extreme Flavor</div>
-            <p class="item-desc">Classic sauce, mozzarella, fresh basil, roasted garlic, mushrooms &amp; roma tomatoes</p>
+            <p class="item-desc">Classic sauce, mozzarella, fresh basil, roasted garlic, mushrooms &amp; roma
+                tomatoes</p>
         </div>
     </div>
 </section>
@@ -1427,18 +1400,22 @@
     <div class="item-grid reveal">
         <div class="item-card">
             <div class="item-name">Spinach &amp; Feta</div>
-            <p class="item-desc">Mozzarella, fresh spinach, onions, black olives, artichokes &amp; tomatoes with feta cheese
+            <p class="item-desc">Mozzarella, fresh spinach, onions, black olives, artichokes &amp; tomatoes with feta
+                cheese
                 &amp; oregano</p></div>
         <div class="item-card">
             <div class="item-name">Chicken Pesto</div>
-            <p class="item-desc">Mozzarella, garlic, chicken, onions, mushrooms, roma tomatoes &amp; green onions</p></div>
+            <p class="item-desc">Mozzarella, garlic, chicken, onions, mushrooms, roma tomatoes &amp; green onions</p>
+        </div>
         <div class="item-card">
             <div class="item-name">Veggie Pesto</div>
-            <p class="item-desc">Mozzarella &amp; feta cheeses, garlic, mushrooms, artichokes, tomatoes &amp; green onions</p>
+            <p class="item-desc">Mozzarella &amp; feta cheeses, garlic, mushrooms, artichokes, tomatoes &amp; green
+                onions</p>
         </div>
         <div class="item-card">
             <div class="item-name">Mediterranean Delight</div>
-            <p class="item-desc">Mozzarella &amp; feta cheeses, garlic, artichokes, olives &amp; sun-dried tomatoes</p></div>
+            <p class="item-desc">Mozzarella &amp; feta cheeses, garlic, artichokes, olives &amp; sun-dried tomatoes</p>
+        </div>
     </div>
 </section>
 
@@ -1448,7 +1425,8 @@
         <div class="sec-num">05</div>
         <div class="sec-info"><p class="sec-label">Folded &amp; Filled</p>
             <h2 class="sec-title">CALZONE</h2>
-            <p class="sec-desc">Freshly made crust folded into a pocket — tomato sauce, mozzarella, your toppings. +$4 side
+            <p class="sec-desc">Freshly made crust folded into a pocket — tomato sauce, mozzarella, your toppings. +$4
+                side
                 salad.</p></div>
     </div>
     <div class="item-list-single reveal">
@@ -1502,15 +1480,18 @@
                 class="item-price">Reg $12 · Lg $14</span></div>
         <div class="item-card">
             <div class="item-name">Apple Walnut</div>
-            <p class="item-desc">Mixed greens, apples, cinnamon walnuts, cranberries &amp; feta with balsamic dressing</p>
+            <p class="item-desc">Mixed greens, apples, cinnamon walnuts, cranberries &amp; feta with balsamic
+                dressing</p>
             <span class="item-price">Reg $13 · Lg $15</span></div>
         <div class="item-card">
             <div class="item-name">Fattoush</div>
-            <p class="item-desc">Mixed greens, cucumbers, tomatoes, red onions, toasted pita chips, feta &amp; sumac with
+            <p class="item-desc">Mixed greens, cucumbers, tomatoes, red onions, toasted pita chips, feta &amp; sumac
+                with
                 lemon herb dressing</p><span class="item-price">Reg $11 · Lg $13</span></div>
         <div class="item-card">
             <div class="item-name">Greek</div>
-            <p class="item-desc">Mixed greens, tomatoes, Kalamata olives, cucumbers, red onions, feta &amp; pepperoncini with
+            <p class="item-desc">Mixed greens, tomatoes, Kalamata olives, cucumbers, red onions, feta &amp; pepperoncini
+                with
                 balsamic vinaigrette</p><span class="item-price">Reg $11 · Lg $13</span></div>
         <div class="item-card">
             <div class="item-name">Chicken Shawarma <span class="item-badge">New!</span></div>
@@ -1518,7 +1499,8 @@
                 class="item-price">Reg $13 · Lg $15</span></div>
         <div class="item-card">
             <div class="item-name">Salmon Salad <span class="item-badge">New!</span></div>
-            <p class="item-desc">Mixed greens, salmon filet topped with Mediterranean salsa &amp; lemon herb dressing</p><span
+            <p class="item-desc">Mixed greens, salmon filet topped with Mediterranean salsa &amp; lemon herb
+                dressing</p><span
                 class="item-price">$17.00</span></div>
     </div>
 </section>
@@ -1535,26 +1517,30 @@
         <div class="item-single">
             <div class="item-single-left">
                 <div class="item-single-name">Ravioli or Tortellini</div>
-                <p class="item-single-desc">Marinara, alfredo, or creamy pesto sauce. Comes with 4 garlic bread sticks</p></div>
+                <p class="item-single-desc">Marinara, alfredo, or creamy pesto sauce. Comes with 4 garlic bread
+                    sticks</p></div>
             <div class="item-single-price">$14.00</div>
         </div>
         <div class="item-single">
             <div class="item-single-left">
                 <div class="item-single-name">Pasta + Chicken, Sausage, Meatballs or Veggies</div>
-                <p class="item-single-desc">Ravioli or tortellini with added protein. Comes with 4 garlic bread sticks</p></div>
+                <p class="item-single-desc">Ravioli or tortellini with added protein. Comes with 4 garlic bread
+                    sticks</p></div>
             <div class="item-single-price">$16.00</div>
         </div>
         <div class="item-single">
             <div class="item-single-left">
                 <div class="item-single-name">Pasta + Shrimp</div>
-                <p class="item-single-desc">Ravioli or tortellini with seasoned shrimp. Comes with 4 garlic bread sticks</p>
+                <p class="item-single-desc">Ravioli or tortellini with seasoned shrimp. Comes with 4 garlic bread
+                    sticks</p>
             </div>
             <div class="item-single-price">$17.00</div>
         </div>
         <div class="item-single">
             <div class="item-single-left">
                 <div class="item-single-name">Tortellini Salad</div>
-                <p class="item-single-desc">Fresh basil, sun-dried tomatoes, Kalamata olives, feta tossed in extra virgin olive
+                <p class="item-single-desc">Fresh basil, sun-dried tomatoes, Kalamata olives, feta tossed in extra
+                    virgin olive
                     oil</p></div>
             <div class="item-single-price">$9.00</div>
         </div>
@@ -1579,7 +1565,8 @@
     <div class="item-grid reveal">
         <div class="item-card">
             <div class="item-name">Hot Turkey Pesto</div>
-            <p class="item-desc">Pesto spread, turkey breast, lettuce, tomatoes &amp; mozzarella</p><span class="item-price">$12.00</span>
+            <p class="item-desc">Pesto spread, turkey breast, lettuce, tomatoes &amp; mozzarella</p><span
+                class="item-price">$12.00</span>
         </div>
         <div class="item-card">
             <div class="item-name">Hot Ham &amp; Cheese</div>
@@ -1587,19 +1574,22 @@
                 class="item-price">$12.00</span></div>
         <div class="item-card">
             <div class="item-name">Hot Italian Sausage</div>
-            <p class="item-desc">Classic Bravo sauce, Italian sausage, onions, bell peppers &amp; melted mozzarella</p><span
-                class="item-price">$12.00</span></div>
+            <p class="item-desc">Classic Bravo sauce, Italian sausage, onions, bell peppers &amp; melted mozzarella</p>
+            <span
+                    class="item-price">$12.00</span></div>
         <div class="item-card">
             <div class="item-name">Hot Pastrami</div>
-            <p class="item-desc">Beef pastrami, mustard, lettuce, tomatoes, pepperoncini &amp; melted mozzarella</p><span
-                class="item-price">$12.00</span></div>
+            <p class="item-desc">Beef pastrami, mustard, lettuce, tomatoes, pepperoncini &amp; melted mozzarella</p>
+            <span
+                    class="item-price">$12.00</span></div>
         <div class="item-card">
             <div class="item-name">Chicken Caesar</div>
             <p class="item-desc">Crisp romaine, chicken breast, shredded parmesan &amp; Caesar dressing</p><span
                 class="item-price">$12.00</span></div>
         <div class="item-card">
             <div class="item-name">Basil &amp; Sautéed Mushroom</div>
-            <p class="item-desc">Garlic mayo, fresh basil, sautéed onion &amp; mushroom, melted mozzarella &amp; tomatoes</p>
+            <p class="item-desc">Garlic mayo, fresh basil, sautéed onion &amp; mushroom, melted mozzarella &amp;
+                tomatoes</p>
             <span class="item-price">$12.00</span></div>
         <div class="item-card">
             <div class="item-name">Gyro Pita</div>
@@ -1623,7 +1613,8 @@
         <div class="item-single">
             <div class="item-single-left">
                 <div class="item-single-name">Gyro Plate</div>
-                <p class="item-single-desc">All beef gyro meat garnished with tomatoes &amp; red onions. Comes with Greek salad,
+                <p class="item-single-desc">All beef gyro meat garnished with tomatoes &amp; red onions. Comes with
+                    Greek salad,
                     tzatziki sauce &amp; pita</p></div>
             <div class="item-single-price">$14.00</div>
         </div>
@@ -1791,41 +1782,6 @@
 
 
 <script>
-    if (window.matchMedia('(pointer:fine)').matches) {
-        const cur = document.getElementById('cursor'), ring = document.getElementById('cursorRing');
-        let mx = 0, my = 0, rx = 0, ry = 0;
-        document.addEventListener('mousemove', e => {
-            mx = e.clientX;
-            my = e.clientY;
-        });
-        (function tick() {
-            cur.style.left = mx + 'px';
-            cur.style.top = my + 'px';
-            rx += (mx - rx) * .14;
-            ry += (my - ry) * .14;
-            ring.style.left = rx + 'px';
-            ring.style.top = ry + 'px';
-            requestAnimationFrame(tick);
-        })();
-        document.querySelectorAll('a,button,.item-card,.item-single,.lunch-card,.side-card,.bev-card,.crust-pill,.topping-list li').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cur.style.width = '20px';
-                cur.style.height = '20px';
-                cur.style.background = 'var(--green)';
-                ring.style.width = '52px';
-                ring.style.height = '52px';
-            });
-            el.addEventListener('mouseleave', () => {
-                cur.style.width = '10px';
-                cur.style.height = '10px';
-                cur.style.background = 'var(--red)';
-                ring.style.width = '36px';
-                ring.style.height = '36px';
-            });
-        });
-    }
-
-
     function jumpTo(id) {
         const el = document.getElementById(id);
         if (!el) return;
