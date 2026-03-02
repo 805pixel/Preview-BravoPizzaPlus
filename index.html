@@ -2,849 +2,1299 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bravo Pizza Plus</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#000000">
+    <title>Bravo Pizza Plus — Atascadero &amp; San Luis Obispo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Mono:ital@0;1&display=swap"
+          rel="stylesheet">
     <style>
         :root {
-            --rock: #BB3E00;
-            --orange: #F7AD45;
-            --cream: #FFF1D7;
-            --green: #5F8D37;
-            --dark: #1a0a00;
+            --white: #F4F9FF;
+            --black: #000000;
+            --green: #008C45;
+            --red: #CD212A;
         }
 
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-
-        html { scroll-behavior: smooth; }
-
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
 
         body {
-            background: var(--cream);
-            color: var(--dark);
-            font-family: 'DM Sans', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            font-family: 'Libre Baskerville', Georgia, serif;
             overflow-x: hidden;
         }
 
-
-        /* ─── NOISE OVERLAY ─── */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0.5;
-        }
-
-
-        /* ─── NAV ─── */
+        /* ── NAV ── */
         nav {
             position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            background: var(--white);
+            border-bottom: 2px solid var(--black);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 1.2rem 3rem;
-            background: rgba(255,241,215,0.92);
-            backdrop-filter: blur(12px);
-            border-bottom: 2px solid var(--rock);
+            padding: 1rem 1.5rem;
+            min-height: 60px;
         }
-
 
         .nav-logo {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 2rem;
-            color: var(--rock);
-            letter-spacing: 0.05em;
-            line-height: 1;
-        }
-        .nav-logo span { color: var(--green); }
-
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-
-        nav ul a {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: .1em;
+            color: var(--black);
             text-decoration: none;
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 500;
-            font-size: 0.85rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--dark);
-            transition: color 0.2s;
         }
-        nav ul a:hover { color: var(--rock); }
 
+        .nav-logo .dot {
+            color: var(--red);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Space Mono', monospace;
+            font-size: .7rem;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: var(--black);
+            text-decoration: none;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--red);
+            transition: width .3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
 
         .nav-cta {
-            background: var(--rock);
-            color: var(--cream) !important;
-            padding: 0.6rem 1.4rem;
-            border-radius: 2px;
-            transition: background 0.2s !important;
+            background: var(--red);
+            color: var(--white);
+            text-decoration: none;
+            padding: .5rem 1.1rem;
+            font-family: 'Space Mono', monospace;
+            font-size: .7rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            transition: background .3s;
+            white-space: nowrap;
+            -webkit-tap-highlight-color: transparent;
         }
-        .nav-cta:hover { background: var(--green) !important; color: var(--cream) !important; }
+
+        .nav-cta:hover, .nav-cta:active {
+            background: var(--black);
+        }
 
 
-        /* ─── HERO ─── */
-        .hero {
-            min-height: 100vh;
+        /* Hamburger */
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: .4rem;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .nav-hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--black);
+            transition: all .3s;
+        }
+
+        .nav-hamburger.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .nav-hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-hamburger.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+
+        /* Mobile drawer */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--black);
+            z-index: 199;
+            flex-direction: column;
+            padding: 2.5rem 2rem;
+            gap: 0;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.open {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            letter-spacing: .08em;
+            color: var(--white);
+            text-decoration: none;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+            transition: color .2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .mobile-menu a:hover, .mobile-menu a:active {
+            color: var(--red);
+        }
+
+        .mobile-menu .mob-phone {
+            font-family: 'Space Mono', monospace;
+            font-size: 1rem;
+            letter-spacing: .1em;
+            color: var(--green);
+            margin-top: 2rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+        }
+
+
+        /* ── HERO ── */
+        #hero {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns:1fr 1fr;
+            min-height: 100svh;
+            padding-top: 60px;
+            overflow: hidden;
+        }
+
+        .hero-left {
+            background: var(--black);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 5rem 4rem 4rem 5rem;
+            position: relative;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Space Mono', monospace;
+            font-size: .7rem;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 1.5rem;
+            animation: fadeUp .8s ease .2s both;
+        }
+
+        .hero-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(4.5rem, 9vw, 10rem);
+            line-height: .92;
+            color: var(--white);
+            letter-spacing: .02em;
+            animation: fadeUp .8s ease .4s both;
+        }
+
+        .hero-title .accent {
+            color: var(--red);
+        }
+
+        .hero-title .outline {
+            -webkit-text-stroke: 2px var(--white);
+            color: transparent;
+        }
+
+        .hero-tagline {
+            margin-top: 1.5rem;
+            font-style: italic;
+            font-size: .95rem;
+            color: rgba(244, 249, 255, .65);
+            max-width: 340px;
+            line-height: 1.7;
+            animation: fadeUp .8s ease .6s both;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+            margin-top: 2rem;
+            animation: fadeUp .8s ease .8s both;
+        }
+
+        .badge {
+            border: 1px solid rgba(244, 249, 255, .3);
+            padding: .35rem .8rem;
+            font-family: 'Space Mono', monospace;
+            font-size: .6rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--white);
+        }
+
+        .badge.green {
+            border-color: var(--green);
+            color: var(--green);
+        }
+
+        .hero-cta-mobile {
+            display: none;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            left: 5rem;
+            display: flex;
+            align-items: center;
+            gap: .8rem;
+            font-family: 'Space Mono', monospace;
+            font-size: .6rem;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: rgba(244, 249, 255, .35);
+            animation: fadeUp 1s ease 1.2s both;
+        }
+
+        .scroll-line {
+            width: 36px;
+            height: 1px;
+            background: rgba(244, 249, 255, .3);
             position: relative;
             overflow: hidden;
         }
 
-
-        .hero-left {
-            background: var(--rock);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 10rem 4rem 4rem 5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-
-        .hero-left::after {
+        .scroll-line::after {
             content: '';
             position: absolute;
-            right: -60px;
-            top: 0; bottom: 0;
-            width: 120px;
-            background: var(--rock);
-            transform: skewX(-4deg);
-            z-index: 2;
-        }
-
-
-        .hero-eyebrow {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.75rem;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--orange);
-            margin-bottom: 1.5rem;
-            animation: fadeUp 0.8s 0.2s both;
-        }
-
-
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(3.5rem, 6vw, 6rem);
-            font-weight: 900;
-            color: var(--cream);
-            line-height: 0.95;
-            margin-bottom: 2rem;
-            animation: fadeUp 0.8s 0.4s both;
-        }
-
-
-        .hero-title em {
-            font-style: italic;
-            color: var(--orange);
-        }
-
-
-        .hero-subtitle {
-            font-size: 1rem;
-            color: rgba(255,241,215,0.75);
-            line-height: 1.7;
-            max-width: 380px;
-            margin-bottom: 3rem;
-            font-weight: 300;
-            animation: fadeUp 0.8s 0.6s both;
-        }
-
-
-        .hero-badges {
-            display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-            animation: fadeUp 0.8s 0.8s both;
-        }
-
-
-        .badge {
-            border: 1.5px solid var(--orange);
-            color: var(--orange);
-            padding: 0.4rem 1rem;
-            font-size: 0.7rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            border-radius: 1px;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--red);
+            animation: lineScroll 2s ease-in-out infinite;
         }
 
 
         .hero-right {
-            background: var(--dark);
-            position: relative;
+            background: var(--red);
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
+            align-items: center;
+            position: relative;
             overflow: hidden;
+            padding: 3rem;
+        }
+
+        .pizza-graphic {
+            width: min(340px, 80%);
+            aspect-ratio: 1;
+            animation: spinSlow 30s linear infinite;
+        }
+
+        .pizza-graphic svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 16px 48px rgba(0, 0, 0, .4));
+        }
+
+        .hero-since {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            color: rgba(244, 249, 255, .12);
+            letter-spacing: .05em;
+            line-height: 1;
+            text-align: right;
+            pointer-events: none;
         }
 
 
-        /* Giant pizza graphic */
-        .pizza-graphic {
-            width: min(520px, 80%);
-            aspect-ratio: 1;
-            border-radius: 50%;
-            background: radial-gradient(circle at 40% 35%, #f5c842 0%, #e8930a 45%, #c44800 75%, #8b2800 100%);
+        /* ── MARQUEE ── */
+        .marquee-strip {
+            background: var(--green);
+            padding: .8rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+            border-top: 2px solid var(--black);
+            border-bottom: 2px solid var(--black);
+        }
+
+        .marquee-inner {
+            display: inline-block;
+            animation: marqueeScroll 22s linear infinite;
+        }
+
+        .marquee-inner span {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: .15em;
+            color: var(--white);
+            margin: 0 1.5rem;
+        }
+
+        .marquee-inner span.sep {
+            color: rgba(244, 249, 255, .4);
+        }
+
+
+        /* ── SERVICES BAR ── */
+        .services-bar {
+            background: var(--white);
+            border-bottom: 2px solid var(--black);
+            display: flex;
+            align-items: stretch;
+        }
+
+        .service-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.8rem 1rem;
+            gap: .5rem;
+            border-right: 2px solid var(--black);
+            text-align: center;
+            transition: background .3s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .service-item:last-child {
+            border-right: none;
+        }
+
+        .service-item:hover, .service-item:active {
+            background: var(--red);
+        }
+
+        .service-item:hover .service-title, .service-item:active .service-title,
+        .service-item:hover .service-icon, .service-item:active .service-icon {
+            color: var(--white);
+        }
+
+        .service-item:hover .service-sub, .service-item:active .service-sub {
+            color: rgba(244, 249, 255, .7);
+        }
+
+        .service-icon {
+            font-size: 1.6rem;
+            transition: color .3s;
+            color: var(--black);
+        }
+
+        .service-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: .1em;
+            transition: color .3s;
+        }
+
+        .service-sub {
+            font-family: 'Space Mono', monospace;
+            font-size: .58rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: rgba(0, 0, 0, .4);
+        }
+
+
+        /* ── INGREDIENTS ── */
+        #ingredients {
+            display: grid;
+            grid-template-columns:1fr 1fr;
+        }
+
+        .ing-left {
+            background: var(--white);
+            padding: 6rem 4rem 5rem 5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 2px solid var(--black);
+        }
+
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: .65rem;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 4.5vw, 5rem);
+            line-height: 1;
+            letter-spacing: .04em;
+            margin-bottom: 1.8rem;
+        }
+
+        .ing-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+        }
+
+        .ing-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            font-size: .92rem;
+            line-height: 1.65;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity .5s ease, transform .5s ease;
+        }
+
+        .ing-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .ing-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            color: var(--red);
+            line-height: 1.1;
+            min-width: 2rem;
+        }
+
+        .ing-right {
+            background: var(--black);
+            padding: 5rem 3.5rem;
             position: relative;
-            box-shadow: 0 0 120px rgba(247,173,69,0.3), 0 0 60px rgba(187,62,0,0.4);
-            animation: slowSpin 30s linear infinite;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .ing-right-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(4rem, 7vw, 7rem);
+            color: rgba(244, 249, 255, .05);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+            pointer-events: none;
+            letter-spacing: .04em;
+        }
+
+        .quality-cards {
+            display: grid;
+            grid-template-columns:1fr 1fr;
+            gap: 1px;
+            background: rgba(244, 249, 255, .1);
+            border: 1px solid rgba(244, 249, 255, .1);
+            position: relative;
             z-index: 1;
         }
 
+        .q-card {
+            padding: 1.8rem 1.4rem;
+            background: var(--black);
+            transition: background .3s;
+        }
 
-        @keyframes slowSpin { to { transform: rotate(360deg); } }
+        .q-card:hover {
+            background: #111;
+        }
 
+        .q-icon {
+            font-size: 1.8rem;
+            margin-bottom: .7rem;
+            display: block;
+        }
 
-        /* Pizza slices overlay effect */
-        .pizza-graphic::before {
-            content: '';
-            position: absolute;
-            inset: 5%;
-            border-radius: 50%;
-            background:
-                    conic-gradient(
-                            transparent 0deg 30deg,
-                            rgba(0,0,0,0.15) 30deg 32deg,
-                            transparent 32deg 90deg,
-                            rgba(0,0,0,0.15) 90deg 92deg,
-                            transparent 92deg 150deg,
-                            rgba(0,0,0,0.15) 150deg 152deg,
-                            transparent 152deg 210deg,
-                            rgba(0,0,0,0.15) 210deg 212deg,
-                            transparent 212deg 270deg,
-                            rgba(0,0,0,0.15) 270deg 272deg,
-                            transparent 272deg 330deg,
-                            rgba(0,0,0,0.15) 330deg 332deg,
-                            transparent 332deg 360deg
-                    );
+        .q-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: .08em;
+            color: var(--white);
+            margin-bottom: .4rem;
+        }
+
+        .q-desc {
+            font-size: .78rem;
+            color: rgba(244, 249, 255, .5);
+            line-height: 1.6;
         }
 
 
-        /* Toppings dots */
-        .pizza-graphic::after {
-            content: '●   ●     ●  ●    ●      ●   ●  ●     ●    ●  ●   ●      ●  ●    ●';
-            position: absolute;
-            inset: 15%;
-            border-radius: 50%;
-            color: rgba(95,141,55,0.7);
-            font-size: 1rem;
-            word-break: break-all;
-            overflow: hidden;
-            line-height: 1.4;
+        /* ── LOCATIONS ── */
+        #locations {
+            background: var(--white);
+            padding: 6rem 5rem;
+            border-top: 2px solid var(--black);
+        }
+
+        .loc-header {
             display: flex;
-            align-items: center;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 3rem;
             flex-wrap: wrap;
-            padding: 2rem;
+            gap: 1.5rem;
         }
 
-
-        .hero-right-overlay {
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at center, transparent 40%, var(--dark) 100%);
-            z-index: 2;
+        .loc-grid {
+            display: grid;
+            grid-template-columns:1fr 1fr;
+            gap: 2px;
+            background: var(--black);
+            border: 2px solid var(--black);
         }
 
-
-        .since-badge {
-            position: absolute;
-            bottom: 3rem;
-            right: 3rem;
-            z-index: 3;
-            text-align: right;
-            animation: fadeUp 0.8s 1s both;
+        .loc-card {
+            background: var(--white);
+            padding: 3rem;
+            transition: background .4s;
+            -webkit-tap-highlight-color: transparent;
         }
 
+        .loc-card:hover {
+            background: var(--black);
+        }
 
-        .since-badge .year {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 5rem;
-            color: var(--orange);
+        .loc-card:hover * {
+            color: var(--white) !important;
+        }
+
+        .loc-card:hover .loc-line {
+            background: var(--red);
+            width: 80px;
+        }
+
+        .loc-city {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            letter-spacing: .06em;
             line-height: 1;
-            opacity: 0.3;
+            margin-bottom: .5rem;
+            transition: color .4s;
         }
 
+        .loc-line {
+            width: 40px;
+            height: 3px;
+            background: var(--green);
+            margin-bottom: 1.3rem;
+            transition: background .4s, width .4s;
+        }
 
-        .since-badge .label {
-            font-size: 0.7rem;
-            letter-spacing: 0.2em;
+        .loc-address {
+            font-size: .92rem;
+            line-height: 1.7;
+            color: var(--black);
+            margin-bottom: .9rem;
+            transition: color .4s;
+        }
+
+        .loc-phone {
+            font-family: 'Space Mono', monospace;
+            font-size: .9rem;
+            color: var(--red);
+            letter-spacing: .05em;
+            display: block;
+            margin-bottom: 1.3rem;
+            text-decoration: none;
+            transition: color .4s;
+            /* large tap target */
+            padding: .3rem 0;
+        }
+
+        .loc-card:hover .loc-phone {
+            color: var(--green) !important;
+        }
+
+        .loc-hours {
+            font-family: 'Space Mono', monospace;
+            font-size: .68rem;
+            letter-spacing: .1em;
+            color: rgba(0, 0, 0, .5);
+            line-height: 1.8;
             text-transform: uppercase;
-            color: rgba(255,241,215,0.4);
+            transition: color .4s;
+            border-top: 1px solid rgba(0, 0, 0, .1);
+            padding-top: 1rem;
+        }
+
+        .loc-buffet {
+            display: inline-block;
+            background: var(--green);
+            color: var(--white) !important;
+            font-family: 'Space Mono', monospace;
+            font-size: .6rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: .3rem .8rem;
+            margin-top: .8rem;
         }
 
 
-        /* ─── MARQUEE STRIP ─── */
-        .marquee-strip {
-            background: var(--orange);
-            padding: 0.9rem 0;
-            overflow: hidden;
+        /* ── FOUNDER ── */
+        #founder {
+            background: var(--green);
+            padding: 7rem 5rem;
+            display: grid;
+            grid-template-columns:1fr 2fr;
+            gap: 5rem;
+            align-items: center;
+            border-top: 2px solid var(--black);
+            border-bottom: 2px solid var(--black);
+        }
+
+        .founder-label-block {
+            display: flex;
+            flex-direction: column;
+            gap: .8rem;
+        }
+
+        .founder-big-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(5rem, 10vw, 10rem);
+            line-height: 1;
+            color: rgba(0, 0, 0, .12);
+            letter-spacing: .03em;
+            pointer-events: none;
+        }
+
+        .founder-since {
+            font-family: 'Space Mono', monospace;
+            font-size: .65rem;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--white);
+            opacity: .8;
+        }
+
+        .founder-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: .1em;
+            color: var(--white);
+        }
+
+        .founder-quote-block {
             position: relative;
         }
 
+        .quote-mark {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 9rem;
+            color: rgba(0, 0, 0, .12);
+            line-height: .7;
+            position: absolute;
+            top: -1rem;
+            left: -1.5rem;
+            pointer-events: none;
+        }
 
-        .marquee-inner {
-            display: flex;
-            gap: 0;
-            animation: marquee 20s linear infinite;
-            width: max-content;
+        .founder-quote {
+            font-size: clamp(.95rem, 1.4vw, 1.1rem);
+            line-height: 1.85;
+            color: var(--white);
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .founder-sig {
+            margin-top: 1.8rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: .1em;
+            color: rgba(244, 249, 255, .7);
         }
 
 
-        .marquee-item {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 1.4rem;
-            letter-spacing: 0.1em;
-            color: var(--rock);
-            padding: 0 3rem;
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-        }
-
-
-        .marquee-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--rock);
-            display: inline-block;
-        }
-
-
-        @keyframes marquee { to { transform: translateX(-50%); } }
-
-
-        /* ─── LOCATIONS ─── */
-        .locations {
-            background: var(--cream);
+        /* ── COMMUNITY ── */
+        #community {
+            background: var(--white);
             padding: 7rem 5rem;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3px;
+            grid-template-columns:2fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
 
+        .community-text p {
+            font-size: .95rem;
+            line-height: 1.8;
+            color: rgba(0, 0, 0, .7);
+            max-width: 540px;
+            margin-bottom: 1.3rem;
+        }
 
-        .section-label {
-            grid-column: 1/-1;
-            font-size: 0.7rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--rock);
-            margin-bottom: 3rem;
+        .community-pillars {
+            display: flex;
+            flex-direction: column;
+            gap: .8rem;
+        }
+
+        .pillar {
             display: flex;
             align-items: center;
             gap: 1rem;
-        }
-
-
-        .section-label::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--rock);
-            opacity: 0.3;
-        }
-
-
-        .location-card {
-            background: var(--dark);
-            color: var(--cream);
-            padding: 3.5rem;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-
-        .location-card:hover { transform: scale(1.01); }
-
-
-        .location-card::before {
-            content: '';
-            position: absolute;
-            bottom: -60px; right: -60px;
-            width: 200px; height: 200px;
-            border-radius: 50%;
-            background: var(--rock);
-            opacity: 0.2;
-            transition: transform 0.4s;
-        }
-        .location-card:hover::before { transform: scale(1.5); }
-
-
-        .location-city {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 3.5rem;
-            letter-spacing: 0.05em;
-            color: var(--orange);
-            line-height: 1;
-            margin-bottom: 0.5rem;
-        }
-
-
-        .location-address {
-            font-size: 0.9rem;
-            color: rgba(255,241,215,0.6);
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
-
-
-        .location-phone {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: var(--cream);
-            margin-bottom: 1.5rem;
-        }
-
-
-        .location-hours {
-            font-size: 0.8rem;
-            color: var(--green);
-            letter-spacing: 0.05em;
-            line-height: 1.8;
-            border-top: 1px solid rgba(255,241,215,0.1);
-            padding-top: 1.5rem;
-        }
-
-
-        .location-special {
-            display: inline-block;
-            background: var(--green);
-            color: var(--cream);
-            font-size: 0.65rem;
-            letter-spacing: 0.1em;
+            padding: 1.1rem 1.3rem;
+            border: 1.5px solid var(--black);
+            font-family: 'Space Mono', monospace;
+            font-size: .7rem;
+            letter-spacing: .1em;
             text-transform: uppercase;
-            padding: 0.3rem 0.8rem;
-            margin-top: 1rem;
-            border-radius: 1px;
+            transition: background .3s, color .3s;
+            -webkit-tap-highlight-color: transparent;
         }
 
-
-        /* ─── INGREDIENTS SECTION ─── */
-        .ingredients {
-            background: var(--rock);
-            padding: 8rem 5rem;
-            position: relative;
-            overflow: hidden;
+        .pillar:hover, .pillar:active {
+            background: var(--black);
+            color: var(--white);
         }
 
-
-        .ingredients::before {
-            content: 'FRESH';
-            position: absolute;
-            font-family: 'Bebas Neue', cursive;
-            font-size: 20vw;
-            color: rgba(255,255,255,0.04);
-            top: 50%; left: 50%;
-            transform: translate(-50%,-50%);
-            pointer-events: none;
-            letter-spacing: 0.1em;
-        }
-
-
-        .ingredients-header {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin-bottom: 5rem;
-        }
-
-
-        .ingredients h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 4vw, 4rem);
-            font-weight: 900;
-            color: var(--cream);
-            line-height: 1.1;
-        }
-
-
-        .ingredients h2 em {
-            font-style: italic;
-            color: var(--orange);
-        }
-
-
-        .ingredients-intro {
-            color: rgba(255,241,215,0.7);
-            font-weight: 300;
-            line-height: 1.8;
-            font-size: 0.95rem;
-            align-self: end;
-        }
-
-
-        .ingredients-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: rgba(255,241,215,0.1);
-        }
-
-
-        .ingredient-item {
-            background: var(--rock);
-            padding: 2.5rem;
-            position: relative;
-            transition: background 0.3s;
-        }
-        .ingredient-item:hover { background: #cc4500; }
-
-
-        .ingredient-number {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 4rem;
-            color: rgba(255,241,215,0.08);
-            line-height: 1;
-            margin-bottom: -1rem;
-        }
-
-
-        .ingredient-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-
-        .ingredient-title {
-            font-family: 'Playfair Display', serif;
+        .pillar span {
             font-size: 1.2rem;
-            color: var(--orange);
-            margin-bottom: 0.7rem;
         }
 
 
-        .ingredient-desc {
-            font-size: 0.85rem;
-            color: rgba(255,241,215,0.65);
-            line-height: 1.7;
-            font-weight: 300;
-        }
-
-
-        /* ─── FOUNDER ─── */
-        .founder {
-            background: var(--green);
-            padding: 8rem 5rem;
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 6rem;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-
-        .founder::after {
-            content: '"';
-            position: absolute;
-            font-family: 'Playfair Display', serif;
-            font-size: 40vw;
-            color: rgba(0,0,0,0.07);
-            top: -10%;
-            left: -2%;
-            line-height: 1;
-            pointer-events: none;
-        }
-
-
-        .founder-meta {
-            position: relative;
-            z-index: 1;
-        }
-
-
-        .founder-meta .section-label {
-            color: rgba(255,241,215,0.6);
-            margin-bottom: 2rem;
-        }
-        .founder-meta .section-label::after { background: rgba(255,241,215,0.3); }
-
-
-        .founder-name {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 3vw, 3.5rem);
-            font-weight: 900;
-            color: var(--cream);
-            line-height: 1.1;
-            margin-bottom: 0.5rem;
-        }
-
-
-        .founder-title {
-            font-size: 0.8rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--orange);
-            margin-bottom: 2rem;
-        }
-
-
-        .founder-since {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 6rem;
-            color: rgba(255,241,215,0.15);
-            line-height: 1;
-        }
-
-
-        .founder-quote {
-            position: relative;
-            z-index: 1;
-        }
-
-
-        .quote-text {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1rem, 1.5vw, 1.25rem);
-            font-style: italic;
-            color: var(--cream);
-            line-height: 1.9;
-            font-weight: 400;
-        }
-
-
-        .quote-text p + p { margin-top: 1.5rem; }
-
-
-        .quote-sig {
-            margin-top: 2.5rem;
-            font-size: 0.8rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--orange);
-        }
-
-
-        /* ─── SERVICES STRIP ─── */
-        .services {
-            background: var(--cream);
-            padding: 6rem 5rem;
-        }
-
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
-            background: var(--dark);
-            margin-top: 3rem;
-        }
-
-
-        .service-card {
-            background: var(--cream);
-            padding: 4rem 3rem;
-            text-align: center;
-            transition: all 0.3s;
-            cursor: default;
-        }
-        .service-card:hover {
-            background: var(--dark);
-            color: var(--cream);
-        }
-        .service-card:hover .service-icon { color: var(--orange); }
-        .service-card:hover .service-name { color: var(--cream); }
-        .service-card:hover .service-desc { color: rgba(255,241,215,0.6); }
-
-
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            transition: color 0.3s;
-        }
-
-
-        .service-name {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 2rem;
-            letter-spacing: 0.08em;
-            color: var(--rock);
-            margin-bottom: 0.8rem;
-            transition: color 0.3s;
-        }
-
-
-        .service-desc {
-            font-size: 0.85rem;
-            color: rgba(26,10,0,0.55);
-            line-height: 1.7;
-            font-weight: 300;
-            transition: color 0.3s;
-        }
-
-
-        /* ─── FOOTER ─── */
+        /* ── FOOTER ── */
         footer {
-            background: var(--dark);
-            color: var(--cream);
-            padding: 5rem 5rem 3rem;
+            background: var(--black);
+            color: var(--white);
+            padding: 4rem 5rem;
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns:1fr 1fr 1fr;
+            gap: 3rem;
+            border-top: 2px solid var(--red);
         }
 
-
-        .footer-brand .nav-logo {
-            font-size: 3rem;
-            display: block;
+        .footer-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.3rem;
+            letter-spacing: .1em;
+            line-height: 1;
             margin-bottom: 1rem;
         }
 
+        .footer-logo .red {
+            color: var(--red);
+        }
 
         .footer-tagline {
-            font-size: 0.9rem;
-            color: rgba(255,241,215,0.5);
-            font-weight: 300;
+            font-size: .82rem;
+            color: rgba(244, 249, 255, .5);
             line-height: 1.7;
-            max-width: 300px;
-            margin-bottom: 2rem;
+            max-width: 260px;
         }
 
-
-        .footer-divider {
-            width: 40px;
-            height: 2px;
-            background: var(--rock);
-            margin-bottom: 2rem;
+        .footer-col-title {
+            font-family: 'Space Mono', monospace;
+            font-size: .62rem;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 1rem;
         }
 
-
-        .footer-col h4 {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 1.3rem;
-            letter-spacing: 0.1em;
-            color: var(--orange);
-            margin-bottom: 1.5rem;
+        .footer-col a, .footer-col p {
+            display: block;
+            font-size: .82rem;
+            color: rgba(244, 249, 255, .65);
+            text-decoration: none;
+            margin-bottom: .5rem;
+            line-height: 1.6;
+            transition: color .3s;
         }
-
-
-        .footer-col p, .footer-col address {
-            font-size: 0.85rem;
-            color: rgba(255,241,215,0.5);
-            line-height: 1.9;
-            font-style: normal;
-            font-weight: 300;
-        }
-
 
         .footer-col a {
-            color: rgba(255,241,215,0.5);
-            text-decoration: none;
-            transition: color 0.2s;
+            padding: .2rem 0; /* tap target */
         }
-        .footer-col a:hover { color: var(--orange); }
 
+        .footer-col a:hover {
+            color: var(--white);
+        }
 
         .footer-bottom {
-            grid-column: 1/-1;
-            border-top: 1px solid rgba(255,241,215,0.08);
-            padding-top: 2rem;
+            background: var(--black);
+            padding: 1.3rem 5rem;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            font-size: 0.75rem;
-            color: rgba(255,241,215,0.25);
-            margin-top: 2rem;
+            justify-content: space-between;
+            border-top: 1px solid rgba(244, 249, 255, .08);
+            flex-wrap: wrap;
+            gap: .5rem;
+        }
+
+        .footer-bottom p {
+            font-family: 'Space Mono', monospace;
+            font-size: .62rem;
+            letter-spacing: .1em;
+            color: rgba(244, 249, 255, .3);
+            text-transform: uppercase;
         }
 
 
-        /* ─── ANIMATIONS ─── */
+        /* ── ANIMATIONS ── */
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(28px)
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @keyframes spinSlow {
+            from {
+                transform: rotate(0deg)
+            }
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        @keyframes marqueeScroll {
+            from {
+                transform: translateX(0)
+            }
+            to {
+                transform: translateX(-50%)
+            }
+        }
+
+        @keyframes lineScroll {
+            0% {
+                left: -100%
+            }
+            100% {
+                left: 100%
+            }
         }
 
 
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.7s, transform 0.7s;
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
+        /* ════════════════════════════════════
+           MOBILE — max 768px
+        ════════════════════════════════════ */
+        @media (max-width: 768px) {
+            /* Nav */
+            .nav-links {
+                display: none;
+            }
+
+            .nav-hamburger {
+                display: flex;
+            }
+
+            .nav-cta {
+                padding: .45rem .9rem;
+                font-size: .62rem;
+            }
+
+
+            /* Hero — stacked */
+            #hero {
+                grid-template-columns:1fr;
+                min-height: auto;
+            }
+
+            .hero-left {
+                padding: 4rem 1.5rem 2.5rem;
+                order: 1;
+            }
+
+            .hero-eyebrow {
+                font-size: .65rem;
+                letter-spacing: .15em;
+                margin-bottom: 1rem;
+            }
+
+            .hero-title {
+                font-size: clamp(3.8rem, 16vw, 6rem);
+            }
+
+            .hero-title .outline {
+                -webkit-text-stroke: 1.5px var(--white);
+            }
+
+            .hero-tagline {
+                font-size: .88rem;
+                margin-top: 1.2rem;
+            }
+
+            .hero-badges {
+                gap: .5rem;
+                margin-top: 1.5rem;
+            }
+
+            .badge {
+                font-size: .58rem;
+                padding: .3rem .7rem;
+            }
+
+            .hero-cta-mobile {
+                display: block;
+                margin-top: 1.8rem;
+                background: var(--red);
+                color: var(--white);
+                text-decoration: none;
+                text-align: center;
+                padding: 1rem 2rem;
+                font-family: 'Space Mono', monospace;
+                font-size: .75rem;
+                letter-spacing: .12em;
+                text-transform: uppercase;
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            .scroll-hint {
+                display: none;
+            }
+
+            .hero-right {
+                min-height: 55vw;
+                order: 2;
+                padding: 2.5rem;
+            }
+
+            .pizza-graphic {
+                width: min(260px, 70%);
+            }
+
+            .hero-since {
+                font-size: 3rem;
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
+
+
+            /* Marquee */
+            .marquee-inner span {
+                font-size: 1rem;
+                margin: 0 1rem;
+            }
+
+
+            /* Services bar — 2x2 grid */
+            .services-bar {
+                flex-wrap: wrap;
+            }
+
+            .service-item {
+                flex: 1 1 50%;
+                min-width: 50%;
+                border-bottom: 2px solid var(--black);
+                padding: 1.4rem .8rem;
+            }
+
+            .service-item:nth-child(2) {
+                border-right: none;
+            }
+
+            .service-item:nth-child(3), .service-item:nth-child(4) {
+                border-bottom: none;
+            }
+
+            .service-item:nth-child(4) {
+                border-right: none;
+            }
+
+            .service-icon {
+                font-size: 1.4rem;
+            }
+
+            .service-title {
+                font-size: 1.1rem;
+            }
+
+            .service-sub {
+                font-size: .56rem;
+            }
+
+
+            /* Ingredients */
+            #ingredients {
+                grid-template-columns:1fr;
+            }
+
+            .ing-left {
+                padding: 3.5rem 1.5rem;
+                border-right: none;
+                border-bottom: 2px solid var(--black);
+            }
+
+            .ing-right {
+                padding: 3rem 1.5rem;
+            }
+
+            .quality-cards {
+                grid-template-columns:1fr 1fr;
+            }
+
+            .q-card {
+                padding: 1.4rem 1rem;
+            }
+
+            .q-icon {
+                font-size: 1.5rem;
+                margin-bottom: .5rem;
+            }
+
+            .q-title {
+                font-size: 1rem;
+            }
+
+            .q-desc {
+                font-size: .74rem;
+            }
+
+
+            /* Locations */
+            #locations {
+                padding: 4rem 1.5rem;
+            }
+
+            .loc-header {
+                margin-bottom: 2rem;
+            }
+
+            .loc-grid {
+                grid-template-columns:1fr;
+            }
+
+            .loc-card {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .loc-city {
+                font-size: 2.5rem;
+            }
+
+            .loc-phone {
+                font-size: 1rem;
+                padding: .5rem 0; /* bigger tap */
+            }
+
+
+            /* Founder */
+            #founder {
+                grid-template-columns:1fr;
+                gap: 2rem;
+                padding: 4rem 1.5rem;
+            }
+
+            .founder-big-num {
+                font-size: clamp(4rem, 18vw, 8rem);
+            }
+
+            .quote-mark {
+                font-size: 6rem;
+                left: 0;
+            }
+
+            .founder-quote {
+                font-size: .92rem;
+                padding-left: .5rem;
+            }
+
+
+            /* Community */
+            #community {
+                grid-template-columns:1fr;
+                gap: 2.5rem;
+                padding: 4rem 1.5rem;
+            }
+
+            .community-text p {
+                font-size: .9rem;
+            }
+
+
+            /* Footer */
+            footer {
+                grid-template-columns:1fr;
+                padding: 3rem 1.5rem;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                padding: 1.2rem 1.5rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: .4rem;
+            }
         }
 
 
-        /* ─── RESPONSIVE ─── */
-        @media (max-width: 900px) {
-            nav { padding: 1rem 1.5rem; }
-            nav ul { display: none; }
-            .hero { grid-template-columns: 1fr; }
-            .hero-right { min-height: 50vw; }
-            .hero-left { padding: 8rem 2rem 4rem; }
-            .hero-left::after { display: none; }
-            .locations, .ingredients-header, .founder, .services-grid { grid-template-columns: 1fr; }
-            .ingredients-grid { grid-template-columns: 1fr 1fr; }
-            .locations, .ingredients, .founder, .services, footer { padding: 4rem 2rem; }
-            .ingredients-grid { grid-template-columns: 1fr; }
-            footer { grid-template-columns: 1fr; }
-            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+        /* ════════════════════════════════════
+           SMALL — max 480px
+        ════════════════════════════════════ */
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: clamp(3.2rem, 18vw, 5rem);
+            }
+
+            .quality-cards {
+                grid-template-columns:1fr;
+            }
+
+            .service-sub {
+                display: none;
+            }
+
+            .hero-badges {
+                gap: .4rem;
+            }
+
+            .badge {
+                font-size: .55rem;
+                padding: .25rem .6rem;
+            }
         }
     </style>
 </head>
 <body>
 
-
 <!-- NAV -->
 <nav>
-    <div class="nav-logo">Bravo<span>+</span></div>
-    <ul>
+    <a class="nav-logo" href="#">BRAVO<span class="dot">+</span></a>
+    <ul class="nav-links">
+        <li><a href="#ingredients">Our Craft</a></li>
         <li><a href="#locations">Locations</a></li>
-        <li><a href="#quality">Quality</a></li>
         <li><a href="#founder">Our Story</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="tel:8054621000" class="nav-cta">Order Now</a></li>
+        <li><a href="#community">Community</a></li>
+        <li><a href="menu.html">Menu</a></li>
     </ul>
+    <a href="tel:8054621000" class="nav-cta">Order Now</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+    </button>
 </nav>
 
 
+<!-- MOBILE DRAWER -->
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#ingredients" class="mob-link">Our Craft</a>
+    <a href="#locations" class="mob-link">Locations</a>
+    <a href="#founder" class="mob-link">Our Story</a>
+    <a href="#community" class="mob-link">Community</a>
+    <a href="menu.html" class="mob-link">Full Menu</a>
+    <a href="tel:8054621000" class="mob-phone">(805) 462-1000 — Atascadero</a>
+    <a href="tel:8054391634" class="mob-phone">(805) 439-1634 — SLO</a>
+</div>
+
+
 <!-- HERO -->
-<section class="hero">
+<section id="hero">
     <div class="hero-left">
-        <p class="hero-eyebrow">Handcrafted Since 1996 · Central Coast, CA</p>
+        <p class="hero-eyebrow">Handcrafted Since 1996 · Atascadero &amp; SLO</p>
         <h1 class="hero-title">
-            More Than<br>
-            Just <em>Pizza.</em><br>
-            It's Family.
+            <span>BRAVO</span><br>
+            <span class="outline">PIZZA</span><br>
+            <span class="accent">PLUS</span>
         </h1>
-        <p class="hero-subtitle">Fresh dough, vibrant tomatoes, and a quarter century of community love baked into every single slice.</p>
+        <p class="hero-tagline">Fresh dough. Real tomatoes. Gourmet flavors that refuse to compromise.</p>
         <div class="hero-badges">
-            <span class="badge">Fresh Daily</span>
-            <span class="badge">Gluten-Free Available</span>
-            <span class="badge">Dine-In & Delivery</span>
+            <span class="badge">Fresh Daily Dough</span>
+            <span class="badge green">Gluten-Free Available</span>
+            <span class="badge">Twisted Sesame Crust</span>
+        </div>
+        <a href="menu.html" class="hero-cta-mobile">View Full Menu →</a>
+        <div class="scroll-hint">
+            <span class="scroll-line"></span>
+            Scroll to explore
         </div>
     </div>
     <div class="hero-right">
-        <div class="pizza-graphic"></div>
-        <div class="hero-right-overlay"></div>
-        <div class="since-badge">
-            <div class="year">1996</div>
-            <div class="label">Serving the Community</div>
+        <div class="pizza-graphic">
+            <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="200" cy="200" r="185" fill="#C1440E"/>
+                <circle cx="200" cy="200" r="185" fill="none" stroke="#8B2500" stroke-width="28"/>
+                <g fill="#F4F9FF" opacity="0.6">
+                    <ellipse cx="200" cy="20" rx="4" ry="2" transform="rotate(0 200 200)"/>
+                    <ellipse cx="200" cy="20" rx="4" ry="2" transform="rotate(30 200 200)"/>
+                    <ellipse cx="200" cy="20" rx="4" ry="2" transform="rotate(60 200 200)"/>
+                    <ellipse cx="200" cy="20" rx="4" ry="2" transform="rotate(90 200 200)"/>
+                    <ellipse cx="200" cy="20" rx="4" ry="2" transform="rotate(120 200 200)"/>
+                    <ellipse cx="200" cy="20" rx="4" ry="2" transform="rotate(150 200 200)"/>
+                    <ellipse cx="200" cy="20" rx="4" ry="2" transform="rotate(180 200 200)"/>
+                    <ellipse cx="200" cy="20" rx="4" ry="2" transform="rotate(210 200 200)"/>
+                    <ellipse cx="200" cy="20" rx="4" ry="2" transform="rotate(240 200 200)"/>
+                    <ellipse cx="200" cy="20" rx="4" ry="2" transform="rotate(270 200 200)"/>
+                    <ellipse cx="200" cy="20" rx="4" ry="2" transform="rotate(300 200 200)"/>
+                    <ellipse cx="200" cy="20" rx="4" ry="2" transform="rotate(330 200 200)"/>
+                </g>
+                <circle cx="200" cy="200" r="155" fill="#CD212A"/>
+                <circle cx="200" cy="200" r="145" fill="#F5D77E" opacity="0.9"/>
+                <ellipse cx="160" cy="160" rx="45" ry="35" fill="#F5D77E"/>
+                <ellipse cx="240" cy="155" rx="40" ry="30" fill="#F5D77E"/>
+                <ellipse cx="200" cy="230" rx="50" ry="30" fill="#F5D77E"/>
+                <ellipse cx="155" cy="220" rx="30" ry="25" fill="#F5D77E"/>
+                <ellipse cx="250" cy="215" rx="32" ry="28" fill="#F5D77E"/>
+                <circle cx="175" cy="155" r="22" fill="#8B0000"/>
+                <circle cx="175" cy="155" r="18" fill="#A01010"/>
+                <circle cx="230" cy="170" r="22" fill="#8B0000"/>
+                <circle cx="230" cy="170" r="18" fill="#A01010"/>
+                <circle cx="195" cy="210" r="22" fill="#8B0000"/>
+                <circle cx="195" cy="210" r="18" fill="#A01010"/>
+                <circle cx="150" cy="205" r="18" fill="#8B0000"/>
+                <circle cx="150" cy="205" r="14" fill="#A01010"/>
+                <circle cx="248" cy="228" r="18" fill="#8B0000"/>
+                <circle cx="248" cy="228" r="14" fill="#A01010"/>
+                <rect x="165" y="180" width="14" height="6" rx="3" fill="#008C45" transform="rotate(-30 172 183)"/>
+                <rect x="218" y="195" width="14" height="6" rx="3" fill="#008C45" transform="rotate(20 225 198)"/>
+                <rect x="200" y="165" width="14" height="6" rx="3" fill="#008C45" transform="rotate(-10 207 168)"/>
+                <circle cx="180" cy="230" r="8" fill="#111"/>
+                <circle cx="180" cy="230" r="4" fill="#F5D77E"/>
+                <circle cx="222" cy="190" r="8" fill="#111"/>
+                <circle cx="222" cy="190" r="4" fill="#F5D77E"/>
+                <ellipse cx="150" cy="130" rx="30" ry="15" fill="white" opacity="0.08" transform="rotate(-20 150 130)"/>
+            </svg>
         </div>
+        <div class="hero-since">SINCE<br>1996</div>
     </div>
 </section>
 
@@ -852,185 +1302,231 @@
 <!-- MARQUEE -->
 <div class="marquee-strip">
     <div class="marquee-inner">
-        <!-- repeated twice for seamless loop -->
-        <span class="marquee-item">Dine-In <span class="marquee-dot"></span> Take-Out <span class="marquee-dot"></span> Delivery <span class="marquee-dot"></span> Buffet Available <span class="marquee-dot"></span> Fresh Dough Daily <span class="marquee-dot"></span> Gluten-Free Crust <span class="marquee-dot"></span> Twisted Sesame Crust <span class="marquee-dot"></span> Community First</span>
-        <span class="marquee-item">Dine-In <span class="marquee-dot"></span> Take-Out <span class="marquee-dot"></span> Delivery <span class="marquee-dot"></span> Buffet Available <span class="marquee-dot"></span> Fresh Dough Daily <span class="marquee-dot"></span> Gluten-Free Crust <span class="marquee-dot"></span> Twisted Sesame Crust <span class="marquee-dot"></span> Community First</span>
+        <span>Fresh Tomato Sauce</span><span class="sep">✦</span>
+        <span>Daily Fresh Dough</span><span class="sep">✦</span>
+        <span>Twisted Sesame Crust</span><span class="sep">✦</span>
+        <span>Dine-In</span><span class="sep">✦</span>
+        <span>Take-Out</span><span class="sep">✦</span>
+        <span>Delivery</span><span class="sep">✦</span>
+        <span>Buffet 11–2:30 SLO</span><span class="sep">✦</span>
+        <span>Gluten-Free Available</span><span class="sep">✦</span>
+        <span>Family Owned Since 1996</span><span class="sep">✦</span>
+        <span>Fresh Tomato Sauce</span><span class="sep">✦</span>
+        <span>Daily Fresh Dough</span><span class="sep">✦</span>
+        <span>Twisted Sesame Crust</span><span class="sep">✦</span>
+        <span>Dine-In</span><span class="sep">✦</span>
+        <span>Take-Out</span><span class="sep">✦</span>
+        <span>Delivery</span><span class="sep">✦</span>
+        <span>Buffet 11–2:30 SLO</span><span class="sep">✦</span>
+        <span>Gluten-Free Available</span><span class="sep">✦</span>
+        <span>Family Owned Since 1996</span><span class="sep">✦</span>
     </div>
 </div>
 
 
-<!-- LOCATIONS -->
-<section class="locations" id="locations">
-    <div class="section-label">Our Locations</div>
-    <div class="location-card reveal">
-        <div class="location-city">Atascadero</div>
-        <p class="location-address">8731 El Camino Real</p>
-        <p class="location-phone">(805) 462-1000</p>
-        <div class="location-hours">
-            Open Daily · 11:00 AM – 9:30 PM
-        </div>
+<!-- SERVICES BAR -->
+<div class="services-bar">
+    <div class="service-item">
+        <span class="service-icon">🍽️</span>
+        <div class="service-title">Dine-In</div>
+        <div class="service-sub">Enjoy at our table</div>
     </div>
-    <div class="location-card reveal">
-        <div class="location-city">San Luis Obispo</div>
-        <p class="location-address">3971 South Higuera #120</p>
-        <p class="location-phone">(805) 439-1634</p>
-        <div class="location-hours">
-            Open Daily · 11:00 AM – 9:00 PM
-            <div>
-                <span class="location-special">All-You-Can-Eat Buffet · 11am – 2:30pm Daily</span>
-            </div>
+    <div class="service-item">
+        <span class="service-icon">📦</span>
+        <div class="service-title">Take-Out</div>
+        <div class="service-sub">Ready when you are</div>
+    </div>
+    <div class="service-item">
+        <span class="service-icon">🛵</span>
+        <div class="service-title">Delivery</div>
+        <div class="service-sub">Straight to your door</div>
+    </div>
+    <div class="service-item">
+        <span class="service-icon">🍕</span>
+        <div class="service-title">Buffet</div>
+        <div class="service-sub">SLO · 11am–2:30pm Daily</div>
+    </div>
+</div>
+
+
+<!-- INGREDIENTS -->
+<section id="ingredients">
+    <div class="ing-left">
+        <p class="section-label">Our Craft</p>
+        <h2 class="section-title">MADE WITH<br>PURPOSE,<br>NOT SHORTCUTS</h2>
+        <ul class="ing-list">
+            <li class="ing-item"><span class="ing-num">01</span><span>Fresh tomato sauce — never from canned concentrate. Real tomatoes, real flavor.</span>
+            </li>
+            <li class="ing-item"><span class="ing-num">02</span><span>Dough crafted fresh every single day with olive oil. Gluten-free crust available.</span>
+            </li>
+            <li class="ing-item"><span class="ing-num">03</span><span>Signature twisted sesame crust on all gourmet pizzas — a texture you won't forget.</span>
+            </li>
+            <li class="ing-item"><span class="ing-num">04</span><span>Premium beef and low-fat turkey meats, carefully selected.</span>
+            </li>
+            <li class="ing-item"><span class="ing-num">05</span><span>Highest-quality fresh vegetables, sourced for peak flavor.</span>
+            </li>
+            <li class="ing-item"><span class="ing-num">06</span><span>Unique gourmet and classic recipes — something for every palate.</span>
+            </li>
+        </ul>
+    </div>
+    <div class="ing-right">
+        <div class="ing-right-text">QUALITY</div>
+        <div class="quality-cards">
+            <div class="q-card"><span class="q-icon">🍅</span>
+                <div class="q-title">Real Tomatoes</div>
+                <p class="q-desc">Fresh sauce, never concentrate. Bright and bold.</p></div>
+            <div class="q-card"><span class="q-icon">🫒</span>
+                <div class="q-title">Olive Oil Dough</div>
+                <p class="q-desc">Made fresh daily. Light, crisp, unforgettable.</p></div>
+            <div class="q-card"><span class="q-icon">🌿</span>
+                <div class="q-title">Fresh Vegetables</div>
+                <p class="q-desc">Peak-flavor produce on every pizza.</p></div>
+            <div class="q-card"><span class="q-icon">🎗️</span>
+                <div class="q-title">Sesame Crust</div>
+                <p class="q-desc">Twisted, toasty, and uniquely ours.</p></div>
         </div>
     </div>
 </section>
 
 
-<!-- INGREDIENTS -->
-<section class="ingredients" id="quality">
-    <div class="ingredients-header reveal">
-        <h2>
-            Crafted with<br>
-            <em>Uncompromising</em><br>
-            Quality
-        </h2>
-        <p class="ingredients-intro">Every ingredient is chosen with intention. We believe the best pizza starts long before it enters the oven — it starts with what you put in it.</p>
+<!-- LOCATIONS -->
+<section id="locations">
+    <div class="loc-header">
+        <div>
+            <p class="section-label">Find Us</p>
+            <h2 class="section-title">TWO LOCATIONS<br>ONE STANDARD</h2>
+        </div>
+        <p style="font-size:.88rem;color:rgba(0,0,0,.5);max-width:260px;line-height:1.7;font-style:italic;">Serving the
+            Central Coast of California with pride and fresh pizza since 1996.</p>
     </div>
-    <div class="ingredients-grid">
-        <div class="ingredient-item reveal">
-            <div class="ingredient-number">01</div>
-            <div class="ingredient-icon">🍅</div>
-            <div class="ingredient-title">Fresh Tomato Sauce</div>
-            <p class="ingredient-desc">Our sauce is crafted from fresh tomatoes, never canned concentrate — delivering vibrant, garden-fresh flavor in every bite.</p>
+    <div class="loc-grid">
+        <div class="loc-card">
+            <h3 class="loc-city">Atascadero</h3>
+            <div class="loc-line"></div>
+            <p class="loc-address">8731 El Camino Real<br>Atascadero, CA</p>
+            <a class="loc-phone" href="tel:8054621000">(805) 462-1000</a>
+            <div class="loc-hours">Open Daily<br>11:00 am – 9:30 pm</div>
         </div>
-        <div class="ingredient-item reveal">
-            <div class="ingredient-number">02</div>
-            <div class="ingredient-icon">🫒</div>
-            <div class="ingredient-title">Daily Dough</div>
-            <p class="ingredient-desc">Dough made fresh every morning with premium olive oil. Gluten-free crust available for every pizza.</p>
-        </div>
-        <div class="ingredient-item reveal">
-            <div class="ingredient-number">03</div>
-            <div class="ingredient-icon">🌿</div>
-            <div class="ingredient-title">Twisted Sesame Crust</div>
-            <p class="ingredient-desc">Our signature gourmet pizzas feature a distinctive twisted sesame crust — a subtle crunch that sets us apart.</p>
-        </div>
-        <div class="ingredient-item reveal">
-            <div class="ingredient-number">04</div>
-            <div class="ingredient-icon">🥩</div>
-            <div class="ingredient-title">Premium Meats</div>
-            <p class="ingredient-desc">Quality beef and low-fat turkey, carefully selected for taste and nutrition without compromise.</p>
-        </div>
-        <div class="ingredient-item reveal">
-            <div class="ingredient-number">05</div>
-            <div class="ingredient-icon">🥦</div>
-            <div class="ingredient-title">Freshest Vegetables</div>
-            <p class="ingredient-desc">Highest-quality fresh vegetables, sourced for peak flavor and texture to complement every topping combination.</p>
-        </div>
-        <div class="ingredient-item reveal">
-            <div class="ingredient-number">06</div>
-            <div class="ingredient-icon">✨</div>
-            <div class="ingredient-title">Gourmet Variety</div>
-            <p class="ingredient-desc">Unique, flavorful gourmet and traditional pizzas crafted to satisfy every palate — from classic to adventurous.</p>
+        <div class="loc-card">
+            <h3 class="loc-city">San Luis Obispo</h3>
+            <div class="loc-line"></div>
+            <p class="loc-address">3971 South Higuera #120<br>San Luis Obispo, CA</p>
+            <a class="loc-phone" href="tel:8054391634">(805) 439-1634</a>
+            <div class="loc-hours">Open Daily<br>11:00 am – 9:00 pm</div>
+            <span class="loc-buffet">✦ All-You-Can-Eat Buffet 11am–2:30pm</span>
         </div>
     </div>
 </section>
 
 
 <!-- FOUNDER -->
-<section class="founder" id="founder">
-    <div class="founder-meta reveal">
-        <div class="section-label">Our Story</div>
-        <div class="founder-name">Sam<br>Ayesh</div>
-        <div class="founder-title">Founder, Bravo Pizza Plus</div>
-        <div class="founder-since">1996</div>
+<section id="founder">
+    <div class="founder-label-block">
+        <div class="founder-big-num">1996</div>
+        <p class="founder-since">Founded in</p>
+        <p class="founder-name">Sam Ayesh<br>Founder</p>
     </div>
-    <div class="founder-quote reveal">
-        <div class="quote-text">
-            <p>"I realize that customer service is a must, and that value is so important, and that clean is a must. Caring for your needs and wants is essential to our success.</p>
-            <p>As to all our customers, we prefer to think of you as members of our extended family, and would like you to know how much we appreciate your business and continued loyalty. Our commitment to provide you with quality meals and excellent service will continue strong and remain my #1 goal.</p>
-            <p>Since opening day in 1996, giving back to the community is a big part of our business. We are always pleased to participate in community events ... ready to support and lend a hand to the needy, nonprofit organization, school district, and above all the people who keep Atascadero safe, secure, and clean."</p>
-        </div>
-        <p class="quote-sig">— Sam Ayesh, Founder</p>
+    <div class="founder-quote-block">
+        <span class="quote-mark">"</span>
+        <blockquote class="founder-quote">
+            I realize that customer service is a must, and that value is so important, and that clean is a must. Caring
+            for your needs and wants is essential to our success.<br><br>
+            As to all our customers, we prefer to think of you as members of our extended family, and would like you to
+            know how much we appreciate your business and continued loyalty. Our commitment to provide you with quality
+            meals and excellent service will continue strong and remain my #1 goal.<br><br>
+            Since opening day in 1996, giving back to the community is a big part of our business. We are always pleased
+            to participate in community events — ready to support and lend a hand to the needy, nonprofit organizations,
+            school districts, and above all the people who keep Atascadero safe, secure, and clean.
+        </blockquote>
+        <p class="founder-sig">— Sam Ayesh, Founder · Bravo Pizza Plus</p>
     </div>
 </section>
 
 
-<!-- SERVICES -->
-<section class="services" id="services">
-    <div class="section-label">How We Serve You</div>
-    <div class="services-grid">
-        <div class="service-card reveal">
-            <div class="service-icon">🍽️</div>
-            <div class="service-name">Dine In</div>
-            <p class="service-desc">Relax and enjoy a warm, welcoming atmosphere at either of our two Central Coast locations. The family table is always set.</p>
-        </div>
-        <div class="service-card reveal">
-            <div class="service-icon">📦</div>
-            <div class="service-name">Take Out</div>
-            <p class="service-desc">Fresh, hot pizza ready when you are. Call ahead and we'll have your order waiting for quick, convenient pickup.</p>
-        </div>
-        <div class="service-card reveal">
-            <div class="service-icon">🛵</div>
-            <div class="service-name">Delivery</div>
-            <p class="service-desc">Bravo Pizza Plus comes to you. Enjoy restaurant-quality pizza delivered fresh to your door.</p>
-        </div>
+<!-- COMMUNITY -->
+<section id="community">
+    <div class="community-text">
+        <p class="section-label">Community First</p>
+        <h2 class="section-title">ROOTED IN<br>THE CENTRAL<br>COAST</h2>
+        <p>Since 1996, Bravo Pizza Plus has been more than a restaurant — it's a neighbor, a partner, and a community
+            cornerstone.</p>
+        <p>We actively support local nonprofits, school districts, first responders, and everyone who makes our towns
+            thrive. Because your prosperity is our prosperity.</p>
+    </div>
+    <div class="community-pillars">
+        <div class="pillar"><span>🏫</span> School District Support</div>
+        <div class="pillar"><span>🤝</span> Nonprofit Partnerships</div>
+        <div class="pillar"><span>🚒</span> First Responder Appreciation</div>
+        <div class="pillar"><span>🌱</span> Local Community Events</div>
+        <div class="pillar"><span>❤️</span> Serving the Needy</div>
     </div>
 </section>
 
 
 <!-- FOOTER -->
 <footer>
-    <div class="footer-brand">
-        <span class="nav-logo">Bravo<span>+</span></span>
-        <div class="footer-divider"></div>
-        <p class="footer-tagline">Family-owned since 1996. Proudly serving Atascadero and San Luis Obispo with fresh, handcrafted pizza and genuine community care.</p>
+    <div>
+        <div class="footer-logo">BRAVO<span class="red">+</span><br>PIZZA PLUS</div>
+        <p class="footer-tagline">Handcrafted pizzas made with fresh ingredients and genuine care since 1996.</p>
     </div>
     <div class="footer-col">
-        <h4>Atascadero</h4>
-        <address>
-            8731 El Camino Real<br>
-            Atascadero, CA<br><br>
-            <a href="tel:8054621000">(805) 462-1000</a><br><br>
-            Mon – Sun<br>
-            11:00 AM – 9:30 PM
-        </address>
+        <p class="footer-col-title">Atascadero</p>
+        <p>8731 El Camino Real</p>
+        <a href="tel:8054621000">(805) 462-1000</a>
+        <p>Mon–Sun: 11:00 am – 9:30 pm</p>
     </div>
     <div class="footer-col">
-        <h4>San Luis Obispo</h4>
-        <address>
-            3971 South Higuera #120<br>
-            San Luis Obispo, CA<br><br>
-            <a href="tel:8054391634">(805) 439-1634</a><br><br>
-            Mon – Sun<br>
-            11:00 AM – 9:00 PM<br><br>
-            Buffet: 11am – 2:30pm
-        </address>
-    </div>
-    <div class="footer-bottom">
-        <span>© 2024 Bravo Pizza Plus · All Rights Reserved</span>
-        <span>Dine-In · Take-Out · Delivery</span>
+        <p class="footer-col-title">San Luis Obispo</p>
+        <p>3971 South Higuera #120</p>
+        <a href="tel:8054391634">(805) 439-1634</a>
+        <p>Mon–Sun: 11:00 am – 9:00 pm</p>
+        <p style="margin-top:.5rem;color:var(--green) !important;">Buffet: 11am – 2:30pm Daily</p>
     </div>
 </footer>
+<div class="footer-bottom">
+    <p>© 2026 Bravo Pizza Plus · All Rights Reserved</p>
+    <p>Dine-In · Take-Out · Delivery</p>
+</div>
 
 
 <script>
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, i) => {
-            if (entry.isIntersecting) {
-                setTimeout(() => entry.target.classList.add('visible'), i * 80);
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
-
-
-    // Nav scroll effect
-    const nav = document.querySelector('nav');
-    window.addEventListener('scroll', () => {
-        nav.style.boxShadow = window.scrollY > 50 ? '0 4px 30px rgba(0,0,0,0.1)' : 'none';
+    // ── HAMBURGER MENU ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+        document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
     });
+    document.querySelectorAll('.mob-link').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('open');
+            mobileMenu.classList.remove('open');
+            document.body.style.overflow = '';
+        });
+    });
+
+
+    // ── SCROLL REVEAL ──
+    const ingItems = document.querySelectorAll('.ing-item');
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach((e, i) => {
+            if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 110);
+        });
+    }, {threshold: 0.15});
+    ingItems.forEach(el => obs.observe(el));
+
+
+    // ── PARALLAX PIZZA (desktop only) ──
+    if (window.matchMedia('(pointer:fine)').matches) {
+        document.addEventListener('mousemove', e => {
+            const pizza = document.querySelector('.pizza-graphic');
+            if (!pizza) return;
+            const xR = (e.clientX / window.innerWidth - .5) * 8;
+            const yR = (e.clientY / window.innerHeight - .5) * 8;
+            pizza.style.transform = `translate(${xR}px,${yR}px)`;
+        });
+    }
 </script>
 </body>
 </html>

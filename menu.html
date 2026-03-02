@@ -2,1671 +2,1819 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#000000">
     <title>Menu — Bravo Pizza Plus</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+            rel="stylesheet">
     <style>
         :root {
-            --rock: #BB3E00;
-            --orange: #F7AD45;
-            --cream: #FFF1D7;
-            --green: #5F8D37;
-            --dark: #1a0a00;
+            --white: #F4F9FF;
+            --black: #000000;
+            --green: #008C45;
+            --red: #CD212A;
         }
 
 
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
 
 
         body {
-            background: var(--cream);
-            color: var(--dark);
-            font-family: 'DM Sans', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            font-family: 'Libre Baskerville', Georgia, serif;
             overflow-x: hidden;
         }
 
-
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0.5;
-        }
-
-
-        /* ─── NAV ─── */
         nav {
             position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            background: var(--black);
+            border-bottom: 3px solid var(--red);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 1.2rem 3rem;
-            background: rgba(255,241,215,0.92);
-            backdrop-filter: blur(12px);
-            border-bottom: 2px solid var(--rock);
+            padding: 1rem 1.5rem;
+            min-height: 60px;
         }
 
 
         .nav-logo {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 2rem;
-            color: var(--rock);
-            letter-spacing: 0.05em;
-            line-height: 1;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.7rem;
+            letter-spacing: .12em;
+            color: var(--white);
             text-decoration: none;
         }
-        .nav-logo span { color: var(--green); }
 
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
+        .nav-logo span {
+            color: var(--red);
         }
 
 
-        nav ul a {
-            text-decoration: none;
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 500;
-            font-size: 0.85rem;
-            letter-spacing: 0.1em;
+        .nav-back {
+            font-family: 'Space Mono', monospace;
+            font-size: .65rem;
+            letter-spacing: .15em;
             text-transform: uppercase;
-            color: var(--dark);
-            transition: color 0.2s;
+            color: rgba(244, 249, 255, .5);
+            text-decoration: none;
+            transition: color .3s;
+            padding: .5rem 0;
         }
-        nav ul a:hover { color: var(--rock); }
 
 
-        .nav-cta {
-            background: var(--rock);
-            color: var(--cream) !important;
-            padding: 0.6rem 1.4rem;
-            border-radius: 2px;
-            transition: background 0.2s !important;
+        .nav-back:hover {
+            color: var(--white);
         }
-        .nav-cta:hover { background: var(--green) !important; }
 
 
-        /* ─── MENU HERO ─── */
+        .nav-phone {
+            font-family: 'Space Mono', monospace;
+            font-size: .7rem;
+            letter-spacing: .1em;
+            color: var(--green);
+            text-decoration: none;
+            padding: .5rem 0;
+            white-space: nowrap;
+        }
+
+
         .menu-hero {
-            background: var(--dark);
-            padding: 10rem 5rem 5rem;
+            background: var(--black);
+            padding: 100px 5rem 5rem;
             position: relative;
+            overflow: hidden;
+            border-bottom: 3px solid var(--red);
+        }
+
+
+        .menu-hero-bg {
+            position: absolute;
+            inset: 0;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 22vw;
+            line-height: 1;
+            color: rgba(255, 255, 255, .025);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            user-select: none;
+            white-space: nowrap;
             overflow: hidden;
         }
 
 
-        .menu-hero::before {
-            content: 'MENU';
-            position: absolute;
-            font-family: 'Bebas Neue', cursive;
-            font-size: 22vw;
-            color: rgba(255,241,215,0.04);
-            bottom: -5%;
-            right: -2%;
-            line-height: 1;
-            pointer-events: none;
-            letter-spacing: -0.02em;
-        }
-
-
-        .menu-hero-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: end;
-        }
-
-
-        .menu-eyebrow {
-            font-size: 0.7rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--orange);
-            margin-bottom: 1.5rem;
-        }
-
-
-        .menu-hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 5vw, 5.5rem);
-            font-weight: 900;
-            color: var(--cream);
-            line-height: 0.95;
-        }
-
-
-        .menu-hero h1 em {
-            font-style: italic;
-            color: var(--orange);
-        }
-
-
-        .menu-hero-tagline {
-            font-size: 0.9rem;
-            color: rgba(255,241,215,0.55);
-            line-height: 1.8;
-            font-weight: 300;
-            align-self: end;
-            padding-bottom: 0.5rem;
-        }
-
-
-        /* ─── STICKY SECTION NAV ─── */
-        .section-nav {
-            background: var(--rock);
-            position: sticky;
-            top: 65px;
-            z-index: 90;
-            overflow-x: auto;
-            scrollbar-width: none;
-        }
-        .section-nav::-webkit-scrollbar { display: none; }
-
-
-        .section-nav-inner {
-            display: flex;
-            gap: 0;
-            width: max-content;
-            min-width: 100%;
-        }
-
-
-        .section-nav a {
-            text-decoration: none;
-            font-family: 'Bebas Neue', cursive;
-            font-size: 1rem;
-            letter-spacing: 0.08em;
-            color: rgba(255,241,215,0.6);
-            padding: 1rem 1.6rem;
-            white-space: nowrap;
-            transition: all 0.2s;
-            border-right: 1px solid rgba(255,241,215,0.1);
-        }
-        .section-nav a:hover { color: var(--orange); background: rgba(0,0,0,0.15); }
-        .section-nav a.active { color: var(--orange); background: rgba(0,0,0,0.2); }
-
-
-        /* ─── MAIN CONTENT ─── */
-        .menu-body {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 3rem 6rem;
-        }
-
-
-        /* ─── SECTION HEADER ─── */
-        .menu-section {
-            padding-top: 5rem;
-        }
-
-
-        .section-header {
-            display: flex;
-            align-items: flex-end;
-            gap: 2rem;
-            margin-bottom: 3rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 2px solid var(--rock);
-        }
-
-
-        .section-number {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 5rem;
-            color: rgba(187,62,0,0.15);
-            line-height: 1;
-            margin-bottom: -0.5rem;
-        }
-
-
-        .section-title-group {}
-
-
-        .section-eyebrow {
-            font-size: 0.65rem;
-            letter-spacing: 0.25em;
+        .menu-hero-label {
+            font-family: 'Space Mono', monospace;
+            font-size: .7rem;
+            letter-spacing: .25em;
             text-transform: uppercase;
             color: var(--green);
-            margin-bottom: 0.3rem;
-        }
-
-
-        .section-title {
-            font-family: 'Bebas Neue', cursive;
-            font-size: clamp(2rem, 3.5vw, 3rem);
-            letter-spacing: 0.05em;
-            color: var(--rock);
-            line-height: 1;
-        }
-
-
-        .section-note {
-            margin-left: auto;
-            font-size: 0.8rem;
-            color: rgba(26,10,0,0.45);
-            font-style: italic;
-            font-weight: 300;
-            text-align: right;
-            max-width: 280px;
-            line-height: 1.6;
-            padding-bottom: 0.3rem;
-        }
-
-
-        /* ─── PRICING TABLE (build your own) ─── */
-        .price-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 2.5rem;
-            font-size: 0.85rem;
-        }
-
-
-        .price-table thead tr {
-            background: var(--dark);
-            color: var(--cream);
-        }
-
-
-        .price-table th {
-            font-family: 'Bebas Neue', cursive;
-            letter-spacing: 0.1em;
-            font-size: 0.95rem;
-            padding: 1rem 1.2rem;
-            text-align: center;
-            font-weight: 400;
-        }
-        .price-table th:first-child { text-align: left; }
-
-
-        .price-table td {
-            padding: 0.85rem 1.2rem;
-            text-align: center;
-            border-bottom: 1px solid rgba(187,62,0,0.1);
-        }
-        .price-table td:first-child {
-            text-align: left;
-            font-weight: 500;
-        }
-
-
-        .price-table tbody tr:nth-child(even) { background: rgba(187,62,0,0.04); }
-        .price-table tbody tr:hover { background: rgba(247,173,69,0.08); }
-
-
-        .price-badge {
-            display: inline-block;
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: var(--rock);
-        }
-
-
-        /* ─── CRUST & TOPPINGS ─── */
-        .two-col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-
-        .tag-group {
-            background: var(--dark);
-            padding: 2rem;
-            border-radius: 2px;
-        }
-
-
-        .tag-group h4 {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 1.3rem;
-            letter-spacing: 0.1em;
-            color: var(--orange);
-            margin-bottom: 1.2rem;
-        }
-
-
-        .tag-group .sub {
-            font-size: 0.7rem;
-            color: rgba(255,241,215,0.4);
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            display: block;
-            margin-top: -0.8rem;
-            margin-bottom: 1.2rem;
-        }
-
-
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-
-        .tag {
-            font-size: 0.78rem;
-            padding: 0.35rem 0.9rem;
-            border-radius: 1px;
-            font-weight: 400;
-        }
-
-
-        .tag-fresh {
-            background: rgba(247,173,69,0.12);
-            color: var(--orange);
-            border: 1px solid rgba(247,173,69,0.3);
-        }
-
-
-        .tag-gourmet {
-            background: rgba(95,141,55,0.15);
-            color: #7ab84a;
-            border: 1px solid rgba(95,141,55,0.3);
-        }
-
-
-        .tag-crust {
-            background: rgba(255,241,215,0.08);
-            color: rgba(255,241,215,0.7);
-            border: 1px solid rgba(255,241,215,0.15);
-        }
-
-
-        /* ─── PIZZA GRID (specialty, gourmet) ─── */
-        .size-strip {
-            display: flex;
-            gap: 0.6rem;
-            margin-bottom: 2.5rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-
-        .size-strip .label {
-            font-size: 0.7rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: rgba(26,10,0,0.4);
-            margin-right: 0.5rem;
-        }
-
-
-        .size-pill {
-            background: var(--rock);
-            color: var(--cream);
-            font-size: 0.72rem;
-            font-weight: 500;
-            padding: 0.3rem 0.9rem;
-            border-radius: 1px;
-        }
-
-
-        .pizza-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
-            background: rgba(187,62,0,0.12);
             margin-bottom: 1rem;
         }
 
 
-        .pizza-card {
-            background: var(--cream);
-            padding: 2rem 1.8rem;
-            transition: all 0.25s;
-            position: relative;
-            cursor: default;
+        .menu-hero-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3.5rem, 8vw, 9rem);
+            line-height: .9;
+            letter-spacing: .04em;
+            color: var(--white);
+            margin-bottom: 1.2rem;
         }
 
 
-        .pizza-card:hover {
-            background: var(--dark);
-            z-index: 1;
-            transform: scale(1.01);
+        .menu-hero-title span {
+            color: var(--red);
         }
 
 
-        .pizza-card:hover .pizza-card-name { color: var(--orange); }
-        .pizza-card:hover .pizza-card-desc { color: rgba(255,241,215,0.6); }
-        .pizza-card:hover .pizza-new-badge { background: var(--green); }
-
-
-        .pizza-new-badge {
-            display: inline-block;
-            background: var(--green);
-            color: white;
-            font-size: 0.6rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            padding: 0.2rem 0.6rem;
-            border-radius: 1px;
-            margin-bottom: 0.6rem;
-            transition: background 0.25s;
+        .menu-hero-sub {
+            font-style: italic;
+            color: rgba(244, 249, 255, .55);
+            font-size: .95rem;
+            line-height: 1.7;
+            max-width: 500px;
         }
 
 
-        .pizza-card-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--rock);
-            margin-bottom: 0.6rem;
-            line-height: 1.2;
-            transition: color 0.25s;
+        .cat-nav {
+            position: sticky;
+            top: 60px;
+            z-index: 100;
+            background: var(--white);
+            border-bottom: 2px solid var(--black);
+            overflow-x: auto;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
         }
 
 
-        .pizza-card-desc {
-            font-size: 0.78rem;
-            color: rgba(26,10,0,0.55);
-            line-height: 1.65;
-            font-weight: 300;
-            transition: color 0.25s;
+        .cat-nav::-webkit-scrollbar {
+            display: none;
         }
 
 
-        /* ─── CALZONE ─── */
-        .calzone-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2px;
-            background: rgba(187,62,0,0.12);
-        }
-
-
-        .calzone-item {
-            background: var(--cream);
-            padding: 2rem;
+        .cat-nav-inner {
             display: flex;
-            justify-content: space-between;
+            white-space: nowrap;
+            padding: 0 1.5rem;
+        }
+
+
+        .cat-btn {
+            font-family: 'Space Mono', monospace;
+            font-size: .62rem;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            padding: .9rem 1.1rem;
+            border: none;
+            border-bottom: 3px solid transparent;
+            background: transparent;
+            cursor: pointer;
+            color: rgba(0, 0, 0, .5);
+            transition: all .3s;
+            -webkit-tap-highlight-color: transparent;
+            white-space: nowrap;
+        }
+
+
+        .cat-btn:hover, .cat-btn.active {
+            color: var(--red);
+            border-bottom-color: var(--red);
+        }
+
+
+        .menu-section {
+            border-bottom: 2px solid var(--black);
+        }
+
+
+        .sec-header {
+            display: grid;
+            grid-template-columns:auto 1fr;
             align-items: center;
-            transition: background 0.2s;
+            gap: 2rem;
+            padding: 3rem 5rem 2rem;
+            border-bottom: 1px solid rgba(0, 0, 0, .1);
         }
-        .calzone-item:hover { background: rgba(247,173,69,0.1); }
 
 
-        .calzone-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--dark);
+        .sec-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 5rem;
+            line-height: 1;
+            color: rgba(0, 0, 0, .06);
         }
-        .calzone-sub {
-            font-size: 0.75rem;
-            color: rgba(26,10,0,0.4);
-            font-weight: 300;
-            margin-top: 0.2rem;
+
+
+        .sec-label {
+            font-family: 'Space Mono', monospace;
+            font-size: .65rem;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: .4rem;
+        }
+
+
+        .sec-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2rem, 4vw, 3.8rem);
+            letter-spacing: .04em;
+            line-height: 1;
+        }
+
+
+        .sec-desc {
+            margin-top: .6rem;
+            font-style: italic;
+            color: rgba(0, 0, 0, .5);
+            font-size: .88rem;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+
+        .price-table {
+            margin: 0 5rem 1.5rem;
+            border: 1.5px solid var(--black);
+        }
+
+
+        .price-table-row {
+            display: grid;
+            border-bottom: 1px solid rgba(0, 0, 0, .1);
+        }
+
+
+        .price-table-row:last-child {
+            border-bottom: none;
+        }
+
+
+        .pt-cell {
+            padding: .7rem .8rem;
+            font-family: 'Space Mono', monospace;
+            font-size: .68rem;
+            border-right: 1px solid rgba(0, 0, 0, .1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: .1rem;
+        }
+
+
+        .pt-cell:last-child {
+            border-right: none;
+        }
+
+
+        .pt-size {
+            font-size: .52rem;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            color: rgba(0, 0, 0, .4);
+        }
+
+
+        .pt-price {
+            font-weight: 700;
+            color: var(--black);
+            font-size: .75rem;
+        }
+
+
+        .pt-header .pt-cell {
+            background: var(--black);
+            color: var(--white);
+        }
+
+
+        .pt-header .pt-size {
+            color: rgba(244, 249, 255, .5);
+        }
+
+
+        .pt-header .pt-price {
+            color: var(--white);
+        }
+
+
+        .item-grid {
+            display: grid;
+            grid-template-columns:1fr 1fr;
+            gap: 0;
+            background: var(--black);
+            margin: 0 5rem 2rem;
+            border: 1.5px solid var(--black);
+        }
+
+
+        .item-card {
+            background: var(--white);
+            padding: 1.8rem 2rem;
+            border-right: 1px solid var(--black);
+            border-bottom: 1px solid var(--black);
+            position: relative;
+            transition: background .3s;
+            overflow: hidden;
+        }
+
+
+        .item-card:hover {
+            background: #fafaf8;
+        }
+
+
+        .item-card:nth-child(even) {
+            border-right: none;
+        }
+
+
+        .item-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: transparent;
+            transition: background .3s;
+        }
+
+
+        .item-card:hover::before {
+            background: var(--red);
+        }
+
+
+        .item-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: .06em;
+            line-height: 1.1;
+            margin-bottom: .4rem;
+        }
+
+
+        .item-desc {
+            font-size: .8rem;
+            color: rgba(0, 0, 0, .55);
+            line-height: 1.65;
         }
 
 
         .item-price {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 1.6rem;
-            letter-spacing: 0.05em;
-            color: var(--rock);
-            white-space: nowrap;
-        }
-
-
-        /* ─── SALADS ─── */
-        .salad-list {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2px;
-            background: rgba(187,62,0,0.12);
-        }
-
-
-        .salad-item {
-            background: var(--cream);
-            padding: 1.8rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 1rem;
-            transition: background 0.2s;
-        }
-        .salad-item:hover { background: rgba(95,141,55,0.06); }
-
-
-        .salad-info {}
-        .salad-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 0.95rem;
+            display: inline-block;
+            margin-top: .8rem;
+            font-family: 'Space Mono', monospace;
+            font-size: .8rem;
             font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 0.3rem;
-        }
-        .salad-desc {
-            font-size: 0.75rem;
-            color: rgba(26,10,0,0.5);
-            line-height: 1.6;
-            font-weight: 300;
-        }
-        .salad-prices {
-            text-align: right;
-            flex-shrink: 0;
-        }
-        .salad-prices .price-main {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 1.4rem;
-            color: var(--rock);
-            line-height: 1;
-        }
-        .salad-prices .price-lg {
-            font-size: 0.7rem;
-            color: rgba(26,10,0,0.4);
-            letter-spacing: 0.05em;
+            color: var(--red);
         }
 
 
-        /* ─── PASTAS ─── */
-        .pasta-list {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            background: rgba(187,62,0,0.12);
-        }
-
-
-        .pasta-item {
-            background: var(--cream);
-            padding: 1.8rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 1rem;
-            transition: background 0.2s;
-        }
-        .pasta-item:hover { background: rgba(247,173,69,0.07); }
-
-
-        .pasta-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 0.3rem;
-        }
-        .pasta-desc {
-            font-size: 0.75rem;
-            color: rgba(26,10,0,0.5);
-            line-height: 1.6;
-            font-weight: 300;
-        }
-
-
-        /* ─── SIDES & BEVERAGES ─── */
-        .sides-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
-            background: rgba(187,62,0,0.12);
-        }
-
-
-        .side-item {
-            background: var(--cream);
-            padding: 1.5rem 1.8rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background 0.2s;
-        }
-        .side-item:hover { background: rgba(247,173,69,0.1); }
-
-
-        .side-name {
-            font-weight: 500;
-            font-size: 0.88rem;
-            color: var(--dark);
-        }
-        .side-sub {
-            font-size: 0.7rem;
-            color: rgba(26,10,0,0.4);
-            margin-top: 0.15rem;
-        }
-
-
-        /* ─── SANDWICHES ─── */
-        .sandwich-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2px;
-            background: rgba(187,62,0,0.12);
-        }
-
-
-        .sandwich-item {
-            background: var(--cream);
-            padding: 1.8rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 1rem;
-            transition: background 0.2s;
-        }
-        .sandwich-item:hover { background: rgba(247,173,69,0.07); }
-
-
-        .sandwich-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 0.3rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-        .sandwich-desc {
-            font-size: 0.75rem;
-            color: rgba(26,10,0,0.5);
-            line-height: 1.6;
-            font-weight: 300;
-        }
-
-
-        /* ─── LUNCH SPECIALS ─── */
-        .lunch-banner {
-            background: var(--orange);
-            padding: 1.2rem 2rem;
-            margin-bottom: 2px;
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-
-        .lunch-banner-title {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 1.8rem;
-            letter-spacing: 0.08em;
-            color: var(--rock);
-        }
-
-
-        .lunch-banner-hours {
-            font-size: 0.75rem;
-            letter-spacing: 0.15em;
+        .item-badge {
+            display: inline-block;
+            background: var(--green);
+            color: var(--white);
+            font-family: 'Space Mono', monospace;
+            font-size: .52rem;
+            letter-spacing: .1em;
             text-transform: uppercase;
-            color: var(--rock);
-            opacity: 0.7;
+            padding: .15rem .45rem;
+            margin-left: .4rem;
+            vertical-align: middle;
+        }
+
+
+        .topping-cols {
+            margin: 0 5rem 2rem;
+            display: grid;
+            grid-template-columns:1fr 1fr;
+            gap: 1.5px;
+            background: var(--black);
+            border: 1.5px solid var(--black);
+        }
+
+
+        .topping-col {
+            background: var(--white);
+            padding: 2rem 2.5rem;
+        }
+
+
+        .topping-col-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            letter-spacing: .08em;
+            margin-bottom: 1rem;
+            padding-bottom: .7rem;
+            border-bottom: 2px solid var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: .5rem;
+        }
+
+
+        .topping-col-price {
+            font-family: 'Space Mono', monospace;
+            font-size: .62rem;
+            color: var(--red);
+            letter-spacing: .08em;
+        }
+
+
+        .topping-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5rem;
+        }
+
+
+        .topping-list li {
+            font-family: 'Space Mono', monospace;
+            font-size: .65rem;
+            letter-spacing: .06em;
+            padding: .3rem .75rem;
+            border: 1px solid rgba(0, 0, 0, .15);
+            transition: all .25s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+
+        .topping-list li:hover, .topping-list li:active {
+            background: var(--black);
+            color: var(--white);
+        }
+
+
+        .crust-list {
+            margin: 0 5rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: .7rem;
+        }
+
+
+        .crust-pill {
+            padding: .6rem 1.4rem;
+            border: 1.5px solid var(--black);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: .95rem;
+            letter-spacing: .1em;
+            transition: all .3s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+
+        .crust-pill:hover, .crust-pill:active {
+            background: var(--black);
+            color: var(--white);
+        }
+
+
+        .crust-pill.special {
+            border-color: var(--red);
+            color: var(--red);
+        }
+
+
+        .crust-pill.special:hover, .crust-pill.special:active {
+            background: var(--red);
+            color: var(--white);
+        }
+
+
+        .item-list-single {
+            margin: 0 5rem 2rem;
+            border: 1.5px solid var(--black);
+        }
+
+
+        .item-single {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 1.4rem 2rem;
+            border-bottom: 1px solid rgba(0, 0, 0, .1);
+            gap: 1.2rem;
+            transition: background .3s;
+        }
+
+
+        .item-single:last-child {
+            border-bottom: none;
+        }
+
+
+        .item-single:hover {
+            background: rgba(205, 33, 42, .04);
+        }
+
+
+        .item-single-left {
+            flex: 1;
+        }
+
+
+        .item-single-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: .06em;
+        }
+
+
+        .item-single-desc {
+            font-size: .82rem;
+            color: rgba(0, 0, 0, .55);
+            line-height: 1.65;
+            margin-top: .3rem;
+        }
+
+
+        .item-single-price {
+            font-family: 'Space Mono', monospace;
+            font-size: .9rem;
+            font-weight: 700;
+            color: var(--red);
+            white-space: nowrap;
+            padding-top: .2rem;
+            min-width: 60px;
+            text-align: right;
         }
 
 
         .lunch-grid {
+            margin: 0 5rem 2rem;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
-            background: rgba(187,62,0,0.12);
+            grid-template-columns:repeat(3, 1fr);
+            gap: 1.5px;
+            background: var(--black);
+            border: 1.5px solid var(--black);
         }
 
 
-        .lunch-item {
-            background: var(--cream);
-            padding: 1.8rem;
-            transition: background 0.2s;
+        .lunch-card {
+            background: var(--white);
+            padding: 1.8rem 1.5rem;
+            transition: background .3s;
+            position: relative;
+            -webkit-tap-highlight-color: transparent;
         }
-        .lunch-item:hover { background: rgba(247,173,69,0.1); }
+
+
+        .lunch-card:hover {
+            background: var(--black);
+        }
+
+
+        .lunch-card:hover .lunch-name, .lunch-card:hover .lunch-desc {
+            color: var(--white);
+        }
+
+
+        .lunch-card:hover .lunch-price {
+            color: var(--green);
+        }
+
+
+        .lunch-card:hover .lunch-num {
+            color: rgba(255, 255, 255, .08);
+        }
 
 
         .lunch-num {
-            font-family: 'Bebas Neue', cursive;
+            font-family: 'Bebas Neue', sans-serif;
             font-size: 3rem;
-            color: rgba(187,62,0,0.12);
             line-height: 1;
-            margin-bottom: 0.2rem;
+            color: rgba(0, 0, 0, .06);
+            position: absolute;
+            top: .8rem;
+            right: 1rem;
+            transition: color .3s;
+            pointer-events: none;
         }
 
 
         .lunch-name {
-            font-weight: 500;
-            font-size: 0.88rem;
-            color: var(--dark);
-            margin-bottom: 0.3rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: .06em;
+            line-height: 1.2;
+            margin-bottom: .5rem;
+            max-width: 180px;
+            transition: color .3s;
+        }
+
+
+        .lunch-desc {
+            font-size: .78rem;
+            color: rgba(0, 0, 0, .55);
+            line-height: 1.6;
+            transition: color .3s;
         }
 
 
         .lunch-price {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 1.5rem;
-            color: var(--rock);
-            letter-spacing: 0.05em;
+            margin-top: .9rem;
+            font-family: 'Space Mono', monospace;
+            font-size: .88rem;
+            font-weight: 700;
+            color: var(--red);
+            transition: color .3s;
         }
 
 
-        /* ─── GYRO PLATE ─── */
-        .gyro-feature {
-            background: var(--dark);
-            padding: 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 2rem;
+        .sides-grid {
+            margin: 0 5rem 2rem;
+            display: grid;
+            grid-template-columns:repeat(4, 1fr);
+            gap: 1.5px;
+            background: var(--black);
+            border: 1.5px solid var(--black);
         }
 
 
-        .gyro-feature-left .gyro-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 900;
-            color: var(--orange);
-            margin-bottom: 0.7rem;
+        .side-card {
+            background: var(--white);
+            padding: 1.4rem 1.2rem;
+            transition: background .3s;
         }
 
 
-        .gyro-feature-left .gyro-desc {
-            font-size: 0.85rem;
-            color: rgba(255,241,215,0.55);
-            font-weight: 300;
+        .side-card:hover {
+            background: var(--black);
+        }
+
+
+        .side-card:hover .side-name, .side-card:hover .side-sub {
+            color: var(--white);
+        }
+
+
+        .side-card:hover .side-price {
+            color: var(--green);
+        }
+
+
+        .side-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.05rem;
+            letter-spacing: .08em;
+            transition: color .3s;
+        }
+
+
+        .side-sub {
+            font-size: .73rem;
+            color: rgba(0, 0, 0, .5);
+            margin-top: .3rem;
+            transition: color .3s;
+        }
+
+
+        .side-price {
+            font-family: 'Space Mono', monospace;
+            font-size: .82rem;
+            font-weight: 700;
+            color: var(--red);
+            margin-top: .7rem;
+            transition: color .3s;
+        }
+
+
+        .bev-row {
+            margin: 0 5rem 2rem;
+            display: grid;
+            grid-template-columns:1fr 1fr 1fr;
+            gap: 1.5px;
+            background: var(--black);
+            border: 1.5px solid var(--black);
+        }
+
+
+        .bev-card {
+            background: var(--white);
+            padding: 2rem;
+            transition: background .3s;
+        }
+
+
+        .bev-card:hover {
+            background: var(--black);
+        }
+
+
+        .bev-card:hover .bev-title, .bev-card:hover .bev-options {
+            color: var(--white);
+        }
+
+
+        .bev-card:hover .bev-price {
+            color: var(--green);
+        }
+
+
+        .bev-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.35rem;
+            letter-spacing: .08em;
+            transition: color .3s;
+        }
+
+
+        .bev-options {
+            font-size: .78rem;
+            color: rgba(0, 0, 0, .5);
+            margin-top: .4rem;
             line-height: 1.7;
-            max-width: 400px;
+            transition: color .3s;
         }
 
 
-        .gyro-price {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 5rem;
-            color: var(--cream);
-            line-height: 1;
-            opacity: 0.9;
-            flex-shrink: 0;
+        .bev-price {
+            font-family: 'Space Mono', monospace;
+            font-size: .88rem;
+            font-weight: 700;
+            color: var(--red);
+            margin-top: .8rem;
+            transition: color .3s;
         }
 
 
-        /* ─── REVEAL ─── */
+        .note-block {
+            margin: 0 5rem 2rem;
+            padding: 1.1rem 1.8rem;
+            border-left: 4px solid var(--green);
+            background: rgba(0, 140, 69, .05);
+            font-family: 'Space Mono', monospace;
+            font-size: .68rem;
+            letter-spacing: .06em;
+            color: rgba(0, 0, 0, .6);
+            line-height: 1.8;
+        }
+
+
+        .note-block strong {
+            color: var(--green);
+        }
+
+
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s, transform 0.6s;
-        }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-
-
-        /* ─── FOOTER ─── */
-        .menu-footer {
-            background: var(--dark);
-            color: var(--cream);
-            padding: 3rem 3rem 2rem;
-            text-align: center;
+            transform: translateY(18px);
+            transition: opacity .55s ease, transform .55s ease;
         }
 
 
-        .menu-footer .nav-logo {
-            font-size: 3rem;
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 3.5rem 5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            border-top: 3px solid var(--red);
+        }
+
+
+        .footer-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            letter-spacing: .1em;
+        }
+
+
+        .footer-logo span {
+            color: var(--red);
+        }
+
+
+        .footer-info {
+            font-family: 'Space Mono', monospace;
+            font-size: .62rem;
+            letter-spacing: .1em;
+            color: rgba(244, 249, 255, .4);
+            line-height: 2;
+            text-align: right;
+        }
+
+
+        .footer-info a {
+            color: var(--green);
+            text-decoration: none;
             display: block;
-            margin-bottom: 1rem;
-            text-decoration: none;
         }
 
 
-        .menu-footer p {
-            font-size: 0.8rem;
-            color: rgba(255,241,215,0.35);
-            margin-bottom: 0.4rem;
+        /* ── MOBILE 768px ── */
+        @media (max-width: 768px) {
+            .menu-hero {
+                padding: 80px 1.5rem 3rem;
+            }
+
+
+            .menu-hero-title {
+                font-size: clamp(3rem, 14vw, 5.5rem);
+            }
+
+
+            .menu-hero-sub {
+                font-size: .88rem;
+            }
+
+
+            .cat-nav-inner {
+                padding: 0 1rem;
+            }
+
+
+            .cat-btn {
+                padding: .8rem .9rem;
+                font-size: .58rem;
+            }
+
+
+            .sec-header {
+                padding: 2.5rem 1.5rem 1.5rem;
+                gap: 1rem;
+            }
+
+
+            .sec-num {
+                font-size: 3.5rem;
+            }
+
+
+            .price-table {
+                margin: 0 1.5rem 1.5rem;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+
+            .price-table-row {
+                min-width: 520px;
+            }
+
+
+            .item-grid {
+                grid-template-columns:1fr;
+                margin: 0 1.5rem 2rem;
+            }
+
+
+            .item-card {
+                border-right: none !important;
+            }
+
+
+            .topping-cols {
+                grid-template-columns:1fr;
+                margin: 0 1.5rem 2rem;
+            }
+
+
+            .topping-col {
+                padding: 1.5rem 1.2rem;
+            }
+
+
+            .crust-list {
+                margin: 0 1.5rem 2rem;
+            }
+
+
+            .crust-pill {
+                font-size: .88rem;
+                padding: .55rem 1.1rem;
+            }
+
+
+            .item-list-single {
+                margin: 0 1.5rem 2rem;
+            }
+
+
+            .item-single {
+                padding: 1.2rem 1.2rem;
+                flex-wrap: wrap;
+            }
+
+
+            .item-single-price {
+                min-width: auto;
+            }
+
+
+            .lunch-grid {
+                grid-template-columns:1fr 1fr;
+                margin: 0 1.5rem 2rem;
+            }
+
+
+            .lunch-num {
+                font-size: 2.5rem;
+            }
+
+
+            .lunch-name {
+                font-size: 1rem;
+                max-width: none;
+            }
+
+
+            .sides-grid {
+                grid-template-columns:1fr 1fr;
+                margin: 0 1.5rem 2rem;
+            }
+
+
+            .bev-row {
+                grid-template-columns:1fr;
+                margin: 0 1.5rem 2rem;
+            }
+
+
+            .note-block {
+                margin: 0 1.5rem 2rem;
+                padding: .9rem 1.2rem;
+            }
+
+
+            footer {
+                padding: 2.5rem 1.5rem;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+
+            .footer-info {
+                text-align: left;
+            }
         }
 
 
-        .menu-footer a {
-            color: var(--orange);
-            text-decoration: none;
+        /* ── SMALL 480px ── */
+        @media (max-width: 480px) {
+            .menu-hero-title {
+                font-size: clamp(2.6rem, 16vw, 4.5rem);
+            }
+
+
+            .cat-btn {
+                font-size: .55rem;
+                padding: .75rem .8rem;
+                letter-spacing: .1em;
+            }
+
+
+            .sec-title {
+                font-size: clamp(1.8rem, 8vw, 2.8rem);
+            }
+
+
+            .sec-num {
+                font-size: 2.8rem;
+            }
+
+
+            .price-table-row {
+                min-width: 460px;
+            }
+
+
+            .pt-cell {
+                padding: .6rem .5rem;
+            }
+
+
+            .pt-size {
+                font-size: .48rem;
+            }
+
+
+            .pt-price {
+                font-size: .68rem;
+            }
+
+
+            .item-card {
+                padding: 1.4rem 1.2rem;
+            }
+
+
+            .item-name {
+                font-size: 1.1rem;
+            }
+
+
+            .item-desc {
+                font-size: .78rem;
+            }
+
+
+            .lunch-grid {
+                grid-template-columns:1fr;
+            }
+
+
+            .lunch-card {
+                padding: 1.4rem 1.2rem;
+            }
+
+
+            .side-card {
+                padding: 1.1rem 1rem;
+            }
+
+
+            .side-name {
+                font-size: .95rem;
+            }
+
+
+            .item-single-name {
+                font-size: 1.05rem;
+            }
+
+
+            .item-single-desc {
+                font-size: .78rem;
+            }
+
+
+            .topping-list li {
+                font-size: .62rem;
+                padding: .28rem .6rem;
+            }
         }
 
 
-        .back-to-home {
-            display: inline-block;
-            margin-top: 1.5rem;
-            border: 1.5px solid rgba(255,241,215,0.2);
-            color: rgba(255,241,215,0.5) !important;
-            font-size: 0.7rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            padding: 0.6rem 1.5rem;
-            text-decoration: none !important;
-            transition: all 0.2s;
-        }
-        .back-to-home:hover {
-            border-color: var(--orange);
-            color: var(--orange) !important;
-        }
+        @supports (padding:env(safe-area-inset-bottom)) {
+            footer {
+                padding-bottom: calc(3.5rem + env(safe-area-inset-bottom));
+            }
 
 
-        /* ─── RESPONSIVE ─── */
-        @media (max-width: 900px) {
-            nav { padding: 1rem 1.5rem; }
-            nav ul { display: none; }
-            .menu-hero { padding: 8rem 2rem 3rem; }
-            .menu-hero-inner { grid-template-columns: 1fr; gap: 1.5rem; }
-            .menu-body { padding: 0 1.5rem 4rem; }
-            .pizza-grid { grid-template-columns: 1fr 1fr; }
-            .two-col, .calzone-grid, .salad-list, .sandwich-grid { grid-template-columns: 1fr; }
-            .sides-grid, .lunch-grid { grid-template-columns: 1fr 1fr; }
-            .section-header { flex-wrap: wrap; gap: 0.5rem; }
-            .section-note { margin-left: 0; text-align: left; }
-        }
-
-
-        @media (max-width: 600px) {
-            .pizza-grid, .sides-grid, .lunch-grid { grid-template-columns: 1fr; }
-            .price-table { font-size: 0.75rem; }
-            .price-table th, .price-table td { padding: 0.7rem 0.6rem; }
+            @media (max-width: 768px) {
+                footer {
+                    padding-bottom: calc(2.5rem + env(safe-area-inset-bottom));
+                }
+            }
         }
     </style>
 </head>
 <body>
 
-
-<!-- NAV -->
 <nav>
-    <a href="index.html" class="nav-logo">Bravo<span>+</span></a>
-    <ul>
-        <li><a href="#build-your-own">Build Your Own</a></li>
-        <li><a href="#gourmet">Gourmet</a></li>
-        <li><a href="#salads">Salads</a></li>
-        <li><a href="#lunch">Lunch</a></li>
-        <li><a href="tel:8054621000" class="nav-cta">Order Now</a></li>
-    </ul>
+    <a class="nav-logo" href="index.html">BRAVO<span>+</span></a>
+    <a class="nav-back" href="index.html">← Home</a>
+    <a class="nav-phone" href="tel:8054621000">(805) 462-1000</a>
+</nav>
+<div class="menu-hero">
+    <div class="menu-hero-bg">MENU</div>
+    <p class="menu-hero-label">Full Menu · All Items · All Prices</p>
+    <h1 class="menu-hero-title">OUR<br><span>MENU</span></h1>
+    <p class="menu-hero-sub">Home of The Twisted Sesame Crust &amp; The Finest Gourmet Pizza. Made fresh daily.</p>
+</div>
+<nav class="cat-nav">
+    <div class="cat-nav-inner">
+        <button class="cat-btn active" onclick="jumpTo('build')">Build Pizza</button>
+        <button class="cat-btn" onclick="jumpTo('specialty')">Specialty</button>
+        <button class="cat-btn" onclick="jumpTo('gourmet')">Gourmet</button>
+        <button class="cat-btn" onclick="jumpTo('pesto')">Pesto</button>
+        <button class="cat-btn" onclick="jumpTo('calzone')">Calzone</button>
+        <button class="cat-btn" onclick="jumpTo('salads')">Salads</button>
+        <button class="cat-btn" onclick="jumpTo('pastas')">Pastas</button>
+        <button class="cat-btn" onclick="jumpTo('sandwiches')">Sandwiches</button>
+        <button class="cat-btn" onclick="jumpTo('gyro')">Gyro</button>
+        <button class="cat-btn" onclick="jumpTo('sides')">Sides</button>
+        <button class="cat-btn" onclick="jumpTo('beverages')">Drinks</button>
+        <button class="cat-btn" onclick="jumpTo('lunch')">Lunch</button>
+    </div>
 </nav>
 
 
-<!-- MENU HERO -->
-<header class="menu-hero">
-    <div class="menu-hero-inner">
-        <div>
-            <p class="menu-eyebrow">Home of the Twisted Sesame Crust</p>
-            <h1>The <em>Finest</em><br>Gourmet<br>Pizza.</h1>
+<section class="menu-section" id="build">
+    <div class="sec-header reveal">
+        <div class="sec-num">01</div>
+        <div class="sec-info"><p class="sec-label">Start Here</p>
+            <h2 class="sec-title">CREATE YOUR OWN PIZZA</h2>
+            <p class="sec-desc">Choose your size, pick your crust, pile on the toppings. Extra sauce always free.</p>
         </div>
-        <p class="menu-hero-tagline">Fresh dough made daily with olive oil. Sauce from real tomatoes, never canned concentrate. Every pizza topped with our own house seasonings. This is what craft pizza looks like.</p>
     </div>
-</header>
-
-
-<!-- SECTION NAV -->
-<div class="section-nav">
-    <div class="section-nav-inner">
-        <a href="#build-your-own">Build Your Own</a>
-        <a href="#specialty">Specialty</a>
-        <a href="#gourmet">Gourmet</a>
-        <a href="#pesto">Pesto</a>
-        <a href="#calzone">Calzone</a>
-        <a href="#salads">Salads</a>
-        <a href="#pastas">Pastas</a>
-        <a href="#sides">Sides</a>
-        <a href="#sandwiches">Sandwiches</a>
-        <a href="#gyro">Gyro Plate</a>
-        <a href="#beverages">Beverages</a>
-        <a href="#lunch">Lunch Specials</a>
+    <div class="price-table reveal">
+        <div class="price-table-row pt-header" style="grid-template-columns:.9fr 1fr 1fr 1fr 1fr 1fr;">
+            <div class="pt-cell"><span class="pt-size">Type</span><span class="pt-price">Item</span></div>
+            <div class="pt-cell"><span class="pt-size">SM</span><span class="pt-price">Small</span></div>
+            <div class="pt-cell"><span class="pt-size">MD</span><span class="pt-price">Medium</span></div>
+            <div class="pt-cell"><span class="pt-size">LG</span><span class="pt-price">Large</span></div>
+            <div class="pt-cell"><span class="pt-size">XL</span><span class="pt-price">X-Large</span></div>
+            <div class="pt-cell"><span class="pt-size">GT</span><span class="pt-price">Giant</span></div>
+        </div>
+        <div class="price-table-row" style="grid-template-columns:.9fr 1fr 1fr 1fr 1fr 1fr;">
+            <div class="pt-cell"><span class="pt-size">Base</span><span class="pt-price">Cheese Pizza</span></div>
+            <div class="pt-cell"><span class="pt-price">$16</span></div>
+            <div class="pt-cell"><span class="pt-price">$18</span></div>
+            <div class="pt-cell"><span class="pt-price">$20</span></div>
+            <div class="pt-cell"><span class="pt-price">$22</span></div>
+            <div class="pt-cell"><span class="pt-price">$29</span></div>
+        </div>
+        <div class="price-table-row" style="grid-template-columns:.9fr 1fr 1fr 1fr 1fr 1fr;">
+            <div class="pt-cell"><span class="pt-size">+ea</span><span class="pt-price">Fresh Topping</span></div>
+            <div class="pt-cell"><span class="pt-price">$1.00</span></div>
+            <div class="pt-cell"><span class="pt-price">$1.50</span></div>
+            <div class="pt-cell"><span class="pt-price">$2.00</span></div>
+            <div class="pt-cell"><span class="pt-price">$2.50</span></div>
+            <div class="pt-cell"><span class="pt-price">$3.00</span></div>
+        </div>
+        <div class="price-table-row" style="grid-template-columns:.9fr 1fr 1fr 1fr 1fr 1fr;">
+            <div class="pt-cell"><span class="pt-size">+ea</span><span class="pt-price">Gourmet Topping</span></div>
+            <div class="pt-cell"><span class="pt-price">$1.50</span></div>
+            <div class="pt-cell"><span class="pt-price">$2.00</span></div>
+            <div class="pt-cell"><span class="pt-price">$2.50</span></div>
+            <div class="pt-cell"><span class="pt-price">$3.00</span></div>
+            <div class="pt-cell"><span class="pt-price">$3.50</span></div>
+        </div>
     </div>
-</div>
-
-
-<main class="menu-body">
-
-
-    <!-- ─── BUILD YOUR OWN ─── -->
-    <section class="menu-section" id="build-your-own">
-        <div class="section-header reveal">
-            <div class="section-number">01</div>
-            <div class="section-title-group">
-                <div class="section-eyebrow">Start from scratch</div>
-                <div class="section-title">Create Your Own Pizza</div>
-            </div>
-            <p class="section-note">Extra sauce is always free. Vegan cheese available on request.</p>
+    <div class="note-block reveal"><strong>Extra Sauce:</strong> FREE for all sizes &nbsp;·&nbsp; <strong>Vegan Cheese
+        Available</strong></div>
+    <div class="sec-header reveal" style="padding-top:1.5rem;border-bottom:none;">
+        <div class="sec-num" style="font-size:2.5rem;">🥖</div>
+        <div class="sec-info"><p class="sec-label">Your Choice</p>
+            <h3 class="sec-title" style="font-size:clamp(1.5rem,3vw,2.5rem);">CRUST OPTIONS</h3></div>
+    </div>
+    <div class="crust-list reveal">
+        <div class="crust-pill">Original</div>
+        <div class="crust-pill">Thin &amp; Crispy</div>
+        <div class="crust-pill">Thick</div>
+        <div class="crust-pill special">Twisted Sesame ✦</div>
+        <div class="crust-pill">Stuffed</div>
+        <div class="crust-pill special">Gluten Free (10" or 14")</div>
+    </div>
+    <div class="note-block reveal"><strong>Note:</strong> Bravo Pizza is not a Gluten Free Facility.</div>
+    <div class="topping-cols reveal">
+        <div class="topping-col">
+            <div class="topping-col-title">Fresh Toppings <span class="topping-col-price">From $1.00</span></div>
+            <ul class="topping-list">
+                <li>Pepperoni</li>
+                <li>Sausage</li>
+                <li>Canadian Bacon</li>
+                <li>Bacon</li>
+                <li>Pineapple</li>
+                <li>Fresh Mushrooms</li>
+                <li>Yellow Onions</li>
+                <li>Red Onions</li>
+                <li>Bell Peppers</li>
+                <li>Black Olives</li>
+                <li>Green Onions</li>
+                <li>Roma Tomatoes</li>
+                <li>Chopped Garlic</li>
+                <li>Jalapeños</li>
+                <li>Anchovies</li>
+            </ul>
         </div>
-
-
-        <table class="price-table reveal">
-            <thead>
-            <tr>
-                <th>Item</th>
-                <th>SM 10"</th>
-                <th>MD 12"</th>
-                <th>LG 14"</th>
-                <th>XL 16"</th>
-                <th>GT 20"</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Cheese Pizza</td>
-                <td><span class="price-badge">$16</span></td>
-                <td><span class="price-badge">$18</span></td>
-                <td><span class="price-badge">$20</span></td>
-                <td><span class="price-badge">$22</span></td>
-                <td><span class="price-badge">$29</span></td>
-            </tr>
-            <tr>
-                <td>Each Fresh Topping</td>
-                <td><span class="price-badge">+$1.00</span></td>
-                <td><span class="price-badge">+$1.50</span></td>
-                <td><span class="price-badge">+$2.00</span></td>
-                <td><span class="price-badge">+$2.50</span></td>
-                <td><span class="price-badge">+$3.00</span></td>
-            </tr>
-            <tr>
-                <td>Each Gourmet Topping</td>
-                <td><span class="price-badge">+$1.50</span></td>
-                <td><span class="price-badge">+$2.00</span></td>
-                <td><span class="price-badge">+$2.50</span></td>
-                <td><span class="price-badge">+$3.00</span></td>
-                <td><span class="price-badge">+$3.50</span></td>
-            </tr>
-            <tr>
-                <td>Extra Sauce</td>
-                <td colspan="5" style="text-align:center;color:var(--green);font-weight:500;font-size:0.82rem;letter-spacing:0.05em;">FREE on all sizes</td>
-            </tr>
-            </tbody>
-        </table>
-
-
-        <div class="two-col reveal">
-            <div class="tag-group">
-                <h4>Crust Choices</h4>
-                <span class="sub">Gluten Free available 10" or 14" · Not a GF facility</span>
-                <div class="tags">
-                    <span class="tag tag-crust">Original</span>
-                    <span class="tag tag-crust">Thin & Crispy</span>
-                    <span class="tag tag-crust">Thick</span>
-                    <span class="tag tag-crust">Twisted Sesame ★</span>
-                    <span class="tag tag-crust">Stuffed</span>
-                    <span class="tag tag-crust">Gluten Free</span>
-                </div>
-            </div>
-            <div class="tag-group">
-                <h4>Fresh Toppings</h4>
-                <div class="tags">
-                    <span class="tag tag-fresh">Pepperoni</span>
-                    <span class="tag tag-fresh">Sausage</span>
-                    <span class="tag tag-fresh">Canadian Bacon</span>
-                    <span class="tag tag-fresh">Bacon</span>
-                    <span class="tag tag-fresh">Pineapple</span>
-                    <span class="tag tag-fresh">Fresh Mushrooms</span>
-                    <span class="tag tag-fresh">Yellow Onions</span>
-                    <span class="tag tag-fresh">Red Onions</span>
-                    <span class="tag tag-fresh">Bell Peppers</span>
-                    <span class="tag tag-fresh">Black Olives</span>
-                    <span class="tag tag-fresh">Green Onions</span>
-                    <span class="tag tag-fresh">Roma Tomatoes</span>
-                    <span class="tag tag-fresh">Chopped Garlic</span>
-                    <span class="tag tag-fresh">Jalapeños</span>
-                    <span class="tag tag-fresh">Anchovies</span>
-                </div>
-            </div>
+        <div class="topping-col">
+            <div class="topping-col-title">Gourmet Toppings <span class="topping-col-price">From $1.50</span></div>
+            <ul class="topping-list">
+                <li>Fresh Basil</li>
+                <li>Artichokes</li>
+                <li>Shrimp</li>
+                <li>Feta Cheese</li>
+                <li>Sun-Dried Tomatoes</li>
+                <li>Fresh Spinach</li>
+                <li>Zucchini</li>
+                <li>Cilantro</li>
+                <li>Marinated Chicken Breast</li>
+                <li>BBQ Chicken</li>
+                <li>Roasted Garlic</li>
+            </ul>
         </div>
+    </div>
+</section>
 
 
-        <div class="tag-group reveal">
-            <h4>Gourmet Toppings</h4>
-            <div class="tags">
-                <span class="tag tag-gourmet">Fresh Basil</span>
-                <span class="tag tag-gourmet">Artichokes</span>
-                <span class="tag tag-gourmet">Shrimp</span>
-                <span class="tag tag-gourmet">Feta Cheese</span>
-                <span class="tag tag-gourmet">Sun-Dried Tomatoes</span>
-                <span class="tag tag-gourmet">Fresh Spinach</span>
-                <span class="tag tag-gourmet">Zucchini</span>
-                <span class="tag tag-gourmet">Cilantro</span>
-                <span class="tag tag-gourmet">Marinated Chicken Breast</span>
-                <span class="tag tag-gourmet">BBQ Chicken</span>
-                <span class="tag tag-gourmet">Roasted Garlic</span>
-            </div>
+<section class="menu-section" id="specialty">
+    <div class="sec-header reveal">
+        <div class="sec-num">02</div>
+        <div class="sec-info"><p class="sec-label">House Favorites</p>
+            <h2 class="sec-title">BRAVO SPECIALTY PIZZAS</h2>
+            <p class="sec-desc">Classic combinations perfected over decades.</p></div>
+    </div>
+    <div class="price-table reveal">
+        <div class="price-table-row pt-header" style="grid-template-columns:.9fr 1fr 1fr 1fr 1fr 1fr;">
+            <div class="pt-cell"><span class="pt-size">—</span><span class="pt-price">Size</span></div>
+            <div class="pt-cell"><span class="pt-size">SM 10"</span><span class="pt-price">Small</span></div>
+            <div class="pt-cell"><span class="pt-size">MD 12"</span><span class="pt-price">Medium</span></div>
+            <div class="pt-cell"><span class="pt-size">LG 14"</span><span class="pt-price">Large</span></div>
+            <div class="pt-cell"><span class="pt-size">XL 16"</span><span class="pt-price">X-Large</span></div>
+            <div class="pt-cell"><span class="pt-size">GT 20"</span><span class="pt-price">Giant</span></div>
         </div>
-    </section>
-
-
-    <!-- ─── SPECIALTY PIZZAS ─── -->
-    <section class="menu-section" id="specialty">
-        <div class="section-header reveal">
-            <div class="section-number">02</div>
-            <div class="section-title-group">
-                <div class="section-eyebrow">House Classics</div>
-                <div class="section-title">Bravo Specialty Pizzas</div>
-            </div>
+        <div class="price-table-row" style="grid-template-columns:.9fr 1fr 1fr 1fr 1fr 1fr;">
+            <div class="pt-cell"><span class="pt-size">All Specialty</span><span class="pt-price">Price</span></div>
+            <div class="pt-cell"><span class="pt-price">$20</span></div>
+            <div class="pt-cell"><span class="pt-price">$23</span></div>
+            <div class="pt-cell"><span class="pt-price">$28</span></div>
+            <div class="pt-cell"><span class="pt-price">$31</span></div>
+            <div class="pt-cell"><span class="pt-price">$43</span></div>
         </div>
-
-
-        <div class="size-strip reveal">
-            <span class="label">Sizes & Prices:</span>
-            <span class="size-pill">SM 10" · $20</span>
-            <span class="size-pill">MD 12" · $23</span>
-            <span class="size-pill">LG 14" · $28</span>
-            <span class="size-pill">XL 16" · $31</span>
-            <span class="size-pill">GT 20" · $43</span>
+    </div>
+    <div class="item-grid reveal">
+        <div class="item-card">
+            <div class="item-name">Bravo Combo</div>
+            <p class="item-desc">Pepperoni, sausage, Canadian bacon, mushrooms, onions, bell peppers, olives &amp;
+                garlic</p>
         </div>
+        <div class="item-card">
+            <div class="item-name">All Meat</div>
+            <p class="item-desc">Pepperoni, sausage, Canadian bacon &amp; bacon</p></div>
+        <div class="item-card">
+            <div class="item-name">Veggie Delight</div>
+            <p class="item-desc">Artichokes, garlic, mushrooms, olives, bell peppers, onions &amp; tomatoes</p></div>
+    </div>
+</section>
 
 
-        <div class="pizza-grid reveal">
-            <div class="pizza-card">
-                <div class="pizza-card-name">Bravo Combo</div>
-                <p class="pizza-card-desc">Pepperoni, sausage, Canadian bacon, mushrooms, onions, bell peppers, olives & garlic</p>
-            </div>
-            <div class="pizza-card">
-                <div class="pizza-card-name">All Meat</div>
-                <p class="pizza-card-desc">Pepperoni, sausage, Canadian bacon & bacon</p>
-            </div>
-            <div class="pizza-card">
-                <div class="pizza-card-name">Veggie Delight</div>
-                <p class="pizza-card-desc">Artichokes, garlic, mushrooms, olives, bell peppers, onions & tomatoes</p>
-            </div>
+<section class="menu-section" id="gourmet">
+    <div class="sec-header reveal">
+        <div class="sec-num">03</div>
+        <div class="sec-info"><p class="sec-label">Signature Collection</p>
+            <h2 class="sec-title">BRAVO GOURMET PIZZAS</h2>
+            <p class="sec-desc">Olive oil dough. Sesame crust. House seasonings. Always fresh.</p></div>
+    </div>
+    <div class="price-table reveal">
+        <div class="price-table-row pt-header" style="grid-template-columns:.9fr 1fr 1fr 1fr 1fr 1fr;">
+            <div class="pt-cell"><span class="pt-size">—</span><span class="pt-price">Size</span></div>
+            <div class="pt-cell"><span class="pt-size">SM 10"</span><span class="pt-price">Small</span></div>
+            <div class="pt-cell"><span class="pt-size">MD 12"</span><span class="pt-price">Medium</span></div>
+            <div class="pt-cell"><span class="pt-size">LG 14"</span><span class="pt-price">Large</span></div>
+            <div class="pt-cell"><span class="pt-size">XL 16"</span><span class="pt-price">X-Large</span></div>
+            <div class="pt-cell"><span class="pt-size">GT 20"</span><span class="pt-price">Giant</span></div>
         </div>
-    </section>
-
-
-    <!-- ─── GOURMET PIZZAS ─── -->
-    <section class="menu-section" id="gourmet">
-        <div class="section-header reveal">
-            <div class="section-number">03</div>
-            <div class="section-title-group">
-                <div class="section-eyebrow">Signature Creations</div>
-                <div class="section-title">Bravo Gourmet Pizzas</div>
-            </div>
-            <p class="section-note">Fresh olive oil dough. Twisted sesame crust. Topped with house seasonings.</p>
+        <div class="price-table-row" style="grid-template-columns:.9fr 1fr 1fr 1fr 1fr 1fr;">
+            <div class="pt-cell"><span class="pt-size">All Gourmet</span><span class="pt-price">Price</span></div>
+            <div class="pt-cell"><span class="pt-price">$20</span></div>
+            <div class="pt-cell"><span class="pt-price">$23</span></div>
+            <div class="pt-cell"><span class="pt-price">$28</span></div>
+            <div class="pt-cell"><span class="pt-price">$31</span></div>
+            <div class="pt-cell"><span class="pt-price">$43</span></div>
         </div>
-
-
-        <div class="size-strip reveal">
-            <span class="label">Sizes & Prices:</span>
-            <span class="size-pill">SM 10" · $20</span>
-            <span class="size-pill">MD 12" · $23</span>
-            <span class="size-pill">LG 14" · $28</span>
-            <span class="size-pill">XL 16" · $31</span>
-            <span class="size-pill">GT 20" · $43</span>
+    </div>
+    <div class="item-grid reveal">
+        <div class="item-card">
+            <div class="item-name">Roasted Garlic &amp; Chicken</div>
+            <p class="item-desc">Fresh garlic sauce, mozzarella, seasoned chicken, onions, mushrooms, fresh roasted
+                garlic
+                &amp; roma tomatoes</p></div>
+        <div class="item-card">
+            <div class="item-name">Chicken Parmesan &amp; Spinach</div>
+            <p class="item-desc">Creamy parmesan sauce, fresh spinach, roasted garlic, bacon &amp; seasoned chicken
+                topped
+                with shredded parmesan</p></div>
+        <div class="item-card">
+            <div class="item-name">Chicken &amp; Cilantro</div>
+            <p class="item-desc">Garlic herb sauce, cilantro, onion, mushrooms, tomatoes, garlic &amp; chicken</p></div>
+        <div class="item-card">
+            <div class="item-name">Chicken Shawarma <span class="item-badge">New!</span></div>
+            <p class="item-desc">Garlic sauce, mozzarella, red onion, fresh tomatoes, topped with chicken shawarma</p>
         </div>
-
-
-        <div class="pizza-grid reveal">
-            <div class="pizza-card">
-                <div class="pizza-card-name">Roasted Garlic & Chicken</div>
-                <p class="pizza-card-desc">Fresh garlic sauce, mozzarella, seasoned chicken, onions, mushrooms, fresh roasted garlic & roma tomatoes</p>
-            </div>
-            <div class="pizza-card">
-                <div class="pizza-card-name">Chicken Parmesan & Spinach</div>
-                <p class="pizza-card-desc">Creamy parmesan sauce, fresh spinach, roasted garlic, bacon & seasoned chicken topped with shredded parmesan</p>
-            </div>
-            <div class="pizza-card">
-                <div class="pizza-card-name">Chicken & Cilantro</div>
-                <p class="pizza-card-desc">Garlic herb sauce, cilantro, onion, mushrooms, tomatoes, garlic & chicken</p>
-            </div>
-            <div class="pizza-card">
-                <div class="pizza-new-badge">New!</div>
-                <div class="pizza-card-name">Chicken Shawarma</div>
-                <p class="pizza-card-desc">Garlic sauce, mozzarella, red onion, fresh tomatoes, topped with chicken shawarma</p>
-            </div>
-            <div class="pizza-card">
-                <div class="pizza-card-name">Luau BBQ</div>
-                <p class="pizza-card-desc">BBQ sauce, mozzarella, Canadian bacon, pineapple, red onions & BBQ chicken</p>
-            </div>
-            <div class="pizza-card">
-                <div class="pizza-card-name">Greek Feta Veggie</div>
-                <p class="pizza-card-desc">Bravo classic sauce, mozzarella, mushrooms, onions, olives, artichokes, bell peppers & roma tomatoes topped with feta cheese & oregano</p>
-            </div>
-            <div class="pizza-card">
-                <div class="pizza-card-name">California Veggie</div>
-                <p class="pizza-card-desc">Garlic herb sauce, mozzarella, spinach, zucchini, artichokes, tomatoes, green onions & garlic. Topped with parmesan & oregano</p>
-            </div>
-            <div class="pizza-card">
-                <div class="pizza-card-name">Garlic Veggie</div>
-                <p class="pizza-card-desc">Garlic herb sauce, mozzarella, garlic, mushrooms, tomatoes, artichoke, green onions & parmesan cheese</p>
-            </div>
-            <div class="pizza-card">
-                <div class="pizza-card-name">Spinach Smooch</div>
-                <p class="pizza-card-desc">Garlic herb sauce, mozzarella, fresh spinach, roasted garlic, marinated artichokes & sun-dried tomatoes</p>
-            </div>
-            <div class="pizza-card">
-                <div class="pizza-card-name">Bravo Special</div>
-                <p class="pizza-card-desc">Garlic herb sauce, mozzarella, Canadian bacon, Italian sausage, artichokes, garlic & roma tomatoes</p>
-            </div>
-            <div class="pizza-card">
-                <div class="pizza-card-name">Bacon Deluxe</div>
-                <p class="pizza-card-desc">Garlic herb sauce, mozzarella, Canadian bacon, spicy sausage, bacon, tomatoes, garlic & green onions</p>
-            </div>
-            <div class="pizza-card">
-                <div class="pizza-card-name">Garden Sausage</div>
-                <p class="pizza-card-desc">Bravo classic sauce, mozzarella, onions, mushrooms, marinated artichokes, tomatoes & house made sausage</p>
-            </div>
-            <div class="pizza-card">
-                <div class="pizza-card-name">Hot Pastrami</div>
-                <p class="pizza-card-desc">Garlic mayo, mozzarella, hot beef pastrami, tomatoes, red onions, pepperoncini & mustard</p>
-            </div>
-            <div class="pizza-card">
-                <div class="pizza-new-badge">New!</div>
-                <div class="pizza-card-name">Gyro Pizza</div>
-                <p class="pizza-card-desc">Garlic sauce, all beef gyro, red onion, fresh tomatoes, tzatziki sauce on the side</p>
-            </div>
-            <div class="pizza-card">
-                <div class="pizza-card-name">Shrimp Lovers</div>
-                <p class="pizza-card-desc">Garlic herb sauce, fresh mushrooms, green peppers, garlic & seasoned shrimp</p>
-            </div>
-            <div class="pizza-card">
-                <div class="pizza-card-name">Margarita with Extreme Flavor</div>
-                <p class="pizza-card-desc">Classic sauce, mozzarella, fresh basil, roasted garlic, mushrooms & roma tomatoes</p>
-            </div>
+        <div class="item-card">
+            <div class="item-name">Luau BBQ</div>
+            <p class="item-desc">BBQ sauce, mozzarella, Canadian bacon, pineapple, red onions &amp; BBQ chicken</p>
         </div>
-    </section>
-
-
-    <!-- ─── PESTO ─── -->
-    <section class="menu-section" id="pesto">
-        <div class="section-header reveal">
-            <div class="section-number">04</div>
-            <div class="section-title-group">
-                <div class="section-eyebrow">Herbaceous & Bright</div>
-                <div class="section-title">Pesto Gourmet Pizzas</div>
-            </div>
-            <p class="section-note">All Pesto pizzas come with Twisted Sesame Crust.</p>
+        <div class="item-card">
+            <div class="item-name">Greek Feta Veggie</div>
+            <p class="item-desc">Bravo classic sauce, mozzarella, mushrooms, onions, olives, artichokes, bell peppers
+                &amp;
+                roma tomatoes topped with feta &amp; oregano</p></div>
+        <div class="item-card">
+            <div class="item-name">California Veggie</div>
+            <p class="item-desc">Garlic herb sauce, mozzarella, spinach, zucchini, artichokes, tomatoes, green onions
+                &amp;
+                garlic. Topped with parmesan &amp; oregano</p></div>
+        <div class="item-card">
+            <div class="item-name">Garlic Veggie</div>
+            <p class="item-desc">Garlic herb sauce, mozzarella, garlic, mushrooms, tomatoes, artichoke, green onions
+                &amp;
+                parmesan cheese</p></div>
+        <div class="item-card">
+            <div class="item-name">Spinach Smooch</div>
+            <p class="item-desc">Garlic herb sauce, mozzarella, fresh spinach, roasted garlic, marinated artichokes
+                &amp;
+                sun-dried tomatoes</p></div>
+        <div class="item-card">
+            <div class="item-name">Bravo Special</div>
+            <p class="item-desc">Garlic herb sauce, mozzarella, Canadian bacon, Italian sausage, artichokes, garlic
+                &amp; roma
+                tomatoes</p></div>
+        <div class="item-card">
+            <div class="item-name">Bacon Deluxe</div>
+            <p class="item-desc">Garlic herb sauce, mozzarella, Canadian bacon, spicy sausage, bacon, tomatoes, garlic
+                &amp;
+                green onions</p></div>
+        <div class="item-card">
+            <div class="item-name">Garden Sausage</div>
+            <p class="item-desc">Bravo classic sauce, mozzarella, onions, mushrooms, marinated artichokes, tomatoes
+                &amp;
+                house made sausage</p></div>
+        <div class="item-card">
+            <div class="item-name">Hot Pastrami</div>
+            <p class="item-desc">Garlic mayo, mozzarella, hot beef pastrami, tomatoes, red onions, pepperoncini &amp;
+                mustard</p></div>
+        <div class="item-card">
+            <div class="item-name">Gyro Pizza <span class="item-badge">New!</span></div>
+            <p class="item-desc">Garlic sauce, all beef gyro, red onion, fresh tomatoes, tzatziki sauce on the side</p>
         </div>
-
-
-        <div class="size-strip reveal">
-            <span class="label">Sizes & Prices:</span>
-            <span class="size-pill">SM 10" · $20</span>
-            <span class="size-pill">MD 12" · $23</span>
-            <span class="size-pill">LG 14" · $28</span>
-            <span class="size-pill">XL 16" · $31</span>
-            <span class="size-pill">GT 20" · $43</span>
+        <div class="item-card">
+            <div class="item-name">Shrimp Lovers</div>
+            <p class="item-desc">Garlic herb sauce, fresh mushrooms, green peppers, garlic &amp; seasoned shrimp</p>
         </div>
-
-
-        <div class="pizza-grid reveal">
-            <div class="pizza-card">
-                <div class="pizza-card-name">Spinach & Feta</div>
-                <p class="pizza-card-desc">Mozzarella, fresh spinach, onions, black olives, artichokes & tomatoes with feta cheese & oregano</p>
-            </div>
-            <div class="pizza-card">
-                <div class="pizza-card-name">Chicken Pesto</div>
-                <p class="pizza-card-desc">Mozzarella, garlic, chicken, onions, mushrooms, roma tomatoes & green onions</p>
-            </div>
-            <div class="pizza-card">
-                <div class="pizza-card-name">Veggie Pesto</div>
-                <p class="pizza-card-desc">Mozzarella & feta cheeses, garlic, mushrooms, artichokes, tomatoes & green onions</p>
-            </div>
-            <div class="pizza-card">
-                <div class="pizza-card-name">Mediterranean Delight</div>
-                <p class="pizza-card-desc">Mozzarella & feta cheeses, garlic, artichokes, olives & sun-dried tomatoes</p>
-            </div>
+        <div class="item-card">
+            <div class="item-name">Margarita with Extreme Flavor</div>
+            <p class="item-desc">Classic sauce, mozzarella, fresh basil, roasted garlic, mushrooms &amp; roma
+                tomatoes</p>
         </div>
-    </section>
+    </div>
+</section>
 
 
-    <!-- ─── CALZONE ─── -->
-    <section class="menu-section" id="calzone">
-        <div class="section-header reveal">
-            <div class="section-number">05</div>
-            <div class="section-title-group">
-                <div class="section-eyebrow">Folded & Filled</div>
-                <div class="section-title">Calzone</div>
-            </div>
-            <p class="section-note">Freshly made crust folded into a pocket with tomato sauce, mozzarella & your toppings. Add a side salad for $4.00.</p>
+<section class="menu-section" id="pesto">
+    <div class="sec-header reveal">
+        <div class="sec-num">04</div>
+        <div class="sec-info"><p class="sec-label">Pesto Collection</p>
+            <h2 class="sec-title">PESTO GOURMET PIZZAS</h2>
+            <p class="sec-desc">All pesto pizzas come with a Twisted Sesame Crust.</p></div>
+    </div>
+    <div class="price-table reveal">
+        <div class="price-table-row pt-header" style="grid-template-columns:.9fr 1fr 1fr 1fr 1fr 1fr;">
+            <div class="pt-cell"><span class="pt-size">—</span><span class="pt-price">Size</span></div>
+            <div class="pt-cell"><span class="pt-size">SM 10"</span><span class="pt-price">Small</span></div>
+            <div class="pt-cell"><span class="pt-size">MD 12"</span><span class="pt-price">Medium</span></div>
+            <div class="pt-cell"><span class="pt-size">LG 14"</span><span class="pt-price">Large</span></div>
+            <div class="pt-cell"><span class="pt-size">XL 16"</span><span class="pt-price">X-Large</span></div>
+            <div class="pt-cell"><span class="pt-size">GT 20"</span><span class="pt-price">Giant</span></div>
         </div>
-
-
-        <div class="calzone-grid reveal">
-            <div class="calzone-item">
-                <div>
-                    <div class="calzone-name">Cheese + 1 Topping</div>
-                    <div class="calzone-sub">Add extra toppings: +$1.00 each</div>
-                </div>
-                <div class="item-price">$12</div>
-            </div>
-            <div class="calzone-item">
-                <div>
-                    <div class="calzone-name">Specialty or Gourmet</div>
-                    <div class="calzone-sub">Gourmet topping add-ons: +$1.50 each</div>
-                </div>
-                <div class="item-price">$14</div>
-            </div>
+        <div class="price-table-row" style="grid-template-columns:.9fr 1fr 1fr 1fr 1fr 1fr;">
+            <div class="pt-cell"><span class="pt-size">All Pesto</span><span class="pt-price">Price</span></div>
+            <div class="pt-cell"><span class="pt-price">$20</span></div>
+            <div class="pt-cell"><span class="pt-price">$23</span></div>
+            <div class="pt-cell"><span class="pt-price">$28</span></div>
+            <div class="pt-cell"><span class="pt-price">$31</span></div>
+            <div class="pt-cell"><span class="pt-price">$43</span></div>
         </div>
-    </section>
-
-
-    <!-- ─── SALADS ─── -->
-    <section class="menu-section" id="salads">
-        <div class="section-header reveal">
-            <div class="section-number">06</div>
-            <div class="section-title-group">
-                <div class="section-eyebrow">Fresh & Vibrant</div>
-                <div class="section-title">Salads</div>
-            </div>
-            <p class="section-note">All salads available in Regular or Large.</p>
+    </div>
+    <div class="item-grid reveal">
+        <div class="item-card">
+            <div class="item-name">Spinach &amp; Feta</div>
+            <p class="item-desc">Mozzarella, fresh spinach, onions, black olives, artichokes &amp; tomatoes with feta
+                cheese
+                &amp; oregano</p></div>
+        <div class="item-card">
+            <div class="item-name">Chicken Pesto</div>
+            <p class="item-desc">Mozzarella, garlic, chicken, onions, mushrooms, roma tomatoes &amp; green onions</p>
         </div>
-
-
-        <div class="salad-list reveal">
-            <div class="salad-item">
-                <div class="salad-info">
-                    <div class="salad-name">Garden</div>
-                    <div class="salad-desc">Mixed greens, tomatoes, cucumbers, red onions, mozzarella & croutons</div>
-                </div>
-                <div class="salad-prices">
-                    <div class="price-main">$11</div>
-                    <div class="price-lg">Lg $13</div>
-                </div>
-            </div>
-            <div class="salad-item">
-                <div class="salad-info">
-                    <div class="salad-name">Caesar</div>
-                    <div class="salad-desc">Romaine, shredded parmesan & seasoned croutons. Add Chicken +$2.00</div>
-                </div>
-                <div class="salad-prices">
-                    <div class="price-main">$11</div>
-                    <div class="price-lg">Lg $13</div>
-                </div>
-            </div>
-            <div class="salad-item">
-                <div class="salad-info">
-                    <div class="salad-name">House Antipasto</div>
-                    <div class="salad-desc">Romaine, tomatoes, Canadian bacon, olives, mozzarella & artichokes</div>
-                </div>
-                <div class="salad-prices">
-                    <div class="price-main">$12</div>
-                    <div class="price-lg">Lg $14</div>
-                </div>
-            </div>
-            <div class="salad-item">
-                <div class="salad-info">
-                    <div class="salad-name">Apple Walnut</div>
-                    <div class="salad-desc">Mixed greens, apples, cinnamon walnuts, cranberries & feta with balsamic dressing</div>
-                </div>
-                <div class="salad-prices">
-                    <div class="price-main">$13</div>
-                    <div class="price-lg">Lg $15</div>
-                </div>
-            </div>
-            <div class="salad-item">
-                <div class="salad-info">
-                    <div class="salad-name">Fattoush</div>
-                    <div class="salad-desc">Mixed greens, cucumbers, tomatoes, red onions, toasted pita chips, feta cheese & sumac with lemon herb dressing</div>
-                </div>
-                <div class="salad-prices">
-                    <div class="price-main">$11</div>
-                    <div class="price-lg">Lg $13</div>
-                </div>
-            </div>
-            <div class="salad-item">
-                <div class="salad-info">
-                    <div class="salad-name">Greek</div>
-                    <div class="salad-desc">Mixed greens, tomatoes, Kalamata olives, cucumbers, red onions, feta & pepperoncini with balsamic vinaigrette</div>
-                </div>
-                <div class="salad-prices">
-                    <div class="price-main">$11</div>
-                    <div class="price-lg">Lg $13</div>
-                </div>
-            </div>
-            <div class="salad-item">
-                <div class="salad-info">
-                    <div class="pizza-new-badge" style="margin-bottom:0.4rem;">New!</div>
-                    <div class="salad-name">Chicken Shawarma</div>
-                    <div class="salad-desc">Mixed greens, tomato, red onions with balsamic & feta dressing</div>
-                </div>
-                <div class="salad-prices">
-                    <div class="price-main">$13</div>
-                    <div class="price-lg">Lg $15</div>
-                </div>
-            </div>
-            <div class="salad-item">
-                <div class="salad-info">
-                    <div class="pizza-new-badge" style="margin-bottom:0.4rem;">New!</div>
-                    <div class="salad-name">Salmon</div>
-                    <div class="salad-desc">Mixed greens, salmon filet topped with Mediterranean salsa with lemon herb dressing</div>
-                </div>
-                <div class="salad-prices">
-                    <div class="price-main">$17</div>
-                </div>
-            </div>
+        <div class="item-card">
+            <div class="item-name">Veggie Pesto</div>
+            <p class="item-desc">Mozzarella &amp; feta cheeses, garlic, mushrooms, artichokes, tomatoes &amp; green
+                onions</p>
         </div>
-    </section>
-
-
-    <!-- ─── PASTAS ─── -->
-    <section class="menu-section" id="pastas">
-        <div class="section-header reveal">
-            <div class="section-number">07</div>
-            <div class="section-title-group">
-                <div class="section-eyebrow">Comfort & Warmth</div>
-                <div class="section-title">Pastas</div>
-            </div>
+        <div class="item-card">
+            <div class="item-name">Mediterranean Delight</div>
+            <p class="item-desc">Mozzarella &amp; feta cheeses, garlic, artichokes, olives &amp; sun-dried tomatoes</p>
         </div>
+    </div>
+</section>
 
 
-        <div class="pasta-list reveal">
-            <div class="pasta-item">
-                <div>
-                    <div class="pasta-name">Ravioli or Tortellini</div>
-                    <div class="pasta-desc">Your choice of marinara, alfredo, or creamy pesto sauce. Comes with 4 garlic bread sticks.<br>Add Chicken, Italian Sausage, Meatballs or Veggies +$2 · Add Shrimp +$3</div>
-                </div>
-                <div class="item-price">$14</div>
-            </div>
-            <div class="pasta-item">
-                <div>
-                    <div class="pasta-name">Tortellini Salad</div>
-                    <div class="pasta-desc">Fresh basil, sun-dried tomatoes, Kalamata olives, feta cheese tossed in extra virgin olive oil</div>
-                </div>
-                <div class="item-price">$9</div>
-            </div>
-            <div class="pasta-item">
-                <div>
-                    <div class="pasta-name">Spaghetti & All Beef Meatballs</div>
-                    <div class="pasta-desc">Comes with 4 garlic bread sticks</div>
-                </div>
-                <div class="item-price">$14</div>
-            </div>
+<section class="menu-section" id="calzone">
+    <div class="sec-header reveal">
+        <div class="sec-num">05</div>
+        <div class="sec-info"><p class="sec-label">Folded &amp; Filled</p>
+            <h2 class="sec-title">CALZONE</h2>
+            <p class="sec-desc">Freshly made crust folded into a pocket — tomato sauce, mozzarella, your toppings. +$4
+                side
+                salad.</p></div>
+    </div>
+    <div class="item-list-single reveal">
+        <div class="item-single">
+            <div class="item-single-left">
+                <div class="item-single-name">Cheese &amp; 1 Topping</div>
+                <p class="item-single-desc">Choice of one fresh topping with marinara &amp; mozzarella</p></div>
+            <div class="item-single-price">$12.00</div>
         </div>
-    </section>
-
-
-    <!-- ─── SIDES ─── -->
-    <section class="menu-section" id="sides">
-        <div class="section-header reveal">
-            <div class="section-number">08</div>
-            <div class="section-title-group">
-                <div class="section-eyebrow">Add On</div>
-                <div class="section-title">Sides</div>
-            </div>
+        <div class="item-single">
+            <div class="item-single-left">
+                <div class="item-single-name">Extra Topping</div>
+                <p class="item-single-desc">Add any fresh topping</p></div>
+            <div class="item-single-price">+$1.00</div>
         </div>
-
-
-        <div class="sides-grid reveal">
-            <div class="side-item">
-                <div>
-                    <div class="side-name">Buffalo Wings (8pc)</div>
-                    <div class="side-sub">Hot & Spicy or BBQ</div>
-                </div>
-                <div class="item-price">$10</div>
-            </div>
-            <div class="side-item">
-                <div><div class="side-name">Garlic Bread Sticks (8pc)</div></div>
-                <div class="item-price">$7</div>
-            </div>
-            <div class="side-item">
-                <div><div class="side-name">Cheesy Sticks (8pc)</div></div>
-                <div class="item-price">$10</div>
-            </div>
-            <div class="side-item">
-                <div>
-                    <div class="side-name">Dressings or Sauces (4oz)</div>
-                </div>
-                <div class="item-price">$0.75</div>
-            </div>
-            <div class="side-item">
-                <div><div class="side-name">Jalapeños or Pepperoncinis</div></div>
-                <div class="item-price">$1</div>
-            </div>
-            <div class="side-item">
-                <div><div class="side-name">Anchovies</div></div>
-                <div class="item-price">$3</div>
-            </div>
+        <div class="item-single">
+            <div class="item-single-left">
+                <div class="item-single-name">Extra Gourmet Topping</div>
+                <p class="item-single-desc">Add any gourmet topping</p></div>
+            <div class="item-single-price">+$1.50</div>
         </div>
-    </section>
-
-
-    <!-- ─── SANDWICHES ─── -->
-    <section class="menu-section" id="sandwiches">
-        <div class="section-header reveal">
-            <div class="section-number">09</div>
-            <div class="section-title-group">
-                <div class="section-eyebrow">Freshly Baked Daily</div>
-                <div class="section-title">Sandwiches</div>
-            </div>
-            <p class="section-note">All sandwiches $12. Fresh baked bread made in-house. Add a side salad for $4.00.</p>
+        <div class="item-single">
+            <div class="item-single-left">
+                <div class="item-single-name">Specialty or Gourmet Calzone</div>
+                <p class="item-single-desc">Specialty or gourmet topping selection</p></div>
+            <div class="item-single-price">$14.00</div>
         </div>
+    </div>
+</section>
 
 
-        <div class="sandwich-grid reveal">
-            <div class="sandwich-item">
-                <div>
-                    <div class="sandwich-name">Hot Turkey Pesto</div>
-                    <div class="sandwich-desc">Pesto spread, turkey breast, lettuce, tomatoes & mozzarella</div>
-                </div>
-                <div class="item-price">$12</div>
-            </div>
-            <div class="sandwich-item">
-                <div>
-                    <div class="sandwich-name">Hot Ham & Cheese</div>
-                    <div class="sandwich-desc">Italian dressing, ham, tomatoes & melted mozzarella</div>
-                </div>
-                <div class="item-price">$12</div>
-            </div>
-            <div class="sandwich-item">
-                <div>
-                    <div class="sandwich-name">Hot Italian Sausage</div>
-                    <div class="sandwich-desc">Classic Bravo sauce, Italian sausage, onions, bell peppers & melted mozzarella</div>
-                </div>
-                <div class="item-price">$12</div>
-            </div>
-            <div class="sandwich-item">
-                <div>
-                    <div class="sandwich-name">Hot Pastrami</div>
-                    <div class="sandwich-desc">Beef pastrami, mustard, lettuce, tomatoes, pepperoncini & melted mozzarella</div>
-                </div>
-                <div class="item-price">$12</div>
-            </div>
-            <div class="sandwich-item">
-                <div>
-                    <div class="sandwich-name">Chicken Caesar</div>
-                    <div class="sandwich-desc">Crisp romaine, chicken breast, shredded parmesan & Caesar dressing</div>
-                </div>
-                <div class="item-price">$12</div>
-            </div>
-            <div class="sandwich-item">
-                <div>
-                    <div class="sandwich-name">Basil & Sautéed Mushroom</div>
-                    <div class="sandwich-desc">Garlic mayo, fresh basil, sautéed onion & mushroom, melted mozzarella & tomatoes</div>
-                </div>
-                <div class="item-price">$12</div>
-            </div>
-            <div class="sandwich-item">
-                <div>
-                    <div class="sandwich-name">Gyro Pita</div>
-                    <div class="sandwich-desc">All beef gyro meat, crisp lettuce, tomatoes, tzatziki sauce on the side & toasted pita</div>
-                </div>
-                <div class="item-price">$12</div>
-            </div>
-            <div class="sandwich-item">
-                <div>
-                    <div class="sandwich-name"><span class="pizza-new-badge" style="vertical-align:middle;">New!</span> Chicken Shawarma Pita</div>
-                    <div class="sandwich-desc">Sautéed with red onion, garlic sauce, topped with tomatoes and mixed greens</div>
-                </div>
-                <div class="item-price">$12</div>
-            </div>
+<section class="menu-section" id="salads">
+    <div class="sec-header reveal">
+        <div class="sec-num">06</div>
+        <div class="sec-info"><p class="sec-label">Fresh &amp; Crisp</p>
+            <h2 class="sec-title">SALADS</h2>
+            <p class="sec-desc">Available in Regular and Large.</p></div>
+    </div>
+    <div class="item-grid reveal">
+        <div class="item-card">
+            <div class="item-name">Garden</div>
+            <p class="item-desc">Mixed greens, tomatoes, cucumbers, red onions, mozzarella &amp; croutons</p><span
+                class="item-price">Reg $11 · Lg $13</span></div>
+        <div class="item-card">
+            <div class="item-name">Caesar</div>
+            <p class="item-desc">Romaine, shredded parmesan &amp; seasoned croutons. Add Chicken +$2</p><span
+                class="item-price">Reg $11 · Lg $13</span></div>
+        <div class="item-card">
+            <div class="item-name">House Antipasto</div>
+            <p class="item-desc">Romaine, tomatoes, Canadian bacon, olives, mozzarella &amp; artichokes</p><span
+                class="item-price">Reg $12 · Lg $14</span></div>
+        <div class="item-card">
+            <div class="item-name">Apple Walnut</div>
+            <p class="item-desc">Mixed greens, apples, cinnamon walnuts, cranberries &amp; feta with balsamic
+                dressing</p>
+            <span class="item-price">Reg $13 · Lg $15</span></div>
+        <div class="item-card">
+            <div class="item-name">Fattoush</div>
+            <p class="item-desc">Mixed greens, cucumbers, tomatoes, red onions, toasted pita chips, feta &amp; sumac
+                with
+                lemon herb dressing</p><span class="item-price">Reg $11 · Lg $13</span></div>
+        <div class="item-card">
+            <div class="item-name">Greek</div>
+            <p class="item-desc">Mixed greens, tomatoes, Kalamata olives, cucumbers, red onions, feta &amp; pepperoncini
+                with
+                balsamic vinaigrette</p><span class="item-price">Reg $11 · Lg $13</span></div>
+        <div class="item-card">
+            <div class="item-name">Chicken Shawarma <span class="item-badge">New!</span></div>
+            <p class="item-desc">Mixed greens, tomato, red onions with balsamic &amp; feta dressing</p><span
+                class="item-price">Reg $13 · Lg $15</span></div>
+        <div class="item-card">
+            <div class="item-name">Salmon Salad <span class="item-badge">New!</span></div>
+            <p class="item-desc">Mixed greens, salmon filet topped with Mediterranean salsa &amp; lemon herb
+                dressing</p><span
+                class="item-price">$17.00</span></div>
+    </div>
+</section>
+
+
+<section class="menu-section" id="pastas">
+    <div class="sec-header reveal">
+        <div class="sec-num">07</div>
+        <div class="sec-info"><p class="sec-label">Italian Classics</p>
+            <h2 class="sec-title">PASTAS</h2>
+            <p class="sec-desc">Comes with 4 garlic bread sticks.</p></div>
+    </div>
+    <div class="item-list-single reveal">
+        <div class="item-single">
+            <div class="item-single-left">
+                <div class="item-single-name">Ravioli or Tortellini</div>
+                <p class="item-single-desc">Marinara, alfredo, or creamy pesto sauce. Comes with 4 garlic bread
+                    sticks</p></div>
+            <div class="item-single-price">$14.00</div>
         </div>
-    </section>
-
-
-    <!-- ─── GYRO PLATE ─── -->
-    <section class="menu-section" id="gyro">
-        <div class="section-header reveal">
-            <div class="section-number">10</div>
-            <div class="section-title-group">
-                <div class="section-eyebrow">Mediterranean</div>
-                <div class="section-title">Gyro Plate</div>
-            </div>
+        <div class="item-single">
+            <div class="item-single-left">
+                <div class="item-single-name">Pasta + Chicken, Sausage, Meatballs or Veggies</div>
+                <p class="item-single-desc">Ravioli or tortellini with added protein. Comes with 4 garlic bread
+                    sticks</p></div>
+            <div class="item-single-price">$16.00</div>
         </div>
-
-
-        <div class="gyro-feature reveal">
-            <div class="gyro-feature-left">
-                <div class="gyro-title">Gyro Plate</div>
-                <div class="gyro-desc">All beef gyro meat garnished with tomatoes & red onions. Comes with a side of Greek salad, tzatziki sauce & pita.</div>
+        <div class="item-single">
+            <div class="item-single-left">
+                <div class="item-single-name">Pasta + Shrimp</div>
+                <p class="item-single-desc">Ravioli or tortellini with seasoned shrimp. Comes with 4 garlic bread
+                    sticks</p>
             </div>
-            <div class="gyro-price">$14</div>
+            <div class="item-single-price">$17.00</div>
         </div>
-    </section>
-
-
-    <!-- ─── BEVERAGES ─── -->
-    <section class="menu-section" id="beverages">
-        <div class="section-header reveal">
-            <div class="section-number">11</div>
-            <div class="section-title-group">
-                <div class="section-eyebrow">To Drink</div>
-                <div class="section-title">Beverages</div>
-            </div>
-            <p class="section-note">Pepsi · Diet Pepsi · Sierra Mist · Root Beer · Dr. Pepper</p>
+        <div class="item-single">
+            <div class="item-single-left">
+                <div class="item-single-name">Tortellini Salad</div>
+                <p class="item-single-desc">Fresh basil, sun-dried tomatoes, Kalamata olives, feta tossed in extra
+                    virgin olive
+                    oil</p></div>
+            <div class="item-single-price">$9.00</div>
         </div>
-
-
-        <div class="sides-grid reveal">
-            <div class="side-item">
-                <div>
-                    <div class="side-name">Fountain Soda 20oz</div>
-                </div>
-                <div class="item-price">$2.50</div>
-            </div>
-            <div class="side-item">
-                <div>
-                    <div class="side-name">Two Liter Soda</div>
-                </div>
-                <div class="item-price">$3.50</div>
-            </div>
-            <div class="side-item">
-                <div>
-                    <div class="side-name">6-Pack Sodas</div>
-                </div>
-                <div class="item-price">$7</div>
-            </div>
+        <div class="item-single">
+            <div class="item-single-left">
+                <div class="item-single-name">Spaghetti &amp; All Beef Meatballs</div>
+                <p class="item-single-desc">Classic spaghetti with house all-beef meatballs. Comes with 4 garlic bread
+                    sticks</p></div>
+            <div class="item-single-price">$14.00</div>
         </div>
-    </section>
+    </div>
+</section>
 
 
-    <!-- ─── LUNCH SPECIALS ─── -->
-    <section class="menu-section" id="lunch">
-        <div class="section-header reveal">
-            <div class="section-number">12</div>
-            <div class="section-title-group">
-                <div class="section-eyebrow">Best Value</div>
-                <div class="section-title">Lunch Specials</div>
-            </div>
+<section class="menu-section" id="sandwiches">
+    <div class="sec-header reveal">
+        <div class="sec-num">08</div>
+        <div class="sec-info"><p class="sec-label">Fresh Baked Daily</p>
+            <h2 class="sec-title">SANDWICHES</h2>
+            <p class="sec-desc">All on in-house baked bread. $12 each. Add side salad +$4.</p></div>
+    </div>
+    <div class="item-grid reveal">
+        <div class="item-card">
+            <div class="item-name">Hot Turkey Pesto</div>
+            <p class="item-desc">Pesto spread, turkey breast, lettuce, tomatoes &amp; mozzarella</p><span
+                class="item-price">$12.00</span>
         </div>
+        <div class="item-card">
+            <div class="item-name">Hot Ham &amp; Cheese</div>
+            <p class="item-desc">Italian dressing, ham, tomatoes &amp; melted mozzarella</p><span
+                class="item-price">$12.00</span></div>
+        <div class="item-card">
+            <div class="item-name">Hot Italian Sausage</div>
+            <p class="item-desc">Classic Bravo sauce, Italian sausage, onions, bell peppers &amp; melted mozzarella</p>
+            <span
+                    class="item-price">$12.00</span></div>
+        <div class="item-card">
+            <div class="item-name">Hot Pastrami</div>
+            <p class="item-desc">Beef pastrami, mustard, lettuce, tomatoes, pepperoncini &amp; melted mozzarella</p>
+            <span
+                    class="item-price">$12.00</span></div>
+        <div class="item-card">
+            <div class="item-name">Chicken Caesar</div>
+            <p class="item-desc">Crisp romaine, chicken breast, shredded parmesan &amp; Caesar dressing</p><span
+                class="item-price">$12.00</span></div>
+        <div class="item-card">
+            <div class="item-name">Basil &amp; Sautéed Mushroom</div>
+            <p class="item-desc">Garlic mayo, fresh basil, sautéed onion &amp; mushroom, melted mozzarella &amp;
+                tomatoes</p>
+            <span class="item-price">$12.00</span></div>
+        <div class="item-card">
+            <div class="item-name">Gyro Pita</div>
+            <p class="item-desc">All beef gyro meat, crisp lettuce, tomatoes, tzatziki sauce on the side &amp; toasted
+                pita</p><span class="item-price">$12.00</span></div>
+        <div class="item-card">
+            <div class="item-name">Chicken Shawarma Pita <span class="item-badge">New!</span></div>
+            <p class="item-desc">Sautéed with red onion, garlic sauce, topped with tomatoes and mixed greens</p><span
+                class="item-price">$12.00</span></div>
+    </div>
+</section>
 
 
-        <div class="lunch-banner reveal">
-            <div class="lunch-banner-title">Available Daily</div>
-            <div class="lunch-banner-hours">11:00 AM – 3:00 PM</div>
+<section class="menu-section" id="gyro">
+    <div class="sec-header reveal">
+        <div class="sec-num">09</div>
+        <div class="sec-info"><p class="sec-label">Mediterranean</p>
+            <h2 class="sec-title">GYRO PLATE</h2></div>
+    </div>
+    <div class="item-list-single reveal">
+        <div class="item-single">
+            <div class="item-single-left">
+                <div class="item-single-name">Gyro Plate</div>
+                <p class="item-single-desc">All beef gyro meat garnished with tomatoes &amp; red onions. Comes with
+                    Greek salad,
+                    tzatziki sauce &amp; pita</p></div>
+            <div class="item-single-price">$14.00</div>
         </div>
+    </div>
+</section>
 
 
-        <div class="lunch-grid reveal">
-            <div class="lunch-item">
-                <div class="lunch-num">01</div>
-                <div class="lunch-name">Pizza by the Slice (Pepperoni or Cheese)</div>
-                <div class="lunch-price">$5</div>
-            </div>
-            <div class="lunch-item">
-                <div class="lunch-num">02</div>
-                <div class="lunch-name">Slice of Pizza & 16oz Soda</div>
-                <div class="lunch-price">$6.50</div>
-            </div>
-            <div class="lunch-item">
-                <div class="lunch-num">03</div>
-                <div class="lunch-name">Personal Gourmet Pizza or 4-Topping Pizza</div>
-                <div class="lunch-price">$11</div>
-            </div>
-            <div class="lunch-item">
-                <div class="lunch-num">04</div>
-                <div class="lunch-name">Half Sandwich & Side Salad</div>
-                <div class="lunch-price">$13</div>
-            </div>
-            <div class="lunch-item">
-                <div class="lunch-num">05</div>
-                <div class="lunch-name">Slice of Pizza & Side Salad (Pepperoni or Cheese)</div>
-                <div class="lunch-price">$12</div>
-            </div>
-            <div class="lunch-item">
-                <div class="lunch-num">06</div>
-                <div class="lunch-name">Mini Calzone & Side Salad</div>
-                <div class="lunch-price">$15</div>
-            </div>
-            <div class="lunch-item">
-                <div class="lunch-num">07</div>
-                <div class="lunch-name">Any Salad with Bread Sticks or Cheesy Stix</div>
-                <div class="lunch-price">$13</div>
-            </div>
-            <div class="lunch-item">
-                <div class="lunch-num">08</div>
-                <div class="lunch-name">Two Personal Pizzas & Two Side Salads</div>
-                <div class="lunch-price">$24</div>
-            </div>
-            <div class="lunch-item">
-                <div class="lunch-num">09</div>
-                <div class="lunch-name">Half Order Bread Sticks</div>
-                <div class="lunch-price">$4</div>
-            </div>
-            <div class="lunch-item">
-                <div class="lunch-num">10</div>
-                <div class="lunch-name">Half Order Cheesy Bread</div>
-                <div class="lunch-price">$7</div>
-            </div>
-            <div class="lunch-item">
-                <div class="lunch-num">11</div>
-                <div class="lunch-name">Medium Pizza with Cheese & One Topping</div>
-                <div class="lunch-price">$13</div>
-            </div>
+<section class="menu-section" id="sides">
+    <div class="sec-header reveal">
+        <div class="sec-num">10</div>
+        <div class="sec-info"><p class="sec-label">Add-Ons</p>
+            <h2 class="sec-title">SIDES &amp; EXTRAS</h2></div>
+    </div>
+    <div class="sides-grid reveal">
+        <div class="side-card">
+            <div class="side-name">Buffalo Wings</div>
+            <div class="side-sub">8pc · Hot &amp; Spicy or BBQ</div>
+            <div class="side-price">$10.00</div>
         </div>
-    </section>
+        <div class="side-card">
+            <div class="side-name">Garlic Bread Sticks</div>
+            <div class="side-sub">8 pieces</div>
+            <div class="side-price">$7.00</div>
+        </div>
+        <div class="side-card">
+            <div class="side-name">Cheesy Sticks</div>
+            <div class="side-sub">8 pieces</div>
+            <div class="side-price">$10.00</div>
+        </div>
+        <div class="side-card">
+            <div class="side-name">Dressings or Sauces</div>
+            <div class="side-sub">4 oz</div>
+            <div class="side-price">$0.75</div>
+        </div>
+        <div class="side-card">
+            <div class="side-name">Jalapeños or Pepperoncinis</div>
+            <div class="side-sub">Side order</div>
+            <div class="side-price">$1.00</div>
+        </div>
+        <div class="side-card">
+            <div class="side-name">Anchovies</div>
+            <div class="side-sub">Side order</div>
+            <div class="side-price">$3.00</div>
+        </div>
+    </div>
+</section>
 
 
-</main>
+<section class="menu-section" id="beverages">
+    <div class="sec-header reveal">
+        <div class="sec-num">11</div>
+        <div class="sec-info"><p class="sec-label">To Drink</p>
+            <h2 class="sec-title">BEVERAGES</h2></div>
+    </div>
+    <div class="bev-row reveal">
+        <div class="bev-card">
+            <div class="bev-title">Fountain Soda</div>
+            <p class="bev-options">20 oz · Pepsi · Diet Pepsi · Sierra Mist · Root Beer · Dr. Pepper</p>
+            <div class="bev-price">$2.50</div>
+        </div>
+        <div class="bev-card">
+            <div class="bev-title">Two Liter Soda</div>
+            <p class="bev-options">Pepsi · Diet Pepsi · Sierra Mist · Root Beer · Dr. Pepper</p>
+            <div class="bev-price">$3.50</div>
+        </div>
+        <div class="bev-card">
+            <div class="bev-title">6-Pack Soda</div>
+            <p class="bev-options">Pepsi · Diet Pepsi · Sierra Mist · Root Beer · Dr. Pepper</p>
+            <div class="bev-price">$7.00</div>
+        </div>
+    </div>
+</section>
 
 
-<!-- FOOTER -->
-<footer class="menu-footer">
-    <a href="index.html" class="nav-logo">Bravo<span>+</span></a>
-    <p>Atascadero: 8731 El Camino Real · <a href="tel:8054621000">(805) 462-1000</a> · 11am–9:30pm Daily</p>
-    <p>San Luis Obispo: 3971 S. Higuera #120 · <a href="tel:8054391634">(805) 439-1634</a> · 11am–9pm Daily · Buffet 11am–2:30pm</p>
-    <a href="index.html" class="back-to-home">← Back to Home</a>
+<section class="menu-section" id="lunch">
+    <div class="sec-header reveal">
+        <div class="sec-num">12</div>
+        <div class="sec-info"><p class="sec-label">11am – 3pm Daily</p>
+            <h2 class="sec-title">LUNCH SPECIALS</h2>
+            <p class="sec-desc">Unbeatable midday value, every day.</p></div>
+    </div>
+    <div class="lunch-grid reveal">
+        <div class="lunch-card">
+            <div class="lunch-num">#1</div>
+            <div class="lunch-name">Pizza by the Slice</div>
+            <p class="lunch-desc">Pepperoni or Cheese</p>
+            <div class="lunch-price">$5.00</div>
+        </div>
+        <div class="lunch-card">
+            <div class="lunch-num">#2</div>
+            <div class="lunch-name">Slice &amp; Soda</div>
+            <p class="lunch-desc">Slice of pizza &amp; 16oz soda</p>
+            <div class="lunch-price">$6.50</div>
+        </div>
+        <div class="lunch-card">
+            <div class="lunch-num">#3</div>
+            <div class="lunch-name">Personal Gourmet or 4-Topping Pizza</div>
+            <p class="lunch-desc">Your choice of toppings</p>
+            <div class="lunch-price">$11.00</div>
+        </div>
+        <div class="lunch-card">
+            <div class="lunch-num">#4</div>
+            <div class="lunch-name">Half Sandwich &amp; Side Salad</div>
+            <p class="lunch-desc">Your choice of sandwich</p>
+            <div class="lunch-price">$13.00</div>
+        </div>
+        <div class="lunch-card">
+            <div class="lunch-num">#5</div>
+            <div class="lunch-name">Slice &amp; Side Salad</div>
+            <p class="lunch-desc">Pepperoni or Cheese slice</p>
+            <div class="lunch-price">$12.00</div>
+        </div>
+        <div class="lunch-card">
+            <div class="lunch-num">#6</div>
+            <div class="lunch-name">Mini Calzone &amp; Side Salad</div>
+            <p class="lunch-desc">Mini calzone with side salad</p>
+            <div class="lunch-price">$15.00</div>
+        </div>
+        <div class="lunch-card">
+            <div class="lunch-num">#7</div>
+            <div class="lunch-name">Salad &amp; Bread</div>
+            <p class="lunch-desc">Any salad with bread sticks or cheesy stix</p>
+            <div class="lunch-price">$13.00</div>
+        </div>
+        <div class="lunch-card">
+            <div class="lunch-num">#8</div>
+            <div class="lunch-name">Two Pizzas &amp; Two Salads</div>
+            <p class="lunch-desc">Two personal pizzas &amp; two side salads</p>
+            <div class="lunch-price">$24.00</div>
+        </div>
+        <div class="lunch-card">
+            <div class="lunch-num">#9</div>
+            <div class="lunch-name">Half Order Bread Sticks</div>
+            <p class="lunch-desc">4 garlic bread sticks</p>
+            <div class="lunch-price">$4.00</div>
+        </div>
+        <div class="lunch-card">
+            <div class="lunch-num">#10</div>
+            <div class="lunch-name">Half Order Cheesy Bread</div>
+            <p class="lunch-desc">4 cheesy bread sticks</p>
+            <div class="lunch-price">$7.00</div>
+        </div>
+        <div class="lunch-card">
+            <div class="lunch-num">#11</div>
+            <div class="lunch-name">Medium Pizza, Cheese &amp; One Topping</div>
+            <p class="lunch-desc">12" pizza with cheese &amp; one topping</p>
+            <div class="lunch-price">$13.00</div>
+        </div>
+    </div>
+</section>
+
+
+<footer>
+    <div>
+        <div class="footer-logo">BRAVO<span>+</span> PIZZA PLUS</div>
+        <div
+                style="font-family:'Space Mono',monospace;font-size:.62rem;color:rgba(244,249,255,.3);margin-top:.5rem;letter-spacing:.1em;text-transform:uppercase;">
+            Home of The Twisted Sesame Crust
+        </div>
+    </div>
+    <div class="footer-info"><span>Atascadero · 8731 El Camino Real</span><a href="tel:8054621000">(805) 462-1000 ·
+        11am–9:30pm</a><br><span>SLO · 3971 S. Higuera #120</span><a href="tel:8054391634">(805) 439-1634 · 11am–9pm ·
+        Buffet 11am–2:30pm</a></div>
 </footer>
 
 
 <script>
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, i) => {
-            if (entry.isIntersecting) {
-                setTimeout(() => entry.target.classList.add('visible'), i * 60);
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.05 });
-    reveals.forEach(el => observer.observe(el));
+    function jumpTo(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const offset = 60 + 46;
+        const top = el.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({top, behavior: 'smooth'});
+    }
 
 
-    // Sticky section nav highlight
-    const sections = document.querySelectorAll('.menu-section');
-    const navLinks = document.querySelectorAll('.section-nav a');
-
-
-    const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                navLinks.forEach(link => link.classList.remove('active'));
-                const id = entry.target.getAttribute('id');
-                const active = document.querySelector(`.section-nav a[href="#${id}"]`);
-                if (active) {
-                    active.classList.add('active');
-                    active.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    const ids = ['build', 'specialty', 'gourmet', 'pesto', 'calzone', 'salads', 'pastas', 'sandwiches', 'gyro', 'sides', 'beverages', 'lunch'];
+    const btns = document.querySelectorAll('.cat-btn');
+    const secObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                const idx = ids.indexOf(e.target.id);
+                btns.forEach(b => b.classList.remove('active'));
+                if (idx > -1) {
+                    btns[idx].classList.add('active');
+                    btns[idx].scrollIntoView({inline: 'nearest', behavior: 'smooth', block: 'nearest'});
                 }
             }
         });
-    }, { rootMargin: '-40% 0px -55% 0px' });
-
-
-    sections.forEach(s => sectionObserver.observe(s));
+    }, {threshold: .15, rootMargin: '-60px 0px -55% 0px'});
+    ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) secObs.observe(el);
+    });
+    const revObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) e.target.classList.add('visible');
+        });
+    }, {threshold: .06});
+    document.querySelectorAll('.reveal').forEach(r => revObs.observe(r));
 </script>
 </body>
 </html>

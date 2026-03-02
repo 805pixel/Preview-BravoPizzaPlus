@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bravo Pizza Plus</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rock: #BB3E00;
+            --orange: #F7AD45;
+            --cream: #FFF1D7;
+            --green: #5F8D37;
+            --dark: #1a0a00;
+        }
+
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+
+        html { scroll-behavior: smooth; }
+
+
+        body {
+            background: var(--cream);
+            color: var(--dark);
+            font-family: 'DM Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+
+        /* ─── NOISE OVERLAY ─── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.5;
+        }
+
+
+        /* ─── NAV ─── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.2rem 3rem;
+            background: rgba(255,241,215,0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid var(--rock);
+        }
+
+
+        .nav-logo {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2rem;
+            color: var(--rock);
+            letter-spacing: 0.05em;
+            line-height: 1;
+        }
+        .nav-logo span { color: var(--green); }
+
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+
+        nav ul a {
+            text-decoration: none;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--dark);
+            transition: color 0.2s;
+        }
+        nav ul a:hover { color: var(--rock); }
+
+
+        .nav-cta {
+            background: var(--rock);
+            color: var(--cream) !important;
+            padding: 0.6rem 1.4rem;
+            border-radius: 2px;
+            transition: background 0.2s !important;
+        }
+        .nav-cta:hover { background: var(--green) !important; color: var(--cream) !important; }
+
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .hero-left {
+            background: var(--rock);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 10rem 4rem 4rem 5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+
+        .hero-left::after {
+            content: '';
+            position: absolute;
+            right: -60px;
+            top: 0; bottom: 0;
+            width: 120px;
+            background: var(--rock);
+            transform: skewX(-4deg);
+            z-index: 2;
+        }
+
+
+        .hero-eyebrow {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 1.5rem;
+            animation: fadeUp 0.8s 0.2s both;
+        }
+
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.5rem, 6vw, 6rem);
+            font-weight: 900;
+            color: var(--cream);
+            line-height: 0.95;
+            margin-bottom: 2rem;
+            animation: fadeUp 0.8s 0.4s both;
+        }
+
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--orange);
+        }
+
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: rgba(255,241,215,0.75);
+            line-height: 1.7;
+            max-width: 380px;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            animation: fadeUp 0.8s 0.6s both;
+        }
+
+
+        .hero-badges {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            animation: fadeUp 0.8s 0.8s both;
+        }
+
+
+        .badge {
+            border: 1.5px solid var(--orange);
+            color: var(--orange);
+            padding: 0.4rem 1rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            border-radius: 1px;
+        }
+
+
+        .hero-right {
+            background: var(--dark);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+
+        /* Giant pizza graphic */
+        .pizza-graphic {
+            width: min(520px, 80%);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: radial-gradient(circle at 40% 35%, #f5c842 0%, #e8930a 45%, #c44800 75%, #8b2800 100%);
+            position: relative;
+            box-shadow: 0 0 120px rgba(247,173,69,0.3), 0 0 60px rgba(187,62,0,0.4);
+            animation: slowSpin 30s linear infinite;
+            z-index: 1;
+        }
+
+
+        @keyframes slowSpin { to { transform: rotate(360deg); } }
+
+
+        /* Pizza slices overlay effect */
+        .pizza-graphic::before {
+            content: '';
+            position: absolute;
+            inset: 5%;
+            border-radius: 50%;
+            background:
+                    conic-gradient(
+                            transparent 0deg 30deg,
+                            rgba(0,0,0,0.15) 30deg 32deg,
+                            transparent 32deg 90deg,
+                            rgba(0,0,0,0.15) 90deg 92deg,
+                            transparent 92deg 150deg,
+                            rgba(0,0,0,0.15) 150deg 152deg,
+                            transparent 152deg 210deg,
+                            rgba(0,0,0,0.15) 210deg 212deg,
+                            transparent 212deg 270deg,
+                            rgba(0,0,0,0.15) 270deg 272deg,
+                            transparent 272deg 330deg,
+                            rgba(0,0,0,0.15) 330deg 332deg,
+                            transparent 332deg 360deg
+                    );
+        }
+
+
+        /* Toppings dots */
+        .pizza-graphic::after {
+            content: '●   ●     ●  ●    ●      ●   ●  ●     ●    ●  ●   ●      ●  ●    ●';
+            position: absolute;
+            inset: 15%;
+            border-radius: 50%;
+            color: rgba(95,141,55,0.7);
+            font-size: 1rem;
+            word-break: break-all;
+            overflow: hidden;
+            line-height: 1.4;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 2rem;
+        }
+
+
+        .hero-right-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 40%, var(--dark) 100%);
+            z-index: 2;
+        }
+
+
+        .since-badge {
+            position: absolute;
+            bottom: 3rem;
+            right: 3rem;
+            z-index: 3;
+            text-align: right;
+            animation: fadeUp 0.8s 1s both;
+        }
+
+
+        .since-badge .year {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 5rem;
+            color: var(--orange);
+            line-height: 1;
+            opacity: 0.3;
+        }
+
+
+        .since-badge .label {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255,241,215,0.4);
+        }
+
+
+        /* ─── MARQUEE STRIP ─── */
+        .marquee-strip {
+            background: var(--orange);
+            padding: 0.9rem 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+
+        .marquee-inner {
+            display: flex;
+            gap: 0;
+            animation: marquee 20s linear infinite;
+            width: max-content;
+        }
+
+
+        .marquee-item {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.4rem;
+            letter-spacing: 0.1em;
+            color: var(--rock);
+            padding: 0 3rem;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+
+        .marquee-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--rock);
+            display: inline-block;
+        }
+
+
+        @keyframes marquee { to { transform: translateX(-50%); } }
+
+
+        /* ─── LOCATIONS ─── */
+        .locations {
+            background: var(--cream);
+            padding: 7rem 5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3px;
+        }
+
+
+        .section-label {
+            grid-column: 1/-1;
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--rock);
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--rock);
+            opacity: 0.3;
+        }
+
+
+        .location-card {
+            background: var(--dark);
+            color: var(--cream);
+            padding: 3.5rem;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+
+        .location-card:hover { transform: scale(1.01); }
+
+
+        .location-card::before {
+            content: '';
+            position: absolute;
+            bottom: -60px; right: -60px;
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            background: var(--rock);
+            opacity: 0.2;
+            transition: transform 0.4s;
+        }
+        .location-card:hover::before { transform: scale(1.5); }
+
+
+        .location-city {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3.5rem;
+            letter-spacing: 0.05em;
+            color: var(--orange);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+
+        .location-address {
+            font-size: 0.9rem;
+            color: rgba(255,241,215,0.6);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+
+        .location-phone {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--cream);
+            margin-bottom: 1.5rem;
+        }
+
+
+        .location-hours {
+            font-size: 0.8rem;
+            color: var(--green);
+            letter-spacing: 0.05em;
+            line-height: 1.8;
+            border-top: 1px solid rgba(255,241,215,0.1);
+            padding-top: 1.5rem;
+        }
+
+
+        .location-special {
+            display: inline-block;
+            background: var(--green);
+            color: var(--cream);
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.8rem;
+            margin-top: 1rem;
+            border-radius: 1px;
+        }
+
+
+        /* ─── INGREDIENTS SECTION ─── */
+        .ingredients {
+            background: var(--rock);
+            padding: 8rem 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .ingredients::before {
+            content: 'FRESH';
+            position: absolute;
+            font-family: 'Bebas Neue', cursive;
+            font-size: 20vw;
+            color: rgba(255,255,255,0.04);
+            top: 50%; left: 50%;
+            transform: translate(-50%,-50%);
+            pointer-events: none;
+            letter-spacing: 0.1em;
+        }
+
+
+        .ingredients-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 5rem;
+        }
+
+
+        .ingredients h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 4vw, 4rem);
+            font-weight: 900;
+            color: var(--cream);
+            line-height: 1.1;
+        }
+
+
+        .ingredients h2 em {
+            font-style: italic;
+            color: var(--orange);
+        }
+
+
+        .ingredients-intro {
+            color: rgba(255,241,215,0.7);
+            font-weight: 300;
+            line-height: 1.8;
+            font-size: 0.95rem;
+            align-self: end;
+        }
+
+
+        .ingredients-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: rgba(255,241,215,0.1);
+        }
+
+
+        .ingredient-item {
+            background: var(--rock);
+            padding: 2.5rem;
+            position: relative;
+            transition: background 0.3s;
+        }
+        .ingredient-item:hover { background: #cc4500; }
+
+
+        .ingredient-number {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 4rem;
+            color: rgba(255,241,215,0.08);
+            line-height: 1;
+            margin-bottom: -1rem;
+        }
+
+
+        .ingredient-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+
+        .ingredient-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--orange);
+            margin-bottom: 0.7rem;
+        }
+
+
+        .ingredient-desc {
+            font-size: 0.85rem;
+            color: rgba(255,241,215,0.65);
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+
+        /* ─── FOUNDER ─── */
+        .founder {
+            background: var(--green);
+            padding: 8rem 5rem;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 6rem;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .founder::after {
+            content: '"';
+            position: absolute;
+            font-family: 'Playfair Display', serif;
+            font-size: 40vw;
+            color: rgba(0,0,0,0.07);
+            top: -10%;
+            left: -2%;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+
+        .founder-meta {
+            position: relative;
+            z-index: 1;
+        }
+
+
+        .founder-meta .section-label {
+            color: rgba(255,241,215,0.6);
+            margin-bottom: 2rem;
+        }
+        .founder-meta .section-label::after { background: rgba(255,241,215,0.3); }
+
+
+        .founder-name {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3vw, 3.5rem);
+            font-weight: 900;
+            color: var(--cream);
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+
+
+        .founder-title {
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 2rem;
+        }
+
+
+        .founder-since {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 6rem;
+            color: rgba(255,241,215,0.15);
+            line-height: 1;
+        }
+
+
+        .founder-quote {
+            position: relative;
+            z-index: 1;
+        }
+
+
+        .quote-text {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1rem, 1.5vw, 1.25rem);
+            font-style: italic;
+            color: var(--cream);
+            line-height: 1.9;
+            font-weight: 400;
+        }
+
+
+        .quote-text p + p { margin-top: 1.5rem; }
+
+
+        .quote-sig {
+            margin-top: 2.5rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--orange);
+        }
+
+
+        /* ─── SERVICES STRIP ─── */
+        .services {
+            background: var(--cream);
+            padding: 6rem 5rem;
+        }
+
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: var(--dark);
+            margin-top: 3rem;
+        }
+
+
+        .service-card {
+            background: var(--cream);
+            padding: 4rem 3rem;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: default;
+        }
+        .service-card:hover {
+            background: var(--dark);
+            color: var(--cream);
+        }
+        .service-card:hover .service-icon { color: var(--orange); }
+        .service-card:hover .service-name { color: var(--cream); }
+        .service-card:hover .service-desc { color: rgba(255,241,215,0.6); }
+
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            transition: color 0.3s;
+        }
+
+
+        .service-name {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2rem;
+            letter-spacing: 0.08em;
+            color: var(--rock);
+            margin-bottom: 0.8rem;
+            transition: color 0.3s;
+        }
+
+
+        .service-desc {
+            font-size: 0.85rem;
+            color: rgba(26,10,0,0.55);
+            line-height: 1.7;
+            font-weight: 300;
+            transition: color 0.3s;
+        }
+
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--dark);
+            color: var(--cream);
+            padding: 5rem 5rem 3rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+        }
+
+
+        .footer-brand .nav-logo {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+
+        .footer-tagline {
+            font-size: 0.9rem;
+            color: rgba(255,241,215,0.5);
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 300px;
+            margin-bottom: 2rem;
+        }
+
+
+        .footer-divider {
+            width: 40px;
+            height: 2px;
+            background: var(--rock);
+            margin-bottom: 2rem;
+        }
+
+
+        .footer-col h4 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.3rem;
+            letter-spacing: 0.1em;
+            color: var(--orange);
+            margin-bottom: 1.5rem;
+        }
+
+
+        .footer-col p, .footer-col address {
+            font-size: 0.85rem;
+            color: rgba(255,241,215,0.5);
+            line-height: 1.9;
+            font-style: normal;
+            font-weight: 300;
+        }
+
+
+        .footer-col a {
+            color: rgba(255,241,215,0.5);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-col a:hover { color: var(--orange); }
+
+
+        .footer-bottom {
+            grid-column: 1/-1;
+            border-top: 1px solid rgba(255,241,215,0.08);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: rgba(255,241,215,0.25);
+            margin-top: 2rem;
+        }
+
+
+        /* ─── ANIMATIONS ─── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s, transform 0.7s;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 900px) {
+            nav { padding: 1rem 1.5rem; }
+            nav ul { display: none; }
+            .hero { grid-template-columns: 1fr; }
+            .hero-right { min-height: 50vw; }
+            .hero-left { padding: 8rem 2rem 4rem; }
+            .hero-left::after { display: none; }
+            .locations, .ingredients-header, .founder, .services-grid { grid-template-columns: 1fr; }
+            .ingredients-grid { grid-template-columns: 1fr 1fr; }
+            .locations, .ingredients, .founder, .services, footer { padding: 4rem 2rem; }
+            .ingredients-grid { grid-template-columns: 1fr; }
+            footer { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+
+<!-- NAV -->
+<nav>
+    <div class="nav-logo">Bravo<span>+</span></div>
+    <ul>
+        <li><a href="#locations">Locations</a></li>
+        <li><a href="#quality">Quality</a></li>
+        <li><a href="#founder">Our Story</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="tel:8054621000" class="nav-cta">Order Now</a></li>
+    </ul>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-left">
+        <p class="hero-eyebrow">Handcrafted Since 1996 · Central Coast, CA</p>
+        <h1 class="hero-title">
+            More Than<br>
+            Just <em>Pizza.</em><br>
+            It's Family.
+        </h1>
+        <p class="hero-subtitle">Fresh dough, vibrant tomatoes, and a quarter century of community love baked into every single slice.</p>
+        <div class="hero-badges">
+            <span class="badge">Fresh Daily</span>
+            <span class="badge">Gluten-Free Available</span>
+            <span class="badge">Dine-In & Delivery</span>
+        </div>
+    </div>
+    <div class="hero-right">
+        <div class="pizza-graphic"></div>
+        <div class="hero-right-overlay"></div>
+        <div class="since-badge">
+            <div class="year">1996</div>
+            <div class="label">Serving the Community</div>
+        </div>
+    </div>
+</section>
+
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+    <div class="marquee-inner">
+        <!-- repeated twice for seamless loop -->
+        <span class="marquee-item">Dine-In <span class="marquee-dot"></span> Take-Out <span class="marquee-dot"></span> Delivery <span class="marquee-dot"></span> Buffet Available <span class="marquee-dot"></span> Fresh Dough Daily <span class="marquee-dot"></span> Gluten-Free Crust <span class="marquee-dot"></span> Twisted Sesame Crust <span class="marquee-dot"></span> Community First</span>
+        <span class="marquee-item">Dine-In <span class="marquee-dot"></span> Take-Out <span class="marquee-dot"></span> Delivery <span class="marquee-dot"></span> Buffet Available <span class="marquee-dot"></span> Fresh Dough Daily <span class="marquee-dot"></span> Gluten-Free Crust <span class="marquee-dot"></span> Twisted Sesame Crust <span class="marquee-dot"></span> Community First</span>
+    </div>
+</div>
+
+
+<!-- LOCATIONS -->
+<section class="locations" id="locations">
+    <div class="section-label">Our Locations</div>
+    <div class="location-card reveal">
+        <div class="location-city">Atascadero</div>
+        <p class="location-address">8731 El Camino Real</p>
+        <p class="location-phone">(805) 462-1000</p>
+        <div class="location-hours">
+            Open Daily · 11:00 AM – 9:30 PM
+        </div>
+    </div>
+    <div class="location-card reveal">
+        <div class="location-city">San Luis Obispo</div>
+        <p class="location-address">3971 South Higuera #120</p>
+        <p class="location-phone">(805) 439-1634</p>
+        <div class="location-hours">
+            Open Daily · 11:00 AM – 9:00 PM
+            <div>
+                <span class="location-special">All-You-Can-Eat Buffet · 11am – 2:30pm Daily</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- INGREDIENTS -->
+<section class="ingredients" id="quality">
+    <div class="ingredients-header reveal">
+        <h2>
+            Crafted with<br>
+            <em>Uncompromising</em><br>
+            Quality
+        </h2>
+        <p class="ingredients-intro">Every ingredient is chosen with intention. We believe the best pizza starts long before it enters the oven — it starts with what you put in it.</p>
+    </div>
+    <div class="ingredients-grid">
+        <div class="ingredient-item reveal">
+            <div class="ingredient-number">01</div>
+            <div class="ingredient-icon">🍅</div>
+            <div class="ingredient-title">Fresh Tomato Sauce</div>
+            <p class="ingredient-desc">Our sauce is crafted from fresh tomatoes, never canned concentrate — delivering vibrant, garden-fresh flavor in every bite.</p>
+        </div>
+        <div class="ingredient-item reveal">
+            <div class="ingredient-number">02</div>
+            <div class="ingredient-icon">🫒</div>
+            <div class="ingredient-title">Daily Dough</div>
+            <p class="ingredient-desc">Dough made fresh every morning with premium olive oil. Gluten-free crust available for every pizza.</p>
+        </div>
+        <div class="ingredient-item reveal">
+            <div class="ingredient-number">03</div>
+            <div class="ingredient-icon">🌿</div>
+            <div class="ingredient-title">Twisted Sesame Crust</div>
+            <p class="ingredient-desc">Our signature gourmet pizzas feature a distinctive twisted sesame crust — a subtle crunch that sets us apart.</p>
+        </div>
+        <div class="ingredient-item reveal">
+            <div class="ingredient-number">04</div>
+            <div class="ingredient-icon">🥩</div>
+            <div class="ingredient-title">Premium Meats</div>
+            <p class="ingredient-desc">Quality beef and low-fat turkey, carefully selected for taste and nutrition without compromise.</p>
+        </div>
+        <div class="ingredient-item reveal">
+            <div class="ingredient-number">05</div>
+            <div class="ingredient-icon">🥦</div>
+            <div class="ingredient-title">Freshest Vegetables</div>
+            <p class="ingredient-desc">Highest-quality fresh vegetables, sourced for peak flavor and texture to complement every topping combination.</p>
+        </div>
+        <div class="ingredient-item reveal">
+            <div class="ingredient-number">06</div>
+            <div class="ingredient-icon">✨</div>
+            <div class="ingredient-title">Gourmet Variety</div>
+            <p class="ingredient-desc">Unique, flavorful gourmet and traditional pizzas crafted to satisfy every palate — from classic to adventurous.</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- FOUNDER -->
+<section class="founder" id="founder">
+    <div class="founder-meta reveal">
+        <div class="section-label">Our Story</div>
+        <div class="founder-name">Sam<br>Ayesh</div>
+        <div class="founder-title">Founder, Bravo Pizza Plus</div>
+        <div class="founder-since">1996</div>
+    </div>
+    <div class="founder-quote reveal">
+        <div class="quote-text">
+            <p>"I realize that customer service is a must, and that value is so important, and that clean is a must. Caring for your needs and wants is essential to our success.</p>
+            <p>As to all our customers, we prefer to think of you as members of our extended family, and would like you to know how much we appreciate your business and continued loyalty. Our commitment to provide you with quality meals and excellent service will continue strong and remain my #1 goal.</p>
+            <p>Since opening day in 1996, giving back to the community is a big part of our business. We are always pleased to participate in community events ... ready to support and lend a hand to the needy, nonprofit organization, school district, and above all the people who keep Atascadero safe, secure, and clean."</p>
+        </div>
+        <p class="quote-sig">— Sam Ayesh, Founder</p>
+    </div>
+</section>
+
+
+<!-- SERVICES -->
+<section class="services" id="services">
+    <div class="section-label">How We Serve You</div>
+    <div class="services-grid">
+        <div class="service-card reveal">
+            <div class="service-icon">🍽️</div>
+            <div class="service-name">Dine In</div>
+            <p class="service-desc">Relax and enjoy a warm, welcoming atmosphere at either of our two Central Coast locations. The family table is always set.</p>
+        </div>
+        <div class="service-card reveal">
+            <div class="service-icon">📦</div>
+            <div class="service-name">Take Out</div>
+            <p class="service-desc">Fresh, hot pizza ready when you are. Call ahead and we'll have your order waiting for quick, convenient pickup.</p>
+        </div>
+        <div class="service-card reveal">
+            <div class="service-icon">🛵</div>
+            <div class="service-name">Delivery</div>
+            <p class="service-desc">Bravo Pizza Plus comes to you. Enjoy restaurant-quality pizza delivered fresh to your door.</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-brand">
+        <span class="nav-logo">Bravo<span>+</span></span>
+        <div class="footer-divider"></div>
+        <p class="footer-tagline">Family-owned since 1996. Proudly serving Atascadero and San Luis Obispo with fresh, handcrafted pizza and genuine community care.</p>
+    </div>
+    <div class="footer-col">
+        <h4>Atascadero</h4>
+        <address>
+            8731 El Camino Real<br>
+            Atascadero, CA<br><br>
+            <a href="tel:8054621000">(805) 462-1000</a><br><br>
+            Mon – Sun<br>
+            11:00 AM – 9:30 PM
+        </address>
+    </div>
+    <div class="footer-col">
+        <h4>San Luis Obispo</h4>
+        <address>
+            3971 South Higuera #120<br>
+            San Luis Obispo, CA<br><br>
+            <a href="tel:8054391634">(805) 439-1634</a><br><br>
+            Mon – Sun<br>
+            11:00 AM – 9:00 PM<br><br>
+            Buffet: 11am – 2:30pm
+        </address>
+    </div>
+    <div class="footer-bottom">
+        <span>© 2024 Bravo Pizza Plus · All Rights Reserved</span>
+        <span>Dine-In · Take-Out · Delivery</span>
+    </div>
+</footer>
+
+
+<script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => entry.target.classList.add('visible'), i * 80);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+
+    // Nav scroll effect
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+        nav.style.boxShadow = window.scrollY > 50 ? '0 4px 30px rgba(0,0,0,0.1)' : 'none';
+    });
+</script>
+</body>
+</html>
+
